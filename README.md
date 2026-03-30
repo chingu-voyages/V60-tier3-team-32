@@ -38,4 +38,5 @@ coding!
 - Rasitraka: [GitHub](https://github.com/rasitraka0) / [LinkedIn](https://www.linkedin.com/in/sitraka-heritina-andriambarijao-209597238/)
 - Amanda Acolatse: [GitHub](https://github.com/ae-aco) / [LinkedIn](https://linkedin.com/in/amandaacolatse)
 - Jazz Bullecer: [GitHub](https://github.com/jazxbx) / [LinkedIn](https://www.linkedin.com/in/jazz-bullecer-89780928a)
+- Tonia Montgomery: [GitHub](https://github.com/MontgomeryT7294) / [LinkedIn](http://www.linkedin.com/in/tonia-montgomery)
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
