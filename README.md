@@ -40,4 +40,3 @@ coding!
 - Jazz Bullecer: [GitHub](https://github.com/jazxbx) / [LinkedIn](https://www.linkedin.com/in/jazz-bullecer-89780928a)
 - Tonia Montgomery: [GitHub](https://github.com/MontgomeryT7294) / [LinkedIn](http://www.linkedin.com/in/tonia-montgomery)
 - Margaret Wu: [GitHub](https://github.com/margaretcwu) / [LinkedIn](https://www.linkedin.com/in/margaretcwu/)
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
