@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-// Use 'export const' so they are "Named Exports"
+//exports 
 export const useAppDispatch = () => useDispatch();
 export const useAppSelector = useSelector;

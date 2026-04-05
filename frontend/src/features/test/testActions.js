@@ -12,3 +12,17 @@ export const fetchTest = createAsyncThunk(
     }
   }
 );
+
+
+// Create Test 
+export const addTest = createAsyncThunk(
+  'test/add',
+  async (testData, thunkAPI) => {
+    try {
+      return await testService.createTest(testData);
+    } catch (error) {
+      const message = error.response?.data?.message || error.message;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);

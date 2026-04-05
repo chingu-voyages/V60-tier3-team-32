@@ -1,12 +1,17 @@
 import api from '../../api/axios';
 
+// Get 
 const getTest = async () => {
   const response = await api.get('/test');
-  return response.data; // Just the data, no Redux logic here
+  return response.data; 
 };
 
-const testService = {
-  getTest,
+
+//Create Service 
+const createTest = async (testData) => {
+  const response = await api.post('/test', testData);
+  return response.data; 
 };
 
+const testService = { getTest, createTest };
 export default testService;

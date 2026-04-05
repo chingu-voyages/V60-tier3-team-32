@@ -1,30 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTest } from './testActions';
+import { fetchTest, addTest } from './testActions';
 
 const initialState = {
-  message: '',
-  status: 'idle', // 'idle' | 'loading' | 'success' | 'failed'
+  items: [], 
+  status: 'idle',
   error: null
 };
 
 export const testSlice = createSlice({
   name: 'test',
   initialState,
-  reducers: {
-    reset: (state) => initialState
-  },
+  reducers: { reset: (state) => initialState },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTest.pending, (state) => {
-        state.status = 'loading';
-      })
+      // Fetching Logic
+      .addCase(fetchTest.pending, (state) => { state.status = 'loading'; })
       .addCase(fetchTest.fulfilled, (state, action) => {
         state.status = 'success';
-        state.message = action.payload.message;
+        state.items = action.payload; 
       })
       .addCase(fetchTest.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
+      })
+      // Adding Logic
+      .addCase(addTest.fulfilled, (state, action) => {
+        state.items.push(action.payload); 
       });
   },
 });

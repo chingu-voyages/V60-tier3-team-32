@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 
-// Layouts & Components (We'll create these next)
+// Layouts & Components
 import Navbar from './components/layout/Navbar';
 
 // Pages
@@ -18,7 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
             
-              {/* Future routes like /practice or /profile go here */}
+             
             </Routes>
           </main>
         </div>
