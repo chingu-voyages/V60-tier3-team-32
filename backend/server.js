@@ -4,7 +4,7 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import { errorHandler } from './middleware/errorMiddleware.js';
 import testRoutes from './routes/testRoutes.js';
-import authRoutes from './routes/authRoutes.js';
+import authRoutes from './routes/auth.routes.js';
 // Load environment variables
 dotenv.config();
 
