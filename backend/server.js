@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // ROUTES
 app.use('/api/test', testRoutes);
-app.use('/api/auth', authRoutes);
+app.use('/api/v1/auth', authRoutes);
 // Server Health Test
 app.get('/', (req, res) => {
   res.send('LinguaLoop API is running...');

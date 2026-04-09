@@ -7,6 +7,10 @@ export const registerUser = async (req, res) => {
     const { username, email, password, native_language, learning_languages } =
       req.body;
 
+    if (!username || !email || !password || !native_language) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
     const userExists = await User.findOne({
       $or: [{ email }, { username }],
     });
