@@ -55,3 +55,35 @@ export const registerUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+export const loginUser = async (req, res) => {
+  try {
+    const { identifier, password } = req.body;
+    const isEmail = identifier.includes('@');
+
+    const user = await User.findOne(
+      isEmail ? { email: identifier } : { username: identifier },
+    );
+    if (!user) {
+      return res.status(401).json({ message: 'user not found' });
+    }
+    const passwordVerification = await bcrypt.compare(
+      password,
+      user.password_hash,
+    );
+    if (!passwordVerification) {
+      return res.status(401).json({ message: 'incorrect password' });
+    }
+    const access_token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '15m',
+    });
+
+    const refresh_token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '7d',
+    });
+    user.refresh_token = refresh_token;
+    await user.save();
+    res.status(200).json({ access_token, refresh_token });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
