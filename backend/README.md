@@ -34,3 +34,17 @@ Request body:
   ]
 }
 ```
+#### Login
+
+**POST** `/api/v1/auth/login`
+
+Request body:
+
+```json
+{
+  "identifier": "helloworld@gmail.com",
+  "password": "password123"
+}
+```
+
+`identifier` can be either email or username.

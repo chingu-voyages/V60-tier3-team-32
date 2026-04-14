@@ -23,3 +23,8 @@ export const registerSchema = z.object({
     .min(1)
     .max(2),
 });
+
+export const loginSchema = z.object({
+  identifier: z.string().min(1),
+  password: z.string().min(1),
+});
