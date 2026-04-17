@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import { useAuth } from '../../../hooks/useAuth.js';
+import { loginThunk } from '@/store/authSlice.js';
+
 import { loginSchema } from './loginSchema';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,9 +19,11 @@ import {
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { login, loading, error } = useAuth();
 
-  const { control, handleSubmit } = useForm({
+  // console.log({ login, loading, error });
+
+  const { control, handleSubmit, reset } = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       identifier: '',
@@ -25,28 +31,31 @@ export default function LoginForm() {
     },
   });
 
-  const onSubmit = (values) => {
-    const payload = {
+  const onSubmit = async (values) => {
+    const result = await login({
       identifier: values.identifier,
       password: values.password,
-    };
-    setIsLoading(true);
-    console.log(payload);
-    setIsLoading(false);
+    });
+    if (loginThunk.fulfilled.match(result)) {
+      reset();
+    }
   };
-
   return (
-    <div className='mx-auto w-full max-w-2xl rounded-2xl border bg-background p-6'>
-      <h1 className='text-2xl font-semibold mb-1'>Login to your Account</h1>
-      <p className='text-muted-foreground text-sm mb-6'>
-        Welcome back! Please login to your account to continue where you left
-        off.
-      </p>
+    <div className='flex flex-col w-full max-w-2xl gap-16'>
+      <div className='flex flex-col items-center gap-3'>
+        <h1 className='text-2xl md:text-3xl font-semibold'>
+          Login to your Account
+        </h1>
+        <p className='text-[#57534D] text-sm mb-6 text-center'>
+          Welcome back! Please login to your account to continue where you left
+          off.
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FieldSet>
           <FieldLegend className='sr-only'>Login</FieldLegend>
-          <FieldGroup>
+          <FieldGroup className='space-y-7'>
             <Controller
               control={control}
               name='identifier'
@@ -57,6 +66,7 @@ export default function LoginForm() {
                   </FieldLabel>
                   <Input
                     {...field}
+                    className='rounded-full'
                     id='identifier'
                     placeholder='you@example.com or @username'
                     autoComplete='username'
@@ -80,6 +90,7 @@ export default function LoginForm() {
                   <div className='relative'>
                     <Input
                       {...field}
+                      className='rounded-full'
                       id='password'
                       type={showPassword ? 'text' : 'password'}
                       placeholder='••••••••'
@@ -106,17 +117,17 @@ export default function LoginForm() {
             />
           </FieldGroup>
         </FieldSet>
-
+        {error && <p className='text-red-500 text-sm'>{error}</p>}
         <Button
           type='submit'
           className='w-full mt-6 bg-violet-400'
-          disabled={isLoading}
+          disabled={loading}
         >
-          {isLoading ? 'Logging in...' : 'Log in'}
+          {loading ? 'Logging in...' : 'Log in'}
         </Button>
       </form>
 
-      <p className='text-center text-sm mt-6'>
+      <p className='text-center text-sm mb-24'>
         Don't have an account?{' '}
         <a
           href='/register'
