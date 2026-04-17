@@ -21,7 +21,7 @@ app.use(
     credentials: true,
   }),
 );
-
+console.log(process.env.FRONTEND_URL);
 // Body Parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
