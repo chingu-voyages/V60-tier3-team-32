@@ -139,7 +139,7 @@ export default function LoginForm() {
       <p className='text-center text-sm mb-24'>
         Don't have an account?{' '}
         <Link
-          href='/sign-up'
+          to='/sign-up'
           className='text-foreground font-medium text-indigo-700 hover:underline'
         >
           Sign Up
