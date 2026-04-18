@@ -5,6 +5,7 @@
 This document outlines the current architecture and structure of the React frontend application for **LinguaLoop** - a neural data bridge application. The project uses modern tooling and best practices to ensure scalability, maintainability, and performance.
 
 ### Project Summary
+
 - **Application**: LinguaLoop - A neural data bridge for MongoDB Atlas synchronization
 - **Framework**: React 19 with Vite build tool
 - **State Management**: Redux Toolkit with async thunks
@@ -14,6 +15,7 @@ This document outlines the current architecture and structure of the React front
 - **Package Manager**: npm with locked dependencies
 
 ### Key Architecture Principles
+
 1. **Feature-Based Structure** - Code organized by features (auth, practice, test)
 2. **Service-Action-Slice Pattern** - Redux async patterns with service layer
 3. **Component Composition** - Reusable, composable UI components via Radix UI
@@ -26,6 +28,7 @@ This document outlines the current architecture and structure of the React front
 ## Tech Stack
 
 ### Core Dependencies
+
 - **React** (^19.2.4) - UI library for building component-based interfaces
 - **React DOM** (^19.2.4) - React rendering for web
 - **React Router DOM** (^7.14.0) - Client-side routing and navigation
@@ -34,6 +37,7 @@ This document outlines the current architecture and structure of the React front
 - **Axios** (^1.14.0) - HTTP client for API requests
 
 ### UI & Styling
+
 - **Tailwind CSS** (^3.4.10) - Utility-first CSS framework
 - **PostCSS** (^8.5.8) - CSS processing
 - **Autoprefixer** (^10.4.27) - Vendor prefixing for CSS
@@ -45,12 +49,14 @@ This document outlines the current architecture and structure of the React front
 - **lucide-react** (^1.7.0) - Beautiful, consistent SVG icon library
 
 ### Build & Development Tools
+
 - **Vite** (^8.0.1) - Fast frontend build tool and dev server with ESM support
 - **@vitejs/plugin-react** (^6.0.1) - Vite plugin for React with Oxc
 - **React Compiler** - Enabled for automatic optimization and memoization
 - **@rolldown/plugin-babel** (^0.2.1) - Babel integration for Vite
 
 ### Linting & Code Quality
+
 - **ESLint** (^9.39.4) - JavaScript linter
 - **@eslint/js** (^9.39.4) - ESLint JS configuration
 - **eslint-plugin-react-hooks** (^7.0.1) - React hooks linting rules
@@ -58,6 +64,7 @@ This document outlines the current architecture and structure of the React front
 - **Babel** (@babel/core ^7.29.0) - JavaScript compiler
 
 ### Development Tools
+
 - **@types/react** (^19.2.14) - React type definitions
 - **@types/react-dom** (^19.2.3) - React DOM type definitions
 - **babel-plugin-react-compiler** (^1.0.0) - React compiler for performance
@@ -70,9 +77,6 @@ This document outlines the current architecture and structure of the React front
 src/
 ├── api/                              # API integration layer
 │   └── axios.js                     # Axios instance with baseURL configuration
-├── app/                             # Redux store & global app configuration
-│   ├── hooks.js                     # Custom Redux hooks (useAppDispatch, useAppSelector)
-│   └── store.js                     # Redux store configuration with slices
 ├── assets/                          # Static assets (images, icons, fonts, etc.)
 ├── components/                      # Reusable UI components
 │   ├── layout/
@@ -92,6 +96,9 @@ src/
 │       └── testService.js          # API service functions
 ├── pages/                           # Page components
 │   └── Home.jsx                    # Home page with test UI
+├── store/                             # Redux store & global app configuration
+│   ├── hooks.js                     # Custom Redux hooks (useAppDispatch, useAppSelector)
+│   └── store.js                     # Redux store configuration with slices
 ├── layout/                          # Layout components (not implemented)
 ├── utils/                           # Utility functions & helpers
 │   └── utils.js                    # cn() utility for class merging
@@ -106,21 +113,24 @@ src/
 ## Configuration Files
 
 ### Vite Configuration (`vite.config.js`)
+
 - React plugin enabled with Vite using Oxc for faster transpilation
 - Babel compiler preset integrated for React optimization
 - **Path Alias**: `@` resolves to `./src` directory for cleaner imports
   ```js
-  import { Button } from "@/components/ui/button";  // Instead of ../../../components
+  import { Button } from '@/components/ui/button'; // Instead of ../../../components
   ```
 - Hot Module Replacement (HMR) configured for instant feedback
 - ESM module support with proper `__dirname` handling
 
 ### Tailwind CSS Configuration (`tailwind.config.js`)
+
 - Minimal setup with room for theme customization
 - Content paths ready for configuration
 - Extend theme and plugin sections available
 
 ### ESLint Configuration (`eslint.config.js`)
+
 - JavaScript and JSX file support
 - React Hooks linting rules enforced
 - React Refresh plugin configuration
@@ -128,6 +138,7 @@ src/
 - Custom rule: Unused variables allowed if starting with uppercase (component pattern)
 
 ### PostCSS Configuration (`postcss.config.js`)
+
 - Tailwind CSS processing
 - Autoprefixer for cross-browser compatibility
 
@@ -136,21 +147,26 @@ src/
 ## Application Architecture
 
 ### Entry Point
+
 - **main.jsx**: Bootstraps the React application into the DOM root element with StrictMode
 
 ### Root Component
-- **App.jsx**: 
+
+- **App.jsx**:
   - Wraps the application with Redux Provider (store)
   - Implements React Router with BrowserRouter
   - Sets up global styling (Tailwind CSS classes)
   - Renders Navbar component for navigation
   - Defines main route structure
-  
+
 ### Routing Structure
+
 Current routes registered in App.jsx:
+
 - `/` - Home page (fully implemented)
 
 Future routes planned:
+
 - `/login` - Login page
 - `/practice` - Practice/practice feature
 - `/profile` - User profile
@@ -160,6 +176,7 @@ Future routes planned:
 ## State Management
 
 ### Redux Setup
+
 - **Redux Toolkit** used for simplified state management
 - **Store** (`app/store.js`) configured with feature-based slices
 - **Custom Hooks** (`app/hooks.js`) for typed Redux usage:
@@ -167,6 +184,7 @@ Future routes planned:
   - `useAppSelector()` - Typed version of `useSelector()`
 
 ### Redux Architecture Pattern
+
 ```
 Feature + Service Pattern:
 features/[featureName]/
@@ -176,12 +194,14 @@ features/[featureName]/
 ```
 
 ### Implemented Features
+
 - **Test Feature** (`features/test/`):
   - State: `items[]`, `status`, `error`
   - Actions: `fetchTest()`, `addTest()`
   - Status tracking: `idle`, `loading`, `success`, `failed`
 
 ### Planned Redux Features
+
 - Authentication state slice (`features/auth/`)
 - Practice/Learning state slice (`features/practice/`)
 
@@ -192,23 +212,30 @@ features/[featureName]/
 ### Component Types & Structure
 
 #### Layout Components (`components/layout/`)
+
 Main layout wrapper and navigation:
+
 - **Navbar.jsx** - Navigation bar with React Router links to homepage and login
 
 #### UI Components (`components/ui/`)
+
 Reusable, styled UI component library built with Radix UI primitives:
+
 - **Button.jsx** - Flexible button component with variants (default, outline, secondary, ghost, destructive, link) and sizes (default, xs, sm, lg, icon)
 - **Card.jsx** - Container component with CardHeader, CardTitle, CardDescription, CardContent sub-components
 - **Input.jsx** - Text input field with focus states and validation styles
 - **Badge.jsx** - Badge component with multiple variants for status indicators
 
 #### Common Components (`components/common/`)
+
 Shared components used across multiple features (ready for implementation)
 
 #### Feature Components
+
 Located in `features/{featureName}/`: Feature-specific components and logic
 
 #### Page Components (`pages/`)
+
 - **Home.jsx** - Main dashboard showcasing the test feature with:
   - Database sync input form using Input and Button components
   - Live feed display using Card and Badge components
@@ -216,11 +243,13 @@ Located in `features/{featureName}/`: Feature-specific components and logic
   - Styled with Tailwind CSS and dark theme
 
 ### Component Composition Pattern
+
 Components use a composable pattern with `asChild` prop (from Radix UI Slot):
+
 ```jsx
 // Allows components to render as different elements
 <Button asChild>
-  <a href="/profile">Go to Profile</a>
+  <a href='/profile'>Go to Profile</a>
 </Button>
 ```
 
@@ -229,12 +258,14 @@ Components use a composable pattern with `asChild` prop (from Radix UI Slot):
 ## API Integration
 
 ### Axios Configuration (`api/axios.js`)
+
 - Configured axios instance with:
   - `baseURL`: Reads from `VITE_API_URL` environment variable
   - Default headers: `Content-Type: application/json`
 - Ready for interceptors, error handling, and auth tokens
 
 ### Data Flow Architecture
+
 ```
 API Service → Redux Thunk → Redux Slice → React Component
 │              │             │              │
@@ -244,7 +275,9 @@ createTest()  addTest()     status        dispatch
 ```
 
 ### Implemented API Integration
+
 **Test Feature** (`features/test/`):
+
 - **testService.js**: API service functions
   - `getTest()` - GET `/test` - Fetch all test items
   - `createTest(data)` - POST `/test` - Create new test item
@@ -252,6 +285,7 @@ createTest()  addTest()     status        dispatch
 - **testSlice.js**: Redux slice handling state updates (loading, success, failed)
 
 ### Planned API Integration
+
 ```
 api/
 ├── axios.js                # Axios instance (current)
@@ -265,39 +299,41 @@ api/
 ## Styling Approach
 
 ### Tailwind CSS
+
 - Utility-first CSS framework for rapid UI development
 - Responsive design utilities built-in
 - Dark mode support via Tailwind classes
 - Currently configured with minimal theme extensions
 
 ### UI Component Styling Pattern
+
 Components use **class-variance-authority (CVA)** for managing variant-based styles:
+
 ```jsx
-const buttonVariants = cva(
-  "base-classes",
-  {
-    variants: {
-      variant: {
-        default: "default-variant-classes",
-        outline: "outline-variant-classes",
-      },
-      size: {
-        sm: "small-size-classes",
-        lg: "large-size-classes",
-      },
+const buttonVariants = cva('base-classes', {
+  variants: {
+    variant: {
+      default: 'default-variant-classes',
+      outline: 'outline-variant-classes',
     },
-    defaultVariants: { variant: "default", size: "sm" },
-  }
-)
+    size: {
+      sm: 'small-size-classes',
+      lg: 'large-size-classes',
+    },
+  },
+  defaultVariants: { variant: 'default', size: 'sm' },
+});
 ```
 
 ### Class Merging Utility
+
 - **cn() function** (`utils/utils.js`) merges Tailwind classes:
   - Uses `clsx()` for conditionally joining classNames
   - Uses `tailwind-merge()` to prevent Tailwind conflicts
   - Allows safe component prop className overrides
 
 ### Styling Files
+
 - **index.css**: Global resets and base styles
 - **App.css**: App component specific styles
 - Component styles: Inline Tailwind classes with variant system
@@ -307,6 +343,7 @@ const buttonVariants = cva(
 ## File Relationships & Data Flow
 
 ### Entry Point → Root Component Flow
+
 ```
 main.jsx
   └─> App.jsx (Root Component)
@@ -318,6 +355,7 @@ main.jsx
 ```
 
 ### Redux + API Integration Flow
+
 ```
 Home.jsx (Page Component)
   ├─> useAppDispatch() [hook from app/hooks.js]
@@ -334,6 +372,7 @@ Home.jsx (Page Component)
 ```
 
 ### Component Composition Hierarchy
+
 ```
 App.jsx
   ├─> Navbar (components/layout/Navbar.jsx)
@@ -357,6 +396,7 @@ App.jsx
 ```
 
 ### Redux Store → Component Access Pattern
+
 ```
 app/store.js (Redux Store)
   └─> reducer: { test: testReducer }
@@ -375,20 +415,23 @@ Home.jsx (Consumer)
 ```
 
 ### Import Aliases in Action
+
 All imports use the `@` alias configured in vite.config.js:
+
 ```jsx
 // Instead of relative paths:
-import Button from "../../../components/ui/button"
-import { store } from "../../../app/store"
-import api from "../../../api/axios"
+import Button from '../../../components/ui/button';
+import { store } from '../../../app/store';
+import api from '../../../api/axios';
 
 // We write:
-import { Button } from "@/components/ui/button"
-import { store } from "@/app/store"
-import api from "@/api/axios"
+import { Button } from '@/components/ui/button';
+import { store } from '@/app/store';
+import api from '@/api/axios';
 ```
 
 ### Feature Module Structure (Test Feature Example)
+
 ```
 features/test/
   ├─> testSlice.js
@@ -408,6 +451,7 @@ features/test/
 ```
 
 ### Utility Function Access
+
 ```
 utils/utils.js
   └─> cn() function (class merging utility)
@@ -417,6 +461,7 @@ utils/utils.js
 ```
 
 ### Component Props & Data Flow
+
 ```
 Home.jsx (gets data from Redux)
   ├─> Passes content state → Input component
@@ -435,11 +480,13 @@ Home.jsx (gets data from Redux)
 ---
 
 ### Linting Rules
+
 - ESLint enforces React best practices
 - React Hooks rules prevent common mistakes
 - React Refresh rules ensure fast refresh compatibility
 
 ### Development Practices
+
 - Hot Module Replacement (HMR) for instant feedback
 - React Compiler enabled for automatic memoization
 - Strict Mode in development for additional warnings
@@ -449,6 +496,7 @@ Home.jsx (gets data from Redux)
 ## Development Workflow
 
 ### Available Scripts
+
 ```bash
 npm run dev      # Start development server with HMR
 npm run build    # Build for production
@@ -457,6 +505,7 @@ npm run preview  # Preview production build locally
 ```
 
 ### Development Server
+
 - Runs on `http://localhost:5173` (default Vite port)
 - HMR enabled for instant updates
 - Fast refresh for quick iteration
@@ -475,15 +524,18 @@ npm run preview  # Preview production build locally
 ## Performance Considerations
 
 ### React Compiler
+
 - Automatically memoizes components
 - Reduces unnecessary re-renders
 - No manual optimization needed
 
 ### Code Splitting
+
 - React Router supports lazy loading routes
 - Can be implemented as features grow
 
 ### Bundle Optimization
+
 - Vite's tree-shaking removes unused code
 - Tailwind CSS purgation removes unused styles
 
@@ -492,6 +544,7 @@ npm run preview  # Preview production build locally
 ## Implementation Status
 
 ### ✅ Completed
+
 1. **Redux Store Setup** (`app/store.js`):
    - ✅ Redux store configured with test slice
    - ✅ Custom hooks created (useAppDispatch, useAppSelector)
@@ -528,7 +581,6 @@ npm run preview  # Preview production build locally
 1. **Authentication Feature** (`features/auth/`):
    - Auth slice, actions, and service functions
    - Login/Register pages
-   
 2. **Practice Feature** (`features/practice/`):
    - Practice slice, actions, and service functions
    - Practice pages and components
@@ -552,6 +604,7 @@ npm run preview  # Preview production build locally
 All dependencies are locked in `package-lock.json` to ensure consistent builds across environments.
 
 ### New Dependencies Added
+
 - **radix-ui** (^1.4.3) - Primitive UI components (accessible, unstyled)
 - **@radix-ui/react-slot** (^1.2.4) - Slot primitive for component composition
 - **class-variance-authority** (^0.7.1) - Type-safe styling with CVA
@@ -560,6 +613,7 @@ All dependencies are locked in `package-lock.json` to ensure consistent builds a
 - **lucide-react** (^1.7.0) - Beautiful SVG icon library
 
 To update dependencies:
+
 ```bash
 npm update                # Updates patch and minor versions
 npm outdated            # Check for available updates
@@ -581,21 +635,26 @@ npm install [package]   # Install specific package version
 The application uses the following environment variables:
 
 ### Required
+
 - **VITE_API_URL** - Base URL for backend API (used in `api/axios.js`)
   - Example: `http://localhost:5000/api` or `https://api.example.com`
 
 ### Setup Instructions
+
 Create a `.env` file in the project root:
+
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
 Create a `.env.example` template for team reference:
+
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
 Create a `.env.production` for production builds:
+
 ```env
 VITE_API_URL=https://api.production.com
 ```
@@ -620,12 +679,14 @@ VITE_API_URL=https://api.production.com
 ### Common Tasks
 
 #### Adding a New UI Component
+
 1. Create file in `src/components/ui/ComponentName.jsx`
 2. Use Radix UI primitives and CVA for variants
 3. Import `cn()` from `@/utils/utils` for className merging
 4. Export component and variants
 
 #### Adding a New Redux Feature
+
 1. Create `src/features/featureName/` directory
 2. Create `featureSlice.js` with Redux slice
 3. Create `featureActions.js` with async thunks
@@ -634,16 +695,18 @@ VITE_API_URL=https://api.production.com
 6. Use hooks in components: `useAppDispatch()`, `useAppSelector()`
 
 #### Creating a New Page
+
 1. Create file in `src/pages/PageName.jsx`
 2. Import components from `@/components/...`
 3. Add route in `App.jsx`
 4. Use Redux hooks for state management
 
 #### API Call Pattern
+
 ```jsx
 // In component
 const dispatch = useAppDispatch();
-const { data, status } = useAppSelector(state => state.featureName);
+const { data, status } = useAppSelector((state) => state.featureName);
 
 // On mount or event
 useEffect(() => {
@@ -657,12 +720,13 @@ useEffect(() => {
 ```
 
 ### Import Shortcuts
+
 ```jsx
 // Always use @ alias for src/ imports
-import { Button } from "@/components/ui/button"
-import { useAppDispatch } from "@/app/hooks"
-import api from "@/api/axios"
-import { cn } from "@/utils/utils"
+import { Button } from '@/components/ui/button';
+import { useAppDispatch } from '@/app/hooks';
+import api from '@/api/axios';
+import { cn } from '@/utils/utils';
 
 // Don't use relative paths
 // ❌ import Button from "../../../../components/ui/button"
@@ -670,6 +734,7 @@ import { cn } from "@/utils/utils"
 ```
 
 ### Key Files to Know
+
 - **src/App.jsx** - Routes, providers, layout
 - **src/app/store.js** - Redux store configuration
 - **src/app/hooks.js** - Custom Redux hooks
@@ -679,6 +744,7 @@ import { cn } from "@/utils/utils"
 - **vite.config.js** - Build configuration & path aliases
 
 ### Debugging Tips
+
 - Check Redux DevTools for state management
 - Use browser DevTools for component inspection
 - Check `VITE_API_URL` environment variable if API calls fail

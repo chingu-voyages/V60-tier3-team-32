@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[aria-invalid='true'] {
+  border-color: oklch(0.577 0.245 27.325) !important;
+  box-shadow: 0 0 0 1px oklch(0.577 0.245 27.325) !important;
+}
