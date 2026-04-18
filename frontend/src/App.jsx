@@ -4,6 +4,10 @@ import { store } from './app/store';
 
 // Layouts & Components
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+
+import SignUpForm from '@/features/auth/sign-up/SignUpForm';
+import Dashboard from './pages/Dashboard'; // Ensure this points to the right place
 
 // Pages
 import Home from './pages/Home';
@@ -17,8 +21,8 @@ function App() {
           <main className="container mx-auto px-4 py-8">
             <Routes>
               <Route path="/" element={<Home />} />
-            
-             
+              <Route path="/sign-up" element={<SignUpForm />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </main>
         </div>
