@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout, isAuthenticated } = useAuth();
 
   return (
     <nav className='sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md'>
@@ -34,13 +36,23 @@ export default function Navbar() {
         </div>
 
         {/* Actions (Visible on all screens) */}
+
         <div className='flex items-center gap-4'>
-          <Link
-            to='/login'
-            className='rounded-full bg-[#5D45FD] px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#4a36e0] active:scale-95'
-          >
-            Get Started
-          </Link>
+          {isAuthenticated ? (
+            <button
+              onClick={logout}
+              className='rounded-full bg-[#5D45FD] px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#4a36e0] active:scale-95'
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to='/login'
+              className='rounded-full bg-[#5D45FD] px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#4a36e0] active:scale-95'
+            >
+              Get Started
+            </Link>
+          )}
 
           {/* Animated Hamburger Button */}
           <button
@@ -80,6 +92,26 @@ export default function Navbar() {
           >
             About
           </Link>
+
+          {isAuthenticated ? (
+            <button
+              onClick={() => {
+                logout();
+                setIsOpen(false);
+              }}
+              className='text-sm font-bold uppercase tracking-widest text-gray-600'
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to='/login'
+              onClick={() => setIsOpen(false)}
+              className='text-sm font-bold uppercase tracking-widest text-gray-600'
+            >
+              Get Started
+            </Link>
+          )}
         </div>
       </div>
     </nav>
