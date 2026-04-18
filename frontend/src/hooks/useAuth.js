@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { loginThunk, logoutThunk } from '../store/authSlice';
+import { loginThunk, clearAuth } from '../store/authSlice';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,6 @@ export const useAuth = () => {
     error,
     isAuthenticated: !!accessToken,
     login: (credentials) => dispatch(loginThunk(credentials)),
-    logout: () => dispatch(logoutThunk()),
+    logout: () => dispatch(clearAuth()),
   };
 };

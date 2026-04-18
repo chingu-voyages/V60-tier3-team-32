@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useAuth } from '../../../hooks/useAuth.js';
+import { useAuth } from '@/hooks/useAuth.js';
 import { loginThunk } from '@/store/authSlice.js';
 
 import { loginSchema } from './loginSchema';
@@ -16,15 +17,19 @@ import {
   FieldSet,
   FieldLegend,
 } from '@/components/ui/field';
+import logo from '@/assets/Logo.png';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { login, loading, error } = useAuth();
 
+  const navigate = useNavigate();
+
   // console.log({ login, loading, error });
 
   const { control, handleSubmit, reset } = useForm({
     resolver: zodResolver(loginSchema),
+    mode: 'onTouched',
     defaultValues: {
       identifier: '',
       password: '',
@@ -38,21 +43,25 @@ export default function LoginForm() {
     });
     if (loginThunk.fulfilled.match(result)) {
       reset();
+      navigate('/dashboard');
     }
   };
   return (
     <div className='flex flex-col w-full max-w-2xl gap-16'>
       <div className='flex flex-col items-center gap-3'>
+        <div>
+          <img src={logo} alt='LinguaLoop' className='h-16 w-auto' />
+        </div>
         <h1 className='text-2xl md:text-3xl font-semibold'>
           Login to your Account
         </h1>
-        <p className='text-[#57534D] text-sm mb-6 text-center'>
+        <p className='text-stone-600 text-sm md:text-xl mb-6 text-center'>
           Welcome back! Please login to your account to continue where you left
           off.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className='md:text-base'>
         <FieldSet>
           <FieldLegend className='sr-only'>Login</FieldLegend>
           <FieldGroup className='space-y-7'>
@@ -120,7 +129,7 @@ export default function LoginForm() {
         {error && <p className='text-red-500 text-sm'>{error}</p>}
         <Button
           type='submit'
-          className='w-full mt-6 bg-violet-400'
+          className='w-full mt-6 bg-indigo-600 text-gray-100'
           disabled={loading}
         >
           {loading ? 'Logging in...' : 'Log in'}
@@ -129,12 +138,12 @@ export default function LoginForm() {
 
       <p className='text-center text-sm mb-24'>
         Don't have an account?{' '}
-        <a
-          href='/register'
-          className='text-foreground font-medium hover:underline'
+        <Link
+          href='/sign-up'
+          className='text-foreground font-medium text-indigo-700 hover:underline'
         >
-          Sign up
-        </a>
+          Sign Up
+        </Link>
       </p>
     </div>
   );
