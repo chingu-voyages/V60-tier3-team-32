@@ -77,9 +77,6 @@ This document outlines the current architecture and structure of the React front
 src/
 ├── api/                              # API integration layer
 │   └── axios.js                     # Axios instance with baseURL configuration
-├── store/                             # Redux store & global app configuration
-│   ├── hooks.js                     # Custom Redux hooks (useAppDispatch, useAppSelector)
-│   └── store.js                     # Redux store configuration with slices
 ├── assets/                          # Static assets (images, icons, fonts, etc.)
 ├── components/                      # Reusable UI components
 │   ├── layout/
@@ -99,6 +96,9 @@ src/
 │       └── testService.js          # API service functions
 ├── pages/                           # Page components
 │   └── Home.jsx                    # Home page with test UI
+├── store/                             # Redux store & global app configuration
+│   ├── hooks.js                     # Custom Redux hooks (useAppDispatch, useAppSelector)
+│   └── store.js                     # Redux store configuration with slices
 ├── layout/                          # Layout components (not implemented)
 ├── utils/                           # Utility functions & helpers
 │   └── utils.js                    # cn() utility for class merging
