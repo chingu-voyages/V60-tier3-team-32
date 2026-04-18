@@ -17,7 +17,12 @@ import {
   FieldSet,
   FieldLegend,
 } from '@/components/ui/field';
+
 import logo from '@/assets/Logo.png';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -73,14 +78,18 @@ export default function LoginForm() {
                   <FieldLabel htmlFor='identifier'>
                     Email or Username
                   </FieldLabel>
-                  <Input
-                    {...field}
-                    className='rounded-full'
-                    id='identifier'
-                    placeholder='you@example.com or @username'
-                    autoComplete='username'
-                    aria-invalid={fieldState.invalid}
-                  />
+                  <div className='relative'>
+                    <EmailOutlinedIcon className='absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300' />
+                    <Input
+                      {...field}
+                      className='rounded-full pl-12'
+                      id='identifier'
+                      placeholder='you@example.com or @username'
+                      autoComplete='username'
+                      aria-invalid={fieldState.invalid}
+                    />
+                  </div>
+
                   {fieldState.invalid && (
                     <FieldError className='text-red-500'>
                       {fieldState.error?.message}
@@ -97,9 +106,10 @@ export default function LoginForm() {
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor='password'>Password</FieldLabel>
                   <div className='relative'>
+                    <LockOutlinedIcon className='absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300' />
                     <Input
                       {...field}
-                      className='rounded-full'
+                      className='rounded-full pl-12'
                       id='password'
                       type={showPassword ? 'text' : 'password'}
                       placeholder='••••••••'
@@ -109,9 +119,13 @@ export default function LoginForm() {
                     <button
                       type='button'
                       onClick={() => setShowPassword(!showPassword)}
-                      className='absolute right-3 top-1/2 -translate-y-1/2 text-xs'
+                      className='absolute right-4 top-1/2 -translate-y-1/2 text-gray-300'
                     >
-                      {showPassword ? 'Hide' : 'Show'}
+                      {showPassword ? (
+                        <VisibilityOutlinedIcon />
+                      ) : (
+                        <VisibilityOffOutlinedIcon />
+                      )}
                     </button>
                   </div>
                   <div className='flex justify-between items-center'>
