@@ -48,3 +48,50 @@ Request body:
 ```
 
 `identifier` can be either email or username.
+
+
+
+
+
+
+
+### Posts
+
+> All post endpoints require `Authorization: Bearer <access_token>` header
+
+#### Create Post
+**POST** `/api/v1/posts`
+
+Request body:
+```json
+{
+  "language": "fr",
+  "content": "Mon premier post",
+  "status": "draft"
+}
+```
+
+#### Get All Posts
+**GET** `/api/v1/posts`
+
+Query params:? page=1&limit=10&language=fr
+
+#### Get Post by ID
+**GET** `/api/v1/posts/:id`
+
+#### Update Post
+**PATCH** `/api/v1/posts/:id`
+
+Request body:
+```json
+{
+  "language": "fr",
+  "content": "Mon post modifié"
+}
+```
+
+#### Delete Post
+**DELETE** `/api/v1/posts/:id`
+
+#### Submit Post
+**POST** `/api/v1/posts/:id/submit`
