@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import { errorHandler } from './middleware/errorMiddleware.js';
 import testRoutes from './routes/testRoutes.js';
 import authRoutes from './routes/auth.routes.js';
+import postRoutes from './routes/post.routes.js';
 // Load environment variables
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 // ROUTES
 app.use('/api/test', testRoutes);
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/posts', postRoutes);
 // Server Health Test
 app.get('/', (req, res) => {
   res.send('LinguaLoop API is running...');
