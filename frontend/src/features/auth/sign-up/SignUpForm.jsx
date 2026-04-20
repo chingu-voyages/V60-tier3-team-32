@@ -1,17 +1,25 @@
-//TODO: add color to errors
-//FIXME: fix dropdown. temporary fix added bg color but positioning is also off.
-//FIXME: choosing learning language change from dropdown to radio button
+import { useState } from 'react';
 
-import { useMemo, useState } from 'react';
-import { useFieldArray, useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff, Plus, Trash2 } from 'lucide-react';
+import {
+  AccountCircleOutlined,
+  EmailOutlined,
+  LockOutlined,
+  VisibilityOffOutlined,
+  VisibilityOutlined,
+  LanguageOutlined,
+  TranslateOutlined,
+  DeleteOutlineOutlined,
+  AddOutlined,
+} from '@mui/icons-material';
+import { useFieldArray, useForm, Controller, useWatch } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { signUpSchema } from './signUpSchema';
-import { LANGUAGES, FLUENCY_LEVELS } from '@/lib/constants/languages';
+import { signUpThunk } from '@/store/authSlice';
+
+import { useAuth } from '@/hooks/useAuth.js';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import {
   Field,
   FieldDescription,
@@ -21,6 +29,7 @@ import {
   FieldSet,
   FieldLegend,
 } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -28,8 +37,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
+
+import logo from '@/assets/Logo.png';
+
+import { signUpSchema } from './signUpSchema';
+
+import { LANGUAGES, FLUENCY_LEVELS } from '@/lib/constants/languages';
 
 const defaultValues = {
   username: '',
@@ -41,37 +54,36 @@ const defaultValues = {
 };
 
 export default function SignUpForm() {
+  const { register, loading, error } = useAuth();
   const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const form = useForm({
-    resolver: zodResolver(signUpSchema),
-    defaultValues,
-    mode: 'onBlur',
-  });
+  const navigate = useNavigate();
 
   const {
     control,
     handleSubmit,
+    reset,
     trigger,
-    watch,
     formState: { errors, isSubmitting },
-  } = form;
+  } = useForm({
+    resolver: zodResolver(signUpSchema),
+    mode: 'onTouched',
+    defaultValues,
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'learningLanguages',
   });
 
-  const nativeLanguage = watch('nativeLanguage');
-  const learningLanguages = watch('learningLanguages');
+  const nativeLanguage = useWatch({ control, name: 'nativeLanguage' });
+  const learningLanguages = useWatch({ control, name: 'learningLanguages' });
 
-  const selectedLearningCodes = useMemo(() => {
-    return new Set(
-      (learningLanguages || []).map((item) => item?.language).filter(Boolean),
-    );
-  }, [learningLanguages]);
+  const selectedLearningCodes = new Set(
+    (learningLanguages || []).map((item) => item?.language).filter(Boolean),
+  );
 
   const handleNext = async () => {
     const valid = await trigger([
@@ -83,33 +95,53 @@ export default function SignUpForm() {
 
     if (valid) setStep(2);
   };
-
   const onSubmit = async (values) => {
     const payload = {
       username: values.username,
       email: values.email,
       password: values.password,
-      nativeLanguage: values.nativeLanguage,
-      learningLanguages: values.learningLanguages,
+      native_language: values.nativeLanguage,
+      learning_languages: values.learningLanguages,
     };
+    // console.log('dispatch', payload);
+    const res = await register(payload);
+    // console.log('result', res);
+    // console.log('Result payload:', res.payload);
 
-    console.log('submit payload', payload);
+    if (signUpThunk.fulfilled.match(res)) {
+      reset();
+      navigate('/dashboard');
+    }
   };
 
   return (
-    <div className='mx-auto w-full max-w-2xl rounded-2xl border bg-background p-6 shadow-sm'>
-      <div className='mb-6 space-y-1'>
+    <div className='flex flex-col w-full max-w-2xl gap-10'>
+      <div className='flex flex-col items-center gap-4'>
+        <div>
+          <img src={logo} alt='LinguaLoop' className='h-16 w-auto' />
+        </div>
         <h1 className='text-2xl font-semibold tracking-tight'>
           Create account
         </h1>
-        <h2>Welcome! Please fill in your details to start your journey</h2>
-        <p className='text-sm text-muted-foreground'>Step {step} of 2</p>
+        <h2 className='text-center'>
+          Welcome! Please fill in your details to start your journey
+        </h2>
+        <p className='text-sm text-gray-600'>Step {step} of 2</p>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className='space-y-6' noValidate>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && step === 1) {
+            e.preventDefault();
+            handleNext();
+          }
+        }}
+        noValidate
+      >
         {step === 1 && (
           <FieldSet>
-            <FieldLegend>Account details</FieldLegend>
+            <FieldLegend className='sr-only'>Account details</FieldLegend>
             <FieldGroup>
               <Controller
                 name='username'
@@ -117,17 +149,26 @@ export default function SignUpForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor={field.name}>Username</FieldLabel>
-                    <Input
-                      {...field}
-                      id={field.name}
-                      placeholder='user123'
-                      aria-invalid={fieldState.invalid}
-                    />
-                    <FieldDescription>
+                    <div className='relative'>
+                      <AccountCircleOutlined className='absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300' />
+                      <Input
+                        {...field}
+                        id={field.name}
+                        className='rounded-full pl-12'
+                        placeholder='user123'
+                        aria-invalid={fieldState.invalid}
+                        onChange={(e) =>
+                          field.onChange(e.target.value.replace(/\s/g, ''))
+                        }
+                      />
+                    </div>
+                    <FieldDescription className='text-gray-400 pl-5'>
                       Enter a unique username between 3-12 characters.
                     </FieldDescription>
                     {fieldState.invalid && (
-                      <FieldError>{fieldState.error?.message}</FieldError>
+                      <FieldError className='text-red-500'>
+                        {fieldState.error?.message}
+                      </FieldError>
                     )}
                   </Field>
                 )}
@@ -139,15 +180,21 @@ export default function SignUpForm() {
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor={field.name}>Email</FieldLabel>
-                    <Input
-                      {...field}
-                      id={field.name}
-                      type='email'
-                      placeholder='you@example.com'
-                      aria-invalid={fieldState.invalid}
-                    />
+                    <div className='relative'>
+                      <EmailOutlined className='absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300' />
+                      <Input
+                        {...field}
+                        className='rounded-full pl-12'
+                        id={field.name}
+                        type='email'
+                        placeholder='you@example.com'
+                        aria-invalid={fieldState.invalid}
+                      />
+                    </div>
                     {fieldState.invalid && (
-                      <FieldError>{fieldState.error?.message}</FieldError>
+                      <FieldError className='text-red-500'>
+                        {fieldState.error?.message}
+                      </FieldError>
                     )}
                   </Field>
                 )}
@@ -160,34 +207,34 @@ export default function SignUpForm() {
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                     <div className='relative'>
+                      <LockOutlined className='absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300' />
                       <Input
                         {...field}
                         id={field.name}
                         type={showPassword ? 'text' : 'password'}
                         placeholder='Enter password'
-                        className='pr-10'
+                        className='rounded-full pl-12 pr-10'
                         aria-invalid={fieldState.invalid}
                       />
                       <button
                         type='button'
                         onClick={() => setShowPassword((prev) => !prev)}
-                        className='absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground'
+                        className='absolute right-4 top-1/2 -translate-y-1/2 text-gray-300'
                         aria-label={
                           showPassword ? 'Hide password' : 'Show password'
                         }
                       >
                         {showPassword ? (
-                          <EyeOff className='h-4 w-4' />
+                          <VisibilityOutlined />
                         ) : (
-                          <Eye className='h-4 w-4' />
+                          <VisibilityOffOutlined />
                         )}
                       </button>
                     </div>
-                    <FieldDescription>
-                      TODO: add password requirements here
-                    </FieldDescription>
                     {fieldState.invalid && (
-                      <FieldError>{fieldState.error?.message}</FieldError>
+                      <FieldError className='text-red-500'>
+                        {fieldState.error?.message}
+                      </FieldError>
                     )}
                   </Field>
                 )}
@@ -202,18 +249,19 @@ export default function SignUpForm() {
                       Confirm password
                     </FieldLabel>
                     <div className='relative'>
+                      <LockOutlined className='absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-300' />
                       <Input
                         {...field}
                         id={field.name}
                         type={showConfirmPassword ? 'text' : 'password'}
                         placeholder='Re-enter password'
-                        className='pr-10'
+                        className='rounded-full pl-14 pr-10'
                         aria-invalid={fieldState.invalid}
                       />
                       <button
                         type='button'
                         onClick={() => setShowConfirmPassword((prev) => !prev)}
-                        className='absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground'
+                        className='absolute right-4 top-1/2 -translate-y-1/2 text-gray-300'
                         aria-label={
                           showConfirmPassword
                             ? 'Hide confirm password'
@@ -221,36 +269,48 @@ export default function SignUpForm() {
                         }
                       >
                         {showConfirmPassword ? (
-                          <EyeOff className='h-4 w-4' />
+                          <VisibilityOutlined />
                         ) : (
-                          <Eye className='h-4 w-4' />
+                          <VisibilityOffOutlined />
                         )}
                       </button>
                     </div>
                     {fieldState.invalid && (
-                      <FieldError>{fieldState.error?.message}</FieldError>
+                      <FieldError className='text-red-500'>
+                        {fieldState.error?.message}
+                      </FieldError>
                     )}
                   </Field>
                 )}
               />
             </FieldGroup>
 
-            <div className='flex justify-end'>
-              <Button
-                className=' bg-violet-300'
-                type='button'
-                onClick={handleNext}
+            <Button
+              className=' w-full mt-8 bg-indigo-600 text-gray-100'
+              type='button'
+              onClick={handleNext}
+            >
+              Next
+            </Button>
+            <p className='text-center text-sm'>
+              Already have an account?{' '}
+              <Link
+                to='/login'
+                className='text-foreground font-medium text-indigo-700 hover:underline'
               >
-                Next
-              </Button>
-            </div>
+                Login
+              </Link>
+            </p>
           </FieldSet>
         )}
 
+        {/* FORM 2  */}
+        {/* {step === 2 &&  */}
+
         {step === 2 && (
           <FieldSet>
-            <FieldLegend>Language profile</FieldLegend>
-            <FieldGroup>
+            <FieldLegend className='sr-only'>Language profile</FieldLegend>
+            <FieldGroup className='space-y-10'>
               <Controller
                 name='nativeLanguage'
                 control={control}
@@ -259,12 +319,18 @@ export default function SignUpForm() {
                     <FieldLabel htmlFor='nativeLanguage'>
                       Native language
                     </FieldLabel>
+                    <p className='text-sm text-gray-600'>
+                      This will help match you with posts to correct.
+                    </p>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger
                         id='nativeLanguage'
                         aria-invalid={fieldState.invalid}
                       >
-                        <SelectValue placeholder='Select your native language' />
+                        <div className='flex items-center gap-2'>
+                          <LanguageOutlined className='h-4 w-4' />
+                          <SelectValue placeholder='Select a language' />
+                        </div>
                       </SelectTrigger>
                       <SelectContent className='opacity-100 bg-white'>
                         {LANGUAGES.map((language) => (
@@ -275,46 +341,34 @@ export default function SignUpForm() {
                       </SelectContent>
                     </Select>
                     {fieldState.invalid && (
-                      <FieldError>{fieldState.error?.message}</FieldError>
+                      <FieldError className='text-red-500'>
+                        {fieldState.error?.message}
+                      </FieldError>
                     )}
                   </Field>
                 )}
               />
 
-              <div className='space-y-4'>
+              <div className='flex flex-col gap-2'>
                 <div className='flex items-center justify-between'>
                   <div>
-                    <h2 className='text-base font-medium'>
-                      Learning languages
-                    </h2>
-                    <p className='text-sm text-muted-foreground'>
-                      Add one or more languages you are studying.
+                    {/* <h3 className='text-sm md:text-base font-medium'>
+                    Learning languages
+                  </h3> */}
+                    <p className='text-sm text-gray-600 mt-1'>
+                      Add up to two languages you are studying.
                     </p>
                   </div>
-
-                  <Button
-                    type='button'
-                    variant='outline'
-                    onClick={() => append({ language: '', level: '' })}
-                  >
-                    <Plus className='mr-2 h-4 w-4' />
-                    Add language
-                  </Button>
                 </div>
 
                 {fields.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className='space-y-4 rounded-xl border p-4'
-                  >
+                  <div key={item.id} className='flex flex-col gap-4'>
                     <Controller
                       name={`learningLanguages.${index}.language`}
                       control={control}
                       render={({ field, fieldState }) => (
                         <Field data-invalid={fieldState.invalid}>
-                          <FieldLabel htmlFor={`learning-language-${index}`}>
-                            Language
-                          </FieldLabel>
+                          <FieldLabel>Learning Language</FieldLabel>
                           <Select
                             value={field.value}
                             onValueChange={field.onChange}
@@ -323,7 +377,10 @@ export default function SignUpForm() {
                               id={`learning-language-${index}`}
                               aria-invalid={fieldState.invalid}
                             >
-                              <SelectValue placeholder='Select a language' />
+                              <div className='flex items-center gap-2'>
+                                <TranslateOutlined />
+                                <SelectValue placeholder='Select a language' />
+                              </div>
                             </SelectTrigger>
                             <SelectContent className='bg-white'>
                               {LANGUAGES.map((language) => {
@@ -347,7 +404,9 @@ export default function SignUpForm() {
                             </SelectContent>
                           </Select>
                           {fieldState.invalid && (
-                            <FieldError>{fieldState.error?.message}</FieldError>
+                            <FieldError className='text-red-500'>
+                              {fieldState.error?.message}
+                            </FieldError>
                           )}
                         </Field>
                       )}
@@ -357,73 +416,92 @@ export default function SignUpForm() {
                       control={control}
                       render={({ field, fieldState }) => (
                         <Field data-invalid={fieldState.invalid}>
-                          <FieldLabel htmlFor={`learning-level-${index}`}>
-                            Level
-                          </FieldLabel>
-                          <Select
-                            value={field.value}
-                            onValueChange={field.onChange}
-                          >
-                            <SelectTrigger
-                              id={`learning-level-${index}`}
-                              aria-invalid={fieldState.invalid}
-                            >
-                              <SelectValue placeholder='Select your level' />
-                            </SelectTrigger>
-                            <SelectContent className='bg-white'>
-                              {FLUENCY_LEVELS.map((level) => (
-                                <SelectItem
-                                  key={level.value}
+                          <FieldLabel>Proficiency Level</FieldLabel>
+                          <div className='space-y-2'>
+                            {FLUENCY_LEVELS.map((level) => (
+                              <div
+                                key={level.value}
+                                className='flex items-center gap-3'
+                              >
+                                <input
+                                  type='radio'
+                                  id={`level-${index}-${level.value}`}
                                   value={level.value}
+                                  checked={field.value === level.value}
+                                  onChange={(e) => {
+                                    console.log(e.target.value);
+                                    field.onChange(level.value);
+                                  }}
+                                  className='accent-black h-4 w-4 cursor-pointer'
+                                />
+                                <label
+                                  htmlFor={`level-${index}-${level.value}`}
+                                  className='text-sm cursor-pointer'
                                 >
                                   {level.label}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                                </label>
+                              </div>
+                            ))}
+                          </div>
                           {fieldState.invalid && (
                             <FieldError>{fieldState.error?.message}</FieldError>
                           )}
                         </Field>
                       )}
                     />
-
                     {fields.length > 1 && (
                       <div className='flex justify-end'>
-                        <Button type='button' onClick={() => remove(index)}>
-                          <Trash2 className='mr-2 h-4 w-4' />
+                        <Button
+                          type='button'
+                          variant='outline'
+                          onClick={() => remove(index)}
+                        >
+                          <DeleteOutlineOutlined className='mr-2 h-4 w-4' />
                           Remove
                         </Button>
                       </div>
                     )}
                   </div>
                 ))}
+                <Button
+                  type='button'
+                  variant='outline'
+                  className='w-full'
+                  disabled={fields.length >= 2}
+                  onClick={() => append({ language: '', level: '' })}
+                >
+                  <AddOutlined className='mr-2 h-4 w-4' />
+                  Add language
+                </Button>
 
                 {typeof errors.learningLanguages?.message === 'string' && (
-                  <FieldError>{errors.learningLanguages.message}</FieldError>
+                  <FieldError className='text-red-500'>
+                    {errors.learningLanguages.message}
+                  </FieldError>
                 )}
               </div>
             </FieldGroup>
-
-            <div className='flex justify-between'>
+            {/*           
               <Button
                 type='button'
                 variant='outline'
                 onClick={() => setStep(1)}
               >
                 Back
-              </Button>
-              <Button
-                className='bg-violet-300'
-                type='submit'
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Creating account...' : 'Create account'}
-              </Button>
-            </div>
+              </Button> */}
+            <Button
+              className='w-full mt-6 bg-indigo-600 text-gray-100'
+              type='submit'
+              disabled={isSubmitting || loading}
+            >
+              {isSubmitting || loading
+                ? 'Creating account...'
+                : 'Create account'}
+            </Button>
           </FieldSet>
         )}
       </form>
+      {error && <p className='text-red-500 text-sm'>{error}</p>}
     </div>
   );
 }

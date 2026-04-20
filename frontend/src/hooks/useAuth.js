@@ -1,5 +1,5 @@
+import { loginThunk, signUpThunk, clearAuth } from '../store/authSlice';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { loginThunk, clearAuth } from '../store/authSlice';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +14,7 @@ export const useAuth = () => {
     error,
     isAuthenticated: !!accessToken,
     login: (credentials) => dispatch(loginThunk(credentials)),
+    register: (data) => dispatch(signUpThunk(data)),
     logout: () => dispatch(clearAuth()),
   };
 };

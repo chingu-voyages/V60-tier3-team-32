@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
 import * as authApi from '../api/auth';
 
 export const loginThunk = createAsyncThunk(
@@ -16,6 +17,18 @@ export const loginThunk = createAsyncThunk(
 export const logoutThunk = createAsyncThunk('auth/logout', async () => {
   await authApi.logout();
 });
+
+export const signUpThunk = createAsyncThunk(
+  'auth/register',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const res = await authApi.register(credentials);
+      return res.data;
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.message ?? err.message);
+    }
+  },
+);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -49,6 +62,21 @@ const authSlice = createSlice({
         localStorage.setItem('refreshToken', action.payload.refresh_token);
       })
       .addCase(loginThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(signUpThunk.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(signUpThunk.fulfilled, (state, action) => {
+        state.loading = false;
+        state.accessToken = action.payload.access_token;
+        state.refreshToken = action.payload.refresh_token;
+        localStorage.setItem('access_token', action.payload.access_token);
+        localStorage.setItem('refresh_token', action.payload.refresh_token);
+      })
+      .addCase(signUpThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
