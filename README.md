@@ -1,38 +1,128 @@
-# voyage-tasks
+# LinguaLoop
 
-Your project's `readme` is as important to success as your code. For 
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
+A collaborative language learning web app where learners improve their writing through crowd-sourced corrections and feedback from native and advanced speakers.
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point - 
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
+# Live Demo
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
+{TODO}
 
-> Own it & Make it your Own!
+## Table of Contents
 
-## Team Documents
+- [Overview](#overview)
+- [Features](#features)
+- [User Flow](#user-flow)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [Our Team](#our-team)
 
-You may find these helpful as you work together to organize your project.
+## Overview
 
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
+LinguaLoop connects language learners with native and advanced speakers. Users write journal entries, short essays, sentences, in their target language, and the community provides inline corrections and commentary. Think of it as a peer-review system for language learning.
 
-Meeting Agenda templates (located in the `/docs` directory in this repo):
+## Features
 
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
+**Post in your target language** — submit writing for community review
+**Community corrections** — native/advanced speakers annotate and correct text
+**Skill-level tagging** — posts and users are tagged by proficiency level (Beginner, Intermediate, Advance, Native)
+**Language based system** — content is organized by language pairs (e.g., EN → ES, JP → EN) for more relevant corrections.
+**Prompts and Guidance** - daily or suggested prompts to help users start writing
+**User profiles** — track languages spoken, corrections given, and posts made
+
+## User Flow
+
+1. User signs up and selects native + learning languages
+2. User creates a post in their target language
+3. Other users provide corrections and feedback
+4. User reviews corrections and improves
+
+## Tech Stack
+
+| **Layer**    | **Technology**                       |
+| ------------ | ------------------------------------ |
+| **Frontend** | React + Vite                         |
+| **Styling**  | Tailwind CSS, ShadCn                 |
+| **Backend**  | Node.js + Express                    |
+| **Database** | MongoDB                              |
+| **Auth**     | JWT                                  |
+| **Hosting**  | Vercel (frontend) + Render (backend) |
+
+## Getting Started
+
+#### 1. Clone the repo
+
+```bash
+git clone
+
+https://github.com/your-org/lingualoop.git
+
+cd lingualoop
+```
+
+#### 2. Install dependencies
+
+**Backend**
+
+```bash
+cd backend
+npm install
+```
+
+**Frontend**
+
+```bash
+cd ../frontend
+npm install
+```
+
+#### 3. Set up environment variables
+
+```bash
+cp .env.example .env
+```
+
+**Fill in your values (see Environment Variables below)**
+
+**Backend (/backend/.env)**
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=8080
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
+```
+
+**Frontend (/frontend/.env)**
+
+```env
+VITE_API_URL=http://localhost:5000/api/v1
+```
+
+### 4. Set up the database
+
+- Make sure MongoDB is running locally or use a hosted database like MongoDB Atlas
+- Backend must be running before testing authentication
+- Ensure all environment variables are correctly set
+
+### 5. Start the development server
+
+```bash
+npm run dev
+```
+
+## Contributing
+
+Create a feature branch from `dev`
+
+```bash
+git checkout -b feature/your-feature-name
+```
+
+Make your changes
+Open a Pull Request against `dev`
 
 ## Our Team
-
-Everyone on your team should add their name along with a link to their GitHub
-& optionally their LinkedIn profiles below. Do this in Sprint #1 to validate
-your repo access and to practice PR'ing with your team *before* you start
-coding!
 
 - Noman Sajid: [GitHub](https://github.com/noman-sajid) / [LinkedIn](https://www.linkedin.com/in/noman-sajid01/)
 - Rasitraka: [GitHub](https://github.com/rasitraka0) / [LinkedIn](https://www.linkedin.com/in/sitraka-heritina-andriambarijao-209597238/)
@@ -40,3 +130,7 @@ coding!
 - Jazz Bullecer: [GitHub](https://github.com/jazxbx) / [LinkedIn](https://www.linkedin.com/in/jazz-bullecer-89780928a)
 - Tonia Montgomery: [GitHub](https://github.com/MontgomeryT7294) / [LinkedIn](http://www.linkedin.com/in/tonia-montgomery)
 - Margaret Wu: [GitHub](https://github.com/margaretcwu) / [LinkedIn](https://www.linkedin.com/in/margaretcwu/)
+
+```
+
+```
