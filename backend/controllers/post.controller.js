@@ -5,8 +5,16 @@ export const createPost = async (req, res) => {
   try {
     const { content, language, prompt_id, status } = req.body;
     const author_id = req.user.id;
+
     if (!content || !language) {
       return res.status(400).json({ message: 'Missing required fields' });
+    }
+    const user = await userModel.findById(author_id);
+    const validLanguages = user.learning_languages.map((l) => l.language);
+    if (!validLanguages.includes(language)) {
+      return res
+        .status(400)
+        .json({ message: 'You can only post in your learning languages' });
     }
     const post = await postModel.create({
       author_id,

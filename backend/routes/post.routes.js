@@ -16,8 +16,8 @@ import {
 
 const router = express.Router();
 
-router.get('/', authMiddleware, getPosts);
-router.get('/:id', authMiddleware, getPostById);
+router.get('/', getPosts);
+router.get('/:id', getPostById);
 router.post('/', authMiddleware, validateRequest(createPostSchema), createPost);
 router.patch(
   '/:id',

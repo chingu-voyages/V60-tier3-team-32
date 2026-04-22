@@ -6,7 +6,11 @@ export const createPostSchema = z.object({
     .min(2)
     .max(2)
     .transform((val) => val.toLowerCase()),
-  content: z.string().min(1),
+  content: z
+    .string()
+    .min(1)
+    .trim()
+    .regex(/\p{L}/u, 'Content must contain at least one letter'),
   prompt_id: z.string().optional(),
   status: z.enum(['draft', 'submitted']).default('draft'),
 });
