@@ -1,5 +1,6 @@
-import { loginThunk, signUpThunk, clearAuth } from '../store/authSlice';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { loginThunk, signUpThunk } from '../authActions';
+import { clearAuth } from '../authSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();

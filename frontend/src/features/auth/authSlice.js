@@ -1,34 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import * as authApi from '../api/auth';
-
-export const loginThunk = createAsyncThunk(
-  'auth/login',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const res = await authApi.login(credentials);
-      return res.data;
-    } catch (err) {
-      return rejectWithValue(err.response.data.message);
-    }
-  },
-);
-
-export const logoutThunk = createAsyncThunk('auth/logout', async () => {
-  await authApi.logout();
-});
-
-export const signUpThunk = createAsyncThunk(
-  'auth/register',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const res = await authApi.register(credentials);
-      return res.data;
-    } catch (err) {
-      return rejectWithValue(err.response?.data?.message ?? err.message);
-    }
-  },
-);
+import { loginThunk, signUpThunk } from './authActions';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -73,8 +45,8 @@ const authSlice = createSlice({
         state.loading = false;
         state.accessToken = action.payload.access_token;
         state.refreshToken = action.payload.refresh_token;
-        localStorage.setItem('access_token', action.payload.access_token);
-        localStorage.setItem('refresh_token', action.payload.refresh_token);
+        localStorage.setItem('accessToken', action.payload.access_token);
+        localStorage.setItem('refreshToken', action.payload.refresh_token);
       })
       .addCase(signUpThunk.rejected, (state, action) => {
         state.loading = false;

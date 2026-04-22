@@ -77,6 +77,9 @@ This document outlines the current architecture and structure of the React front
 src/
 ├── api/                              # API integration layer
 │   └── axios.js                     # Axios instance with baseURL configuration
+├── app/                             # Redux store & global app configuration
+│   ├── hooks.js                     # Custom Redux hooks (useAppDispatch, useAppSelector)
+│   └── store.js                     # Redux store configuration with slices
 ├── assets/                          # Static assets (images, icons, fonts, etc.)
 ├── components/                      # Reusable UI components
 │   ├── layout/
@@ -94,11 +97,11 @@ src/
 │       ├── testSlice.js            # Redux slice for test state management
 │       ├── testActions.js          # Redux async thunks for API calls
 │       └── testService.js          # API service functions
+├── lib/                             # Shared utilities, constants, and helpers (non-UI)
+│   ├── constants/                    # Static data used across the app
+│   │   └── languages.js             # Language and fluency constants + helpers for forms, dropdowns, and display labels
 ├── pages/                           # Page components
 │   └── Home.jsx                    # Home page with test UI
-├── store/                             # Redux store & global app configuration
-│   ├── hooks.js                     # Custom Redux hooks (useAppDispatch, useAppSelector)
-│   └── store.js                     # Redux store configuration with slices
 ├── layout/                          # Layout components (not implemented)
 ├── utils/                           # Utility functions & helpers
 │   └── utils.js                    # cn() utility for class merging
@@ -191,6 +194,7 @@ features/[featureName]/
 ├── [feature]Slice.js      # Redux slice with reducers & initial state
 ├── [feature]Actions.js    # Async thunks for API calls
 └── [feature]Service.js    # API service functions using axios
+└── hooks/                 # Custom hooks for interacting with feature state (optional)
 ```
 
 ### Implemented Features

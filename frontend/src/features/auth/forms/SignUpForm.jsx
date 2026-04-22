@@ -15,9 +15,9 @@ import {
 import { useFieldArray, useForm, Controller, useWatch } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { signUpThunk } from '@/store/authSlice';
+import { signUpThunk } from '@/features/auth/authActions';
 
-import { useAuth } from '@/hooks/useAuth.js';
+import { useAuth } from '@/features/auth/hooks/useAuth.js';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -40,7 +40,7 @@ import {
 
 import logo from '@/assets/Logo.png';
 
-import { signUpSchema } from './signUpSchema';
+import { signUpSchema } from '../schema/signUpSchema';
 
 import { LANGUAGES, FLUENCY_LEVELS } from '@/lib/constants/languages';
 
