@@ -9,10 +9,14 @@ export const signUpSchema = z
   .object({
     username: z
       .string()
-      .min(4, 'Username must be at least 4 characters')
-      .max(12, 'Username must be 12 characters or less'),
+      .min(3, 'Username must be at least 3 characters')
+      .max(12, 'Username must be 12 characters or less')
+      .transform((val) => val.replace(/\s/g, '')),
     email: z.email('Please enter a valid email address'),
-    password: z.string().min(8, 'Password must be at least 8 characters'),
+    password: z
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .regex(/^\S+$/, 'Password cannot contain spaces'),
     confirmPassword: z.string().min(1, 'Please confirm your password'),
     nativeLanguage: z.string().min(1, 'Please select your native language'),
     learningLanguages: z

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { store } from './app/store';
 
 // Layouts & Components
 import Navbar from './components/layout/Navbar';
@@ -9,8 +9,8 @@ import ProtectedRoute from './components/layout/ProtectedRoute';
 
 // Pages
 import Home from './pages/home/Home';
-import SignUp from './pages/SignUp';
-import Login from './pages/Login';
+import SignUp from './features/auth/pages/SignUp';
+import Login from './features/auth/pages/Login';
 import Dashboard from './pages/Dashboard';
 
 function App() {
