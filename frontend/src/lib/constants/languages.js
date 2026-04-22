@@ -31,9 +31,9 @@ export const LANGUAGES = [
 ];
 
 export const FLUENCY_LEVELS = [
-  { value: 'beginner', label: 'Beginner: I can understand simple phrase' },
-  { value: 'intermediate', label: 'Intermediate: I can understand sentences.' },
-  { value: 'advanced', label: 'Advanced: I can understand paragraphs' },
+  { value: 'Beginner', label: 'Beginner: I can understand simple phrase' },
+  { value: 'Intermediate', label: 'Intermediate: I can understand sentences.' },
+  { value: 'Advanced', label: 'Advanced: I can understand paragraphs' },
 ];
 
 export const LANGUAGE_OPTIONS = LANGUAGES.map((language) => ({

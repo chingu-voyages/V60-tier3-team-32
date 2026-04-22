@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-//exports 
+//exports
 export const useAppDispatch = () => useDispatch();
 export const useAppSelector = useSelector;
