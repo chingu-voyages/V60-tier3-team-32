@@ -3,8 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useAuth } from '@/features/auth/hooks/useAuth.js';
-import { loginThunk } from '@/features/auth/authActions';
+import { useAuth, loginThunk } from '@/features/auth';
 
 import { loginSchema } from '../schema/loginSchema';
 import { Button } from '@/components/ui/button';

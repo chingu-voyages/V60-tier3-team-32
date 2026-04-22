@@ -15,9 +15,7 @@ import {
 import { useFieldArray, useForm, Controller, useWatch } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { signUpThunk } from '@/features/auth/authActions';
-
-import { useAuth } from '@/features/auth/hooks/useAuth.js';
+import { useAuth, signUpThunk } from '@/features/auth';
 
 import { Button } from '@/components/ui/button';
 import {

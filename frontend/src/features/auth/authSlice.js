@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { loginThunk, signUpThunk } from './authActions';
+import { loginThunk, signUpThunk } from '@/features/auth';
 
 const authSlice = createSlice({
   name: 'auth',
