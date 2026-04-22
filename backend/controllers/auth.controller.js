@@ -64,14 +64,14 @@ export const loginUser = async (req, res) => {
       isEmail ? { email: identifier } : { username: identifier },
     );
     if (!user) {
-      return res.status(401).json({ message: 'user not found' });
+      return res.status(401).json({ message: 'incorrect user or password' });
     }
     const passwordVerification = await bcrypt.compare(
       password,
       user.password_hash,
     );
     if (!passwordVerification) {
-      return res.status(401).json({ message: 'incorrect password' });
+      return res.status(401).json({ message: 'incorrect user or password' });
     }
     const access_token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: '15m',
