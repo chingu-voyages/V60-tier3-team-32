@@ -3,8 +3,8 @@ import { z } from 'zod';
 export const createPostSchema = z.object({
   language: z
     .string()
-    .min(2)
-    .max(2)
+    .min(3)
+    .max(3)
     .transform((val) => val.toLowerCase()),
   content: z
     .string()
@@ -15,6 +15,6 @@ export const createPostSchema = z.object({
   status: z.enum(['draft', 'submitted']).default('draft'),
 });
 export const updatePostSchema = z.object({
-  language: z.string().min(2).max(2).optional(),
+  language: z.string().min(3).max(3).optional(),
   content: z.string().min(1).optional(),
 });
