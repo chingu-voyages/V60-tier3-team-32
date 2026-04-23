@@ -1,5 +1,6 @@
 import postModel from '../models/post.model.js';
 import userModel from '../models/user.model.js';
+import { detectAll, toISO3 } from 'tinyld';
 
 export const createPost = async (req, res) => {
   try {
@@ -9,6 +10,7 @@ export const createPost = async (req, res) => {
     if (!content || !language) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
+
     const user = await userModel.findById(author_id);
     const validLanguages = user.learning_languages.map((l) => l.language);
     if (!validLanguages.includes(language)) {
@@ -16,6 +18,21 @@ export const createPost = async (req, res) => {
         .status(400)
         .json({ message: 'You can only post in your learning languages' });
     }
+    let language_warning = null;
+    const words = content.trim().split(/\s+/);
+
+    if (words.length >= 3) {
+      const results = detectAll(content);
+      const best = results[0];
+
+      if (best && best.accuracy > 0.5) {
+        const detectedCode = toISO3(best.lang);
+        if (detectedCode && detectedCode !== language) {
+          language_warning = `Content seems to be in "${detectedCode}" but you declared "${language}"`;
+        }
+      }
+    }
+
     const post = await postModel.create({
       author_id,
       language,
@@ -30,11 +47,13 @@ export const createPost = async (req, res) => {
       content: post.content,
       status: post.status,
       created_at: post.createdAt,
+      ...(language_warning && { language_warning }),
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 export const getPosts = async (req, res) => {
   try {
     const page = Number(req.query.page) || 1;
@@ -144,6 +163,13 @@ export const deletePost = async (req, res) => {
   }
 };
 
+export const deleteAllPost = async (req, res) => {
+  try {
+    await TonModele.deleteMany({ language: { $size: 2 } });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 export const submitPost = async (req, res) => {
   try {
     const idPost = req.params.id;
