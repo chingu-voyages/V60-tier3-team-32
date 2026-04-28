@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import connectDB from './config/db.js';
 import { errorHandler } from './middleware/errorMiddleware.js';
 import testRoutes from './routes/testRoutes.js';
@@ -22,6 +23,7 @@ app.use(
     credentials: true,
   }),
 );
+app.use(cookieParser());
 console.log(process.env.FRONTEND_URL);
 // Body Parsers
 app.use(express.json());
