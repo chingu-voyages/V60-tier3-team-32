@@ -48,3 +48,53 @@ Request body:
 ```
 
 `identifier` can be either email or username.
+
+
+
+
+
+
+
+### Posts
+
+> GET /posts and GET /posts/:id are public endpoints (no auth required)
+> All other post endpoints require `Authorization: Bearer <access_token>` header
+
+#### Create Post
+**POST** `/api/v1/posts`
+
+Request body:
+```json
+{
+  "language": "fra",
+  "content": "Mon premier post",
+  "status": "draft"
+}
+```
+
+> Note: If content language doesn't match declared language, a `language_warning` will be included in the response.
+
+#### Get All Posts
+**GET** `/api/v1/posts`
+
+Query params: `?page=1&limit=10&language=fra`
+
+#### Get Post by ID
+**GET** `/api/v1/posts/:id`
+
+#### Update Post
+**PATCH** `/api/v1/posts/:id`
+
+Request body:
+```json
+{
+  "language": "fra",
+  "content": "Mon post modifié"
+}
+```
+
+#### Delete Post
+**DELETE** `/api/v1/posts/:id`
+
+#### Submit Post
+**POST** `/api/v1/posts/:id/submit`

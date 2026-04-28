@@ -6,16 +6,16 @@ export const registerSchema = z.object({
   password: z.string().min(8),
   native_language: z
     .string()
-    .min(2)
-    .max(2)
+    .min(3)
+    .max(3)
     .transform((val) => val.toLowerCase()),
   learning_languages: z
     .array(
       z.object({
         language: z
           .string()
-          .min(2)
-          .max(2)
+          .min(3)
+          .max(3)
           .transform((val) => val.toLowerCase()),
         level: z.enum(['Beginner', 'Intermediate', 'Advanced']),
       }),
