@@ -8,17 +8,16 @@ import Footer from './components/layout/Footer';
 import ProtectedRoute from './components/layout/ProtectedRoute';
 
 // Pages
-import Home from './pages/home/Home';
+import LandingPage from './features/landing/pages/LandingPage';
 import SignUp from './features/auth/pages/SignUp';
 import Login from './features/auth/pages/Login';
-import Dashboard from './pages/dashboard/Dashboard';
-import Write from './pages/write/WriteLayout';
-import Correct from './pages/correct/CorrectLayout';
-import Corrections from './pages/corrections/CorrectionWorkspace';
-import SubmissionReview from './pages/corrections/SubmissionReview';
-import SubmissionsAll from './pages/corrections/SubmissionsAll';
-import SubmissionDetail from './pages/corrections/SubmissionDetail';
-
+import Dashboard from './features/dashboard/pages/Dashboard';
+import Write from './features/write/pages/Write';
+import CorrectionQueue from './features/correct/pages/CorrectionQueue';
+import Correct from './features/correct/pages/Correct';
+import CorrectionReviewPage from './features/correct/pages/CorrectionReviewPage';
+import SubmissionDetail from './features/dashboard/pages/SubmissionDetail';
+import Submissions from './features/dashboard/pages/Submissions';
 
 function App() {
   return (
@@ -28,65 +27,26 @@ function App() {
           <Navbar />
           <main className='container mx-auto px-4 py-6 pb-10 md:pb-0'>
             <Routes>
-              <Route path='/' element={<Home />} />
+              {/* Public routes */}
+              <Route path='/' element={<LandingPage />} />
               <Route path='/login' element={<Login />} />
               <Route path='/sign-up' element={<SignUp />} />
-              <Route
-                path='/dashboard'
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/write'
-                element={
-                  <ProtectedRoute>
-                    <Write />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/correct'
-                element={
-                  <ProtectedRoute>
-                    <Correct />
-                  </ProtectedRoute>
-                }
-              />
-               <Route
-                path='/corrections'
-                element={
-                  <ProtectedRoute>
-                    <Corrections />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/review'
-                element={
-                  <ProtectedRoute>
-                    <SubmissionReview />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/submissions'
-                element={
-                  <ProtectedRoute>
-                    <SubmissionsAll />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path='/submissions/:id'
-                element={
-                  <ProtectedRoute>
-                    <SubmissionDetail />
-                  </ProtectedRoute>
-                }
-              />
+
+              {/* Protected routes */}
+              <Route element={<ProtectedRoute />}>
+                <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/write' element={<Write />} />
+
+                <Route path='/correct' element={<CorrectionQueue />} />
+                <Route path='/correct/:id' element={<Correct />} />
+                <Route
+                  path='/correct/:id/review'
+                  element={<CorrectionReviewPage />}
+                />
+
+                <Route path='/submissions' element={<Submissions />} />
+                <Route path='/submissions/:id' element={<SubmissionDetail />} />
+              </Route>
             </Routes>
           </main>
           <Footer />
