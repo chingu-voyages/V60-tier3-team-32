@@ -14,6 +14,7 @@ const usersData = [
     native_language: 'spa',
     learning_languages: [{ language: 'eng', level: 'Intermediate' }],
     credits: 0,
+    photo_url: '',
   },
   {
     username: 'john_en',
@@ -21,6 +22,7 @@ const usersData = [
     native_language: 'eng',
     learning_languages: [{ language: 'spa', level: 'Beginner' }],
     credits: 0,
+    photo_url: '',
   },
   {
     username: 'luc_fr',
@@ -31,6 +33,7 @@ const usersData = [
       { language: 'spa', level: 'Intermediate' },
     ],
     credits: 0,
+    photo_url: '',
   },
 ];
 
@@ -43,7 +46,7 @@ const prompts = [
   },
   {
     _id: new mongoose.Types.ObjectId(),
-    title: 'The Emancipacion of Mimi',
+    title: 'The Emancipation of Mimi',
     description: 'Describe in great detail.',
     language: 'eng',
   },
@@ -55,8 +58,8 @@ const prompts = [
   },
   {
     _id: new mongoose.Types.ObjectId(),
-    title: 'Une journée typique',
-    description: 'Décris ta journée habituelle.',
+    title: 'Como se dice',
+    description: 'Describe y di en voz alta lo que ves en tu casa.',
     language: 'spa',
   },
 ];
@@ -138,6 +141,8 @@ const seedDatabase = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDB');
 
+    console.log('clearing existing data...');
+
     await User.deleteMany({});
     await Post.deleteMany({});
 
@@ -176,8 +181,6 @@ const seedDatabase = async () => {
             username: user.username,
             profile_image: user.photo_url,
           },
-          created_at: new Date(),
-          updated_at: new Date(),
         });
       });
     });
