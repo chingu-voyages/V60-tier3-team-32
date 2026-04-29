@@ -2,22 +2,68 @@ import mongoose from 'mongoose';
 
 const postModel = mongoose.Schema(
   {
-    author_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+    language: {
+      type: String,
       required: true,
     },
-    language: { type: String, required: true },
-    content: { type: String, required: true, maxLength: 300 },
-    prompt_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Prompt' },
+
+    fluency_level: {
+      type: String,
+      enum: ['Beginner', 'Intermediate', 'Advanced'],
+      required: true,
+    },
+
+    prompt: {
+      _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Prompt' },
+      title: { type: String, required: true },
+      description: { type: String },
+      language: { type: String, required: true },
+    },
+    author: {
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+      },
+      username: { type: String, required: true },
+      profile_image: { type: String },
+    },
+
+    content: {
+      type: String,
+      required: true,
+      maxLength: 2000,
+    },
+
+    word_count: { type: Number, default: 0 },
+    reading_time: { type: Number, default: 1 },
+
+    corrections_count: { type: Number, default: 0 },
+
     status: {
       type: String,
       enum: ['draft', 'submitted', 'corrected'],
       default: 'draft',
     },
-    correction_count: { type: Number, default: 0 },
+
+    corrections: [
+      {
+        corrector: {
+          _id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+          },
+          username: { type: String, required: true },
+          profile_image: { type: String },
+        },
+        corrected_text: { type: String, required: true },
+        notes: { type: String },
+        created_at: { type: Date, default: Date.now },
+      },
+    ],
   },
-  { timestamps: true },
+  { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } },
 );
 
 export default mongoose.model('Post', postModel);

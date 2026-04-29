@@ -67,7 +67,7 @@ export const getPosts = async (req, res) => {
     const total = await postModel.countDocuments(filter);
     const posts = await postModel
       .find(filter)
-      .populate('author_id', '_id username')
+      // .populate('author_id', '_id username')
       .skip(skip)
       .limit(limit);
     res.status(200).json({
