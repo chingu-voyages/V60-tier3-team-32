@@ -1,22 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { loginThunk, signUpThunk } from '@/features/auth';
+import { loginThunk, logoutThunk, signUpThunk } from '@/features/auth';
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     accessToken: localStorage.getItem('accessToken') || null,
-    refreshToken: localStorage.getItem('refreshToken') || null,
     loading: false,
     error: null,
   },
   reducers: {
     clearAuth: (state) => {
       state.accessToken = null;
-      state.refreshToken = null;
       state.error = null;
       localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
+    },
+    setAccessToken: (state, action) => {
+      state.accessToken = action.payload;
+      localStorage.setItem('accessToken', action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -29,9 +30,7 @@ const authSlice = createSlice({
         // console.log('fulfilled payload:', action.payload);
         state.loading = false;
         state.accessToken = action.payload.access_token;
-        state.refreshToken = action.payload.refresh_token;
         localStorage.setItem('accessToken', action.payload.access_token);
-        localStorage.setItem('refreshToken', action.payload.refresh_token);
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.loading = false;
@@ -44,16 +43,19 @@ const authSlice = createSlice({
       .addCase(signUpThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.accessToken = action.payload.access_token;
-        state.refreshToken = action.payload.refresh_token;
         localStorage.setItem('accessToken', action.payload.access_token);
-        localStorage.setItem('refreshToken', action.payload.refresh_token);
       })
       .addCase(signUpThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(logoutThunk.fulfilled, (state) => {
+        state.accessToken = null;
+        state.error = null;
+        localStorage.removeItem('accessToken');
       });
   },
 });
 
-export const { clearAuth } = authSlice.actions;
+export const { clearAuth, setAccessToken } = authSlice.actions;
 export default authSlice.reducer;
