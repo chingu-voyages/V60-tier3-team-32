@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MOCK_SUBMISSIONS } from '../../pages/write/submissionData';
+import { MOCK_SUBMISSIONS } from '../../mocks/submissionData';
 
 const STORAGE_KEY = 'lingualoop_submissions';
 
@@ -46,8 +46,8 @@ export const useSubmissionStore = () => {
                 },
               ],
             }
-          : submission
-      )
+          : submission,
+      ),
     );
   };
 
@@ -58,24 +58,26 @@ export const useSubmissionStore = () => {
 
   // Add a new submission
   const addSubmission = (submissionData) => {
-    const newId = submissions.length > 0 
-      ? Math.max(...submissions.map(s => s.id)) + 1 
-      : 1;
-    
+    const newId =
+      submissions.length > 0
+        ? Math.max(...submissions.map((s) => s.id)) + 1
+        : 1;
+
     const newSubmission = {
       id: newId,
       language: submissionData.language,
       level: submissionData.level,
       postedAt: submissionData.postedAt || 'just now',
       title: submissionData.title,
-      excerpt: submissionData.excerpt || submissionData.text.substring(0, 60) + '...',
+      excerpt:
+        submissionData.excerpt || submissionData.text.substring(0, 60) + '...',
       text: submissionData.text,
       words: submissionData.words,
       readingTime: submissionData.readingTime,
       userId: submissionData.userId || 'user-' + newId,
       reviews: [],
     };
-    
+
     setSubmissions((prevSubmissions) => [newSubmission, ...prevSubmissions]);
   };
 

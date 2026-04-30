@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, Clock } from "lucide-react";
+import { Link } from 'react-router-dom';
+import { ArrowRight, Clock } from 'lucide-react';
 
-export default function RecentActivity({ activities = [] }) {
+export default function RecentActivityCard({ activities = [] }) {
   return (
     <div
-      className="
+      className='
         /* Container Logic: Visible on large, transparent on mobile */
         lg:bg-[#EEF4FF] 
         lg:rounded-[32px]
@@ -15,28 +15,28 @@ export default function RecentActivity({ activities = [] }) {
         bg-transparent
         p-0
         border-none
-      "
+      '
     >
       {/* HEADER */}
-      <div className="flex items-center justify-between mb-4 lg:mb-6 px-1 lg:px-2">
-        <h2 className="text-[20px] lg:text-xl font-bold text-gray-900 tracking-tight">
+      <div className='flex items-center justify-between mb-4 lg:mb-6 px-1 lg:px-2'>
+        <h2 className='text-[20px] lg:text-xl font-bold text-gray-900 tracking-tight'>
           Recent Activity
         </h2>
 
         <Link
-          to="/activity"
-          className="text-sm font-bold text-[#5D45FD] hover:opacity-80 transition-opacity"
+          to='/activity'
+          className='text-sm font-bold text-[#5D45FD] hover:opacity-80 transition-opacity'
         >
           View All
         </Link>
       </div>
 
       {/* LIST */}
-      <div className="flex flex-col gap-3">
+      <div className='flex flex-col gap-3'>
         {activities.map((item) => (
           <div
             key={item.id}
-            className="
+            className='
               group
               flex items-center justify-between 
               bg-white 
@@ -54,15 +54,14 @@ export default function RecentActivity({ activities = [] }) {
               hover:border-indigo-100
               transition-all duration-300
               cursor-pointer
-            "
+            '
           >
             {/* LEFT CONTENT 
                 FIX: flex-1 and min-w-0 allow this container to shrink relatively.
             */}
-            <div className="flex flex-col gap-0.5 lg:gap-1 flex-1 min-w-0">
-              
+            <div className='flex flex-col gap-0.5 lg:gap-1 flex-1 min-w-0'>
               {/* TIME ROW */}
-              <div className="flex items-center gap-2 text-[11px] lg:text-[12px] text-gray-400 font-medium">
+              <div className='flex items-center gap-2 text-[11px] lg:text-[12px] text-gray-400 font-medium'>
                 <Clock size={13} strokeWidth={2.5} />
                 <span>{item.time}</span>
               </div>
@@ -70,19 +69,19 @@ export default function RecentActivity({ activities = [] }) {
               {/* MESSAGE 
                   FIX: 'truncate' handles the character loss as the width decreases.
               */}
-              <p className="text-[14px] lg:text-[15px] text-gray-600 leading-snug truncate">
-                <span className="text-[#5D45FD] font-semibold">
+              <p className='text-[14px] lg:text-[15px] text-gray-600 leading-snug truncate'>
+                <span className='text-[#5D45FD] font-semibold'>
                   {item.highlight}
-                </span>
-                {" "}{item.text}
+                </span>{' '}
+                {item.text}
               </p>
             </div>
 
             {/* RIGHT ICON */}
-            <div className="shrink-0 ml-4">
+            <div className='shrink-0 ml-4'>
               <ArrowRight
                 size={18}
-                className="text-[#5D45FD] opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
+                className='text-[#5D45FD] opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all'
               />
             </div>
           </div>
