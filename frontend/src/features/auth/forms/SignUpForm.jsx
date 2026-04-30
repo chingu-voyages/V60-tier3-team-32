@@ -223,9 +223,9 @@ export default function SignUpForm() {
                         }
                       >
                         {showPassword ? (
-                          <VisibilityOutlined />
-                        ) : (
                           <VisibilityOffOutlined />
+                        ) : (
+                          <VisibilityOutlined />
                         )}
                       </button>
                     </div>

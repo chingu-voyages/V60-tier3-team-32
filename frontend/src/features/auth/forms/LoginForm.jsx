@@ -121,9 +121,9 @@ export default function LoginForm() {
                       className='absolute right-4 top-1/2 -translate-y-1/2 text-gray-300'
                     >
                       {showPassword ? (
-                        <VisibilityOutlinedIcon />
-                      ) : (
                         <VisibilityOffOutlinedIcon />
+                      ) : (
+                        <VisibilityOutlinedIcon />
                       )}
                     </button>
                   </div>
