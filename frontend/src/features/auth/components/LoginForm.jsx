@@ -17,7 +17,7 @@ import {
   FieldLegend,
 } from '@/components/ui/field';
 
-import logo from '@/assets/Logo.png';
+import logo from '@/assets/Logo-Mobile.svg';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
