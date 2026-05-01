@@ -1,0 +1,342 @@
+[
+  {
+    "title": "My Favorite Food",
+    "description": "Describe your favorite food and why you like it.",
+    "language": "eng",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "A Person I Admire",
+    "description": "Write about someone you admire and explain why.",
+    "language": "eng",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "My Daily Routine",
+    "description": "Describe what a typical day looks like for you.",
+    "language": "eng",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "A Memorable Trip",
+    "description": "Talk about a trip you will never forget.",
+    "language": "eng",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "The Impact of Technology",
+    "description": "Discuss how technology has changed daily life.",
+    "language": "eng",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "Mi comida favorita",
+    "description": "Describe tu comida favorita y por qué te gusta.",
+    "language": "spa",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Una persona que admiro",
+    "description": "Escribe sobre alguien que admiras.",
+    "language": "spa",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Mi rutina diaria",
+    "description": "Describe tu día típico.",
+    "language": "spa",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Un viaje inolvidable",
+    "description": "Habla de un viaje especial.",
+    "language": "spa",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "La tecnología en la vida moderna",
+    "description": "Explica cómo la tecnología afecta la sociedad.",
+    "language": "spa",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "Mon plat préféré",
+    "description": "Décris ton plat préféré.",
+    "language": "fra",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Une personne que j’admire",
+    "description": "Parle de quelqu’un que tu admires.",
+    "language": "fra",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Ma routine quotidienne",
+    "description": "Décris ta journée typique.",
+    "language": "fra",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Un voyage mémorable",
+    "description": "Raconte un voyage important.",
+    "language": "fra",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Le rôle de la technologie",
+    "description": "Explique l’impact de la technologie.",
+    "language": "fra",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "好きな食べ物",
+    "description": "好きな食べ物について説明してください。",
+    "language": "jpn",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "尊敬する人",
+    "description": "尊敬している人について書いてください。",
+    "language": "jpn",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "毎日の生活",
+    "description": "あなたの一日について説明してください。",
+    "language": "jpn",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "思い出の旅行",
+    "description": "印象に残っている旅行について話してください。",
+    "language": "jpn",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "テクノロジーの影響",
+    "description": "現代社会におけるテクノロジーの影響について説明してください。",
+    "language": "jpn",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "Mein Lieblingsessen",
+    "description": "Beschreibe dein Lieblingsessen.",
+    "language": "deu",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Eine bewunderte Person",
+    "description": "Schreibe über eine Person, die du bewunderst.",
+    "language": "deu",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Mein Alltag",
+    "description": "Beschreibe deinen Alltag.",
+    "language": "deu",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Eine besondere Reise",
+    "description": "Erzähle von einer Reise.",
+    "language": "deu",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Technologie und Gesellschaft",
+    "description": "Diskutiere den Einfluss der Technologie.",
+    "language": "deu",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "좋아하는 음식",
+    "description": "좋아하는 음식에 대해 설명하세요.",
+    "language": "kor",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "존경하는 사람",
+    "description": "존경하는 사람에 대해 써보세요.",
+    "language": "kor",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "나의 하루",
+    "description": "하루 일과를 설명하세요.",
+    "language": "kor",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "기억에 남는 여행",
+    "description": "기억에 남는 여행을 이야기하세요.",
+    "language": "kor",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "기술의 영향",
+    "description": "기술이 사회에 미치는 영향을 설명하세요.",
+    "language": "kor",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "Il mio cibo preferito",
+    "description": "Descrivi il tuo cibo preferito.",
+    "language": "ita",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Una persona che ammiro",
+    "description": "Parla di qualcuno che ammiri.",
+    "language": "ita",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "La mia giornata",
+    "description": "Descrivi la tua giornata.",
+    "language": "ita",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Un viaggio speciale",
+    "description": "Racconta un viaggio importante.",
+    "language": "ita",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Tecnologia e società",
+    "description": "Spiega l’impatto della tecnologia.",
+    "language": "ita",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "我最喜欢的食物",
+    "description": "描述你最喜欢的食物。",
+    "language": "zho",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "我敬佩的人",
+    "description": "写一个你敬佩的人。",
+    "language": "zho",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "我的一天",
+    "description": "描述你的一天。",
+    "language": "zho",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "难忘的旅行",
+    "description": "讲述一次难忘的旅行。",
+    "language": "zho",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "科技的影响",
+    "description": "讨论科技对社会的影响。",
+    "language": "zho",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "मेरा पसंदीदा खाना",
+    "description": "अपने पसंदीदा खाने के बारे में लिखें।",
+    "language": "hin",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "एक व्यक्ति जिसे मैं मानता हूँ",
+    "description": "किसी ऐसे व्यक्ति के बारे में लिखें जिसे आप मानते हैं।",
+    "language": "hin",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "मेरा दिन",
+    "description": "अपने दिन का वर्णन करें।",
+    "language": "hin",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "एक यादगार यात्रा",
+    "description": "एक यात्रा के बारे में लिखें।",
+    "language": "hin",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "तकनीक का प्रभाव",
+    "description": "समाज पर तकनीक के प्रभाव पर चर्चा करें।",
+    "language": "hin",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "Minha comida favorita",
+    "description": "Descreva sua comida favorita.",
+    "language": "por",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Uma pessoa que admiro",
+    "description": "Fale sobre alguém que você admira.",
+    "language": "por",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Meu dia",
+    "description": "Descreva seu dia.",
+    "language": "por",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Uma viagem inesquecível",
+    "description": "Conte sobre uma viagem especial.",
+    "language": "por",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Impacto da tecnologia",
+    "description": "Explique o impacto da tecnologia.",
+    "language": "por",
+    "fluency_level": "Advanced"
+  },
+
+  {
+    "title": "Моя любимая еда",
+    "description": "Опишите вашу любимую еду.",
+    "language": "rus",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Человек, которым я восхищаюсь",
+    "description": "Напишите о человеке, которым вы восхищаетесь.",
+    "language": "rus",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Мой день",
+    "description": "Опишите свой день.",
+    "language": "rus",
+    "fluency_level": "Beginner"
+  },
+  {
+    "title": "Незабываемое путешествие",
+    "description": "Расскажите о путешествии.",
+    "language": "rus",
+    "fluency_level": "Intermediate"
+  },
+  {
+    "title": "Влияние технологий",
+    "description": "Обсудите влияние технологий.",
+    "language": "rus",
+    "fluency_level": "Advanced"
+  }
+]
