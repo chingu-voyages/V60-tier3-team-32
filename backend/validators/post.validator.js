@@ -6,6 +6,7 @@ export const createPostSchema = z.object({
     .min(3)
     .max(3)
     .transform((val) => val.toLowerCase()),
+  fluency_level: z.enum(['Beginner', 'Intermediate', 'Advanced']),
   content: z
     .string()
     .min(1)

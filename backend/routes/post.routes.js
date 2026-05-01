@@ -7,6 +7,7 @@ import {
   getPosts,
   submitPost,
   updatePost,
+  createCorrection,
 } from '../controllers/post.controller.js';
 import authMiddleware from '../middleware/auth.middleware.js';
 import {
@@ -27,5 +28,6 @@ router.patch(
 );
 router.delete('/:id', authMiddleware, deletePost);
 router.post('/:id/submit', authMiddleware, submitPost);
+router.post('/:id/corrections', authMiddleware, createCorrection);
 
 export default router;
