@@ -6,8 +6,8 @@ export default function ProfileSidebar() {
   const links = ["Overview", "Account Settings"];
 
   return (
-    <nav className="bg-[#EEF2FF] rounded-[40px] p-3 py-8 space-y-4">
-      {/* "Profile" remains bold and dark */}
+    // Added w-full to ensure it fills the aside container
+    <nav className="w-full bg-[#EEF2FF] rounded-[40px] p-3 py-8 space-y-4">
       <h2 className="px-4 text-[26px] font-bold text-black mb-8 tracking-tight">
         Profile
       </h2>
@@ -21,7 +21,7 @@ export default function ProfileSidebar() {
               key={link}
               variant="ghost"
               className={cn(
-                // text-xs with font-normal/medium and high tracking for that elegant look
+                // Ensure w-full is here so buttons stretch
                 "w-full justify-center text-[11px] font-medium tracking-[0.2em] uppercase h-14 rounded-full transition-all",
                 isActive 
                   ? "bg-[#E0E7FF] text-[#3730A3]" 

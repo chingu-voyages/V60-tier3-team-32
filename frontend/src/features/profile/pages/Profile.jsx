@@ -1,6 +1,6 @@
-import ProfileSidebar from "../components/ProfileSidebar"; // Overview / Settings links
-import UserStatsCard from "../components/UserStatsCard"; // The top card with credits/stats
-import LanguageGrid from "../components/LanguageGrid"; // The cards for Learning/Fluent
+import ProfileSidebar from "../components/ProfileSidebar";
+import UserStatsCard from "../components/UserStatsCard";
+import LanguageGrid from "../components/LanguageGrid";
 
 const mockUser = {
   username: "User123",
@@ -24,19 +24,31 @@ const mockLanguages = {
 
 export default function Profile() {
   return (
-    <div className="min-h-screen bg-[#F8FAFF] px-2 py-6 md:p-1">
-      {/* Changed to 12 cols, but giving sidebar only 4 and pushing main to 8 */}
-      {/* Using max-w-6xl helps keep the sidebar from becoming a giant block */}
+    // Minimal horizontal padding on mobile to respect App.jsx global padding
+    <div className="min-h-screen bg-[#F8FAFF] px-1 py-4 md:px-4 md:py-8 lg:py-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        {/* Left Sidebar - Now constrained */}
-        <aside className="lg:col-span-4 xl:col-span-3"> 
+        {/* 
+          Left Sidebar: 
+          - hidden by default (mobile/tablet)
+          - flex on lg screens (desktop)
+        */}
+        <aside className="hidden lg:flex lg:flex-col lg:col-span-4 xl:col-span-3 sticky top-8">
           <ProfileSidebar />
         </aside>
 
-        {/* Right Content */}
-        <main className="lg:col-span-8 xl:col-span-9 space-y-6">
+        {/* 
+          Right Content: 
+          - Full width on mobile/tablet
+          - 8/12 or 9/12 on desktop
+        */}
+        <main className="col-span-1 lg:col-span-8 xl:col-span-9 space-y-6">
           <UserStatsCard user={mockUser} />
+
+          {/* 
+             Heading for the section - often helpful when the sidebar is gone 
+             to give the user context of where they are.
+          */}
+
           <LanguageGrid languages={mockLanguages} />
         </main>
       </div>

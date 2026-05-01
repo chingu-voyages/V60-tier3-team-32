@@ -19,6 +19,7 @@ import CorrectionReviewPage from './features/correct/pages/CorrectionReviewPage'
 import SubmissionDetail from './features/dashboard/pages/SubmissionDetail';
 import Submissions from './features/dashboard/pages/Submissions';
 import Profile from './features/profile/pages/Profile';
+import EditLanguages from './features/profile/components/EditLanguages';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
                 <Route path='/submissions' element={<Submissions />} />
                 <Route path='/submissions/:id' element={<SubmissionDetail />} />
                 <Route path='/profile' element={<Profile />} />
+                <Route path='/profile/edit-languages' element={<EditLanguages />} />
               </Route>
             </Routes>
           </main>

@@ -1,55 +1,63 @@
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Pencil, Languages, Globe } from "lucide-react"; 
+import { cn } from "@/utils/utils"; 
 
 export default function LanguageGrid({ languages }) {
   
   return (
-    <div className="bg-[#EBF2FF] rounded-[32px] p-8 lg:p-10 space-y-6">
+    <div className="w-full space-y-4">
       
-      {/* Header with Edit Button */}
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-gray-800">Languages</h2>
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className="rounded-full bg-white/50 border-gray-200 text-[#5D45FD] font-bold text-[10px] uppercase tracking-widest gap-2 px-4"
-        >
-          <Pencil size={12} /> Edit
-        </Button>
+      {/* Header - Minimalist as per image_4d01da.png */}
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="text-2xl font-bold text-gray-900">Languages</h2>
+        
+        <Link to="/edit-languages">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="rounded-xl border-gray-200 text-[#5D45FD] font-medium text-sm gap-2 h-9 px-4 hover:bg-gray-50 transition-all"
+          >
+            <Pencil size={14} /> Edit
+          </Button>
+        </Link>
       </div>
 
-      {/* Learning Section - Side by Side Pills */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Learning Section - Flex/Grid to keep them side-by-side */}
+      <div className="flex flex-wrap md:flex-nowrap gap-4">
         {languages.learning.map((lang, i) => (
-          <div key={i} className="bg-white rounded-[40px] p-8 shadow-sm border border-gray-100/50">
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-4">Learning</p>
-            <div className="flex items-center gap-4">
+          <div 
+            key={i} 
+            className="flex-1 min-w-[160px] bg-white rounded-[40px] p-6 border-[1.5px] border-gray-100 shadow-sm"
+          >
+            <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-4">Learning</p>
+            <div className="flex items-center gap-3">
               <div className={cn(
-                "p-3 rounded-full",
+                "p-3 rounded-2xl shrink-0",
                 i === 0 ? "bg-[#E8EDFF] text-[#5D45FD]" : "bg-[#FFF7ED] text-[#F59E0B]"
               )}>
-                <Languages size={24} />
+                <Languages size={20} />
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-900">{lang.name}</h3>
-                <p className="text-xs font-semibold text-gray-400">{lang.level}</p>
+              <div className="min-w-0">
+                <h3 className="text-xl font-bold text-gray-900 leading-tight">{lang.name}</h3>
+                <p className="text-sm font-medium text-gray-500">{lang.level}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Fluent Section - Single Large Pill */}
-      <div className="bg-white rounded-[40px] p-8 shadow-sm border border-gray-100/50">
-        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-6">Fluent</p>
-        <div className="space-y-6">
+      {/* Fluent Section - Wide Card */}
+      <div className="bg-white rounded-[40px] p-8 border-[1.5px] border-gray-100 shadow-sm">
+        <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest mb-6">Fluent</p>
+        <div className="space-y-5">
           {languages.fluent.map((lang, i) => (
             <div key={i} className="flex items-center gap-4">
               <div className={cn(
-                "p-3 rounded-full",
-                i === 0 ? "bg-[#E8EDFF] text-[#5D45FD]" : "bg-[#FFF7ED] text-[#F59E0B]"
+                "p-3 rounded-2xl shrink-0",
+                i % 2 === 0 ? "bg-[#E8EDFF] text-[#5D45FD]" : "bg-[#FFF7ED] text-[#F59E0B]"
               )}>
-                <Globe size={24} />
+                <Globe size={20} />
               </div>
               <h3 className="text-xl font-bold text-gray-900">{lang}</h3>
             </div>
@@ -59,9 +67,4 @@ export default function LanguageGrid({ languages }) {
       
     </div>
   );
-}
-
-// Simple helper for conditional classes if you haven't imported your utility
-function cn(...classes) {
-  return classes.filter(Boolean).join(' ');
 }
