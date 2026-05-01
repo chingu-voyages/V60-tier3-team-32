@@ -9,7 +9,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (accessToken) {
-      console.log('fetching me with token:', accessToken);
+      // console.log('fetching me with token:', accessToken);
       dispatch(fetchMe());
     }
   }, [dispatch, accessToken]);
