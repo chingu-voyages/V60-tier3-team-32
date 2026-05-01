@@ -3,47 +3,65 @@ import userModel from '../models/user.model.js';
 import { detectAll, toISO3 } from 'tinyld';
 import Prompt from '../models/prompt.model.js';
 import mongoose from 'mongoose';
+import { toLanguageObject } from '../helpers/language.js';
+
 export const createPost = async (req, res) => {
   try {
-    const { content, language, fluency_level, prompt_id, status } = req.body;
-    const author_id = req.user.id;
-
-    console.log('body:', {
+    const {
       content,
       language,
       fluency_level,
       prompt_id,
-      status,
-    });
+      status = 'draft',
+    } = req.body;
+    const author_id = req.user.id;
+
     if (!content || !language || !fluency_level || !prompt_id) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
     const prompt = await Prompt.findById(prompt_id);
+
     if (!prompt) {
       return res.status(404).json({ message: 'Prompt not found' });
     }
 
     const user = await userModel.findById(author_id);
+
+    if (!user) {
+      return res.status(401).json({ message: 'User not found. Please log in' });
+    }
+
     const validLanguages = user.learning_languages.map((l) => l.language);
+
     if (!validLanguages.includes(language)) {
       return res
         .status(400)
         .json({ message: 'You can only post in your learning languages' });
     }
 
-    const words = content.trim().split(/\s+/);
+    const words = content.trim().split(/\s+/).filter(Boolean);
     const word_count = words.length;
     const reading_time = Math.max(1, Math.ceil(word_count / 200));
 
     let language_warning = null;
+
     if (words.length >= 3) {
       const results = detectAll(content);
       const best = results[0];
+
       if (best && best.accuracy > 0.5) {
         const detectedCode = toISO3(best.lang);
+
         if (detectedCode && detectedCode !== language) {
-          language_warning = `Content seems to be in "${detectedCode}" but you declared "${language}"`;
+          const detectedLang = toLanguageObject(detectedCode);
+          const declaredLang = toLanguageObject(language);
+
+          language_warning = {
+            detected_language: detectedLang,
+            declared_language: declaredLang,
+            message: `This looks like ${detectedLang.label}, but you selected ${declaredLang.label}`,
+          };
         }
       }
     }
@@ -68,7 +86,7 @@ export const createPost = async (req, res) => {
       },
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       id: post._id,
       language: post.language,
       fluency_level: post.fluency_level,
@@ -76,6 +94,11 @@ export const createPost = async (req, res) => {
         id: post.prompt._id,
         title: post.prompt.title,
         description: post.prompt.description,
+      },
+      author: {
+        id: post.author._id,
+        username: post.author.username,
+        photo_url: post.author.profile_image || '',
       },
       content: post.content,
       word_count: post.word_count,
@@ -87,7 +110,7 @@ export const createPost = async (req, res) => {
       ...(language_warning && { language_warning }),
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -156,22 +179,43 @@ export const getPosts = async (req, res) => {
 export const getPostById = async (req, res) => {
   try {
     const id = req.params.id;
-    const post = await postModel
-      .findById(id)
-      .populate('author_id', '_id username');
+    const post = await postModel.findById(id);
 
     if (!post) {
       return res.status(404).json({ message: 'post not found' });
     }
     res.status(200).json({
       _id: post._id,
-      author: post.author_id,
+      author: {
+        id: post.author._id,
+        username: post.author.username,
+        photo_url: post.author.profile_image || '',
+      },
       language: post.language,
+      fluency_level: post.fluency_level,
+      word_count: post.word_count,
+      reading_time: post.reading_time,
+      prompt: {
+        id: post.prompt._id,
+        title: post.prompt.title,
+        description: post.prompt.description,
+      },
       content: post.content,
-      prompt_id: post.prompt_id,
+      corrections: post.corrections.map((c) => ({
+        id: c._id,
+        corrector: {
+          id: c.corrector._id,
+          username: c.corrector.username,
+          photo_url: c.corrector.profile_image || '',
+        },
+        corrected_text: c.corrected_text,
+        notes: c.notes,
+        created_at: c.created_at,
+      })),
+
       status: post.status,
-      correction_count: post.correction_count,
-      created_at: post.createdAt,
+      created_at: post.created_at,
+      updated_at: post.updated_at,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
