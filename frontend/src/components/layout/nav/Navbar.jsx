@@ -144,9 +144,11 @@ export default function Navbar() {
                   onClick={() => setIsProfileOpen(true)}
                   className='md:hidden active:scale-95 transition-transform'
                 >
-                  <Avatar className='h-9 w-9 cursor-pointer'>
+                  <Avatar className='h-10 w-10 cursor-pointer hover:ring-2 hover:ring-indigo-100 transition-all'>
                     <AvatarImage src={user?.profile_image} />
-                    <AvatarFallback>U</AvatarFallback>
+                    <AvatarFallback className='bg-[#E8EDFF] text-[#5D45FD] font-bold text-xl'>
+                      {user?.username?.[0]?.toUpperCase() ?? 'U'}
+                    </AvatarFallback>
                   </Avatar>
                 </button>
               </div>
