@@ -6,6 +6,7 @@ import { store } from './app/store';
 import Navbar from './components/layout/nav/Navbar';
 import Footer from './components/layout/Footer';
 import ProtectedRoute from './components/layout/ProtectedRoute';
+import AuthProvider from './features/auth/components/AuthProvider';
 
 // Pages
 import LandingPage from './features/landing/pages/LandingPage';
@@ -25,32 +26,38 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className='min-h-screen bg-gray-50 text-slate-900'>
-          <Navbar />
-          <main className='container mx-auto px-4 py-6 pb-10 md:pb-0'>
-            <Routes>
-              {/* Public routes */}
-              <Route path='/' element={<LandingPage />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/sign-up' element={<SignUp />} />
+          <AuthProvider>
+            <Navbar />
 
-              {/* Protected routes */}
-              <Route element={<ProtectedRoute />}>
-                <Route path='/dashboard' element={<Dashboard />} />
-                <Route path='/write' element={<Write />} />
+            <main className='container mx-auto px-4 py-6 pb-10 md:pb-0'>
+              <Routes>
+                {/* Public routes */}
+                <Route path='/' element={<LandingPage />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/sign-up' element={<SignUp />} />
 
-                <Route path='/correct' element={<CorrectionQueue />} />
-                <Route path='/correct/:id' element={<Correct />} />
-                <Route
-                  path='/correct/:id/review'
-                  element={<CorrectionReviewPage />}
-                />
+                {/* Protected routes */}
+                <Route element={<ProtectedRoute />}>
+                  <Route path='/dashboard' element={<Dashboard />} />
+                  <Route path='/write' element={<Write />} />
 
-                <Route path='/submissions' element={<Submissions />} />
-                <Route path='/submissions/:id' element={<SubmissionDetail />} />
-                <Route path='/profile' element={<Profile />} />
-              </Route>
-            </Routes>
-          </main>
+                  <Route path='/correct' element={<CorrectionQueue />} />
+                  <Route path='/correct/:id' element={<Correct />} />
+                  <Route
+                    path='/correct/:id/review'
+                    element={<CorrectionReviewPage />}
+                  />
+
+                  <Route path='/submissions' element={<Submissions />} />
+                  <Route
+                    path='/submissions/:id'
+                    element={<SubmissionDetail />}
+                  />
+                  <Route path='/profile' element={<Profile />} />
+                </Route>
+              </Routes>
+            </main>
+          </AuthProvider>
           <Footer />
         </div>
       </Router>
