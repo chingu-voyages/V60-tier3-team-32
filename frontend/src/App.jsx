@@ -18,6 +18,7 @@ import Correct from './features/correct/pages/Correct';
 import CorrectionReviewPage from './features/correct/pages/CorrectionReviewPage';
 import SubmissionDetail from './features/dashboard/pages/SubmissionDetail';
 import Submissions from './features/dashboard/pages/Submissions';
+import Profile from './features/profile/pages/Profile';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
 
                 <Route path='/submissions' element={<Submissions />} />
                 <Route path='/submissions/:id' element={<SubmissionDetail />} />
+                <Route path='/profile' element={<Profile />} />
               </Route>
             </Routes>
           </main>
