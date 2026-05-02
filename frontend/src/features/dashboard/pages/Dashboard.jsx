@@ -4,7 +4,7 @@ import RecentActivityCard from '../components/RecentActivityCard';
 import RecentActivity from '../components/RecentActivityCard';
 import RecentSubmissionsCard from '../components/RecentSubmissionsCard';
 import RecentSubmissions from '../components/RecentSubmissionsCard';
-import PromptCard from '@/components/shared/PromptCard';
+import PromptCard from '@/features/dashboard/components/PromptCard';
 
 const mockLanguages = [{ name: 'Spanish' }, { name: 'French' }];
 
