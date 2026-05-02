@@ -36,7 +36,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import logo from '@/assets/Logo.png';
+import logo from '@/assets/Logo-Mobile.svg';
 
 import { signUpSchema } from '../schema/signUpSchema';
 
@@ -223,9 +223,9 @@ export default function SignUpForm() {
                         }
                       >
                         {showPassword ? (
-                          <VisibilityOutlined />
-                        ) : (
                           <VisibilityOffOutlined />
+                        ) : (
+                          <VisibilityOutlined />
                         )}
                       </button>
                     </div>

@@ -36,6 +36,30 @@ Request body:
 }
 ```
 
+Response:
+
+```json
+{
+  "id": "69f21218774bb51a678b97a2",
+  "username": "HelloWorld",
+  "email": "helloworld@gmail.com",
+  "native_language": "eng",
+  "learning_languages": [
+    {
+      "language": "fra",
+      "level": "Advanced"
+    }
+  ],
+  "credits": 0,
+  "access_token": "eyJhbGc...",
+  "created_at": "2026-04-29T14:13:44.124Z"
+}
+```
+
+> Sets `refresh_token` as HttpOnly cookie (7 days).
+
+---
+
 #### Login
 
 **POST** `/api/v1/auth/login`
@@ -51,15 +75,80 @@ Request body:
 
 `identifier` can be either email or username.
 
+Response:
+
+```json
+{
+  "access_token": "eyJhbGc..."
+}
+```
+
+> Sets `refresh_token` as HttpOnly cookie (7 days).
+
 ---
 
-### Prompts
+#### Refresh
 
-#### Get Prompts
+**POST** `/api/v1/auth/refresh`
 
-**GET** `/api/v1/prompts/today`
+No request body. Reads `refresh_token` from HttpOnly cookie automatically.
+
+Response:
+
+```json
+{
+  "access_token": "eyJhbGc..."
+}
+```
 
 ---
+
+#### Logout
+
+**POST** `/api/v1/auth/logout`
+
+No request body. Reads `refresh_token` from HttpOnly cookie automatically.
+
+Response:
+
+```json
+{
+  "message": "Logged out successfully"
+}
+```
+
+> Clears `refresh_token` cookie and nulls it in the database.
+
+---
+
+### Profile
+
+#### Get Current User
+
+**GET** `/api/v1/users/me`
+
+No request body. Requires `Authorization: Bearer <access_token>` header.
+
+Response:
+
+```json
+{
+  "id": "69f21218774bb51a678b97a2",
+  "username": "HelloWorld",
+  "email": "helloworld@gmail.com",
+  "photo_url": null,
+  "bio": null,
+  "native_language": "eng",
+  "learning_languages": [
+    {
+      "language": "fra",
+      "level": "Advanced"
+    }
+  ],
+  "credits": 0,
+  "created_at": "2026-04-29T14:13:44.124Z"
+}
+```
 
 ### Posts
 

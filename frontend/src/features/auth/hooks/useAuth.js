@@ -1,21 +1,18 @@
-import { loginThunk, signUpThunk } from '../authActions';
-import { clearAuth } from '../authSlice';
+import { loginThunk, signUpThunk, logoutThunk } from '../authActions';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();
-  const { accessToken, refreshToken, loading, error } = useAppSelector(
-    (state) => state.auth,
-  );
-
+  const { accessToken, loading, error } = useAppSelector((state) => state.auth);
+  const user = useAppSelector((state) => state.profile.user);
   return {
     accessToken,
-    refreshToken,
+    user,
     loading,
     error,
     isAuthenticated: !!accessToken,
     login: (credentials) => dispatch(loginThunk(credentials)),
     register: (data) => dispatch(signUpThunk(data)),
-    logout: () => dispatch(clearAuth()),
+    logout: () => dispatch(logoutThunk()),
   };
 };
