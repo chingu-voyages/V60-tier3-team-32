@@ -19,7 +19,7 @@
     "username": "luc_fr",
     "email": "luc@example.com",
     "native_language": "fra",
-    " learning_languages": [
+    "learning_languages": [
       { "language": "eng", "level": "Advanced" },
       { "language": "spa", "level": "Intermediate" }
     ],

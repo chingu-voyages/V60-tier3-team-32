@@ -126,11 +126,14 @@ export const getPosts = async (req, res) => {
       filter.status = req.query.status;
     }
 
-    if (req.query.correctable === 'true' && req.user) {
+    if (req.query.correctable === 'true') {
       const user = await userModel.findById(req.user.id);
+      console.log('user:', user.username);
+      console.log('learning_languages:', user.learning_languages);
       filter.status = 'submitted';
-      filter['author._id'] = { $ne: user._id };
+      filter['author._id'] = { $ne: new mongoose.Types.ObjectId(req.user.id) };
       filter.language = { $in: user.learning_languages.map((l) => l.language) };
+      console.log('filter:', JSON.stringify(filter));
     }
 
     const total = await postModel.countDocuments(filter);
@@ -279,7 +282,7 @@ export const deletePost = async (req, res) => {
     if (!post) {
       return res.status(404).json({ message: 'post not found' });
     }
-    if (post.author_id.toString() !== req.user.id) {
+    if (post.author._id.toString() !== req.user.id) {
       return res.status(403).json({ message: 'Not authorized' });
     }
     await postModel.findByIdAndDelete(idPost);

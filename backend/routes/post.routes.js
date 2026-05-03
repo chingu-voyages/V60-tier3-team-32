@@ -14,10 +14,11 @@ import {
   createPostSchema,
   updatePostSchema,
 } from '../validators/post.validator.js';
+import optionalAuth from '../middleware/optionalAuth.middleware.js';
 
 const router = express.Router();
 
-router.get('/', getPosts);
+router.get('/', optionalAuth, getPosts);
 router.get('/:id', getPostById);
 router.post('/', authMiddleware, validateRequest(createPostSchema), createPost);
 router.patch(
