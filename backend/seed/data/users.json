@@ -11,7 +11,10 @@
     "username": "john_en",
     "email": "john@example.com",
     "native_language": "eng",
-    "learning_languages": [{ "language": "spa", "level": "Beginner" }],
+    "learning_languages": [
+      { "language": "spa", "level": "Beginner" },
+      { "language": "fra", "level": "Intermediate" }
+    ],
     "credits": 0,
     "photo_url": ""
   },

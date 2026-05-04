@@ -2,20 +2,51 @@ import Prompt from '../models/prompt.model.js';
 
 export const getPrompts = async (req, res) => {
   try {
-    const prompts = await Prompt.find().limit(10);
+    const user = req.user;
+
+    const learningPromptFilters = (user.learning_languages ?? []).map((l) => ({
+      language: l.language,
+      fluency_level: l.level,
+    }));
+
+    const [learningPrompts, nativePrompts] = await Promise.all([
+      learningPromptFilters.length
+        ? Prompt.find({ $or: learningPromptFilters })
+        : [],
+      Prompt.find({
+        language: user.native_language,
+      }),
+    ]);
+
+    // console.log('learningPromptFilters:', learningPromptFilters);
+    // console.log('learningPrompts:', learningPrompts);
+    // console.log('nativePrompts:', nativePrompts);
+
     res.status(200).json({
-      data: prompts.map((prompt) => ({
-        id: prompt._id,
-        title: prompt.title,
-        description: prompt.description,
-        language: prompt.language,
-        fluency_level: prompt.fluency_level,
-      })),
+      data: {
+        learning: learningPrompts.map((p) => ({
+          id: p._id,
+          title: p.title,
+          description: p.description,
+          language: p.language,
+          fluency_level: p.fluency_level,
+          type: 'learning',
+        })),
+        native: nativePrompts.map((p) => ({
+          id: p._id,
+          title: p.title,
+          description: p.description,
+          language: p.language,
+          fluency_level: p.fluency_level,
+          type: 'native',
+        })),
+      },
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 export const createPrompt = async (req, res) => {
   try {
     const prompt = await Prompt.create(req.body);

@@ -128,12 +128,12 @@ export const getPosts = async (req, res) => {
 
     if (req.query.correctable === 'true') {
       const user = await userModel.findById(req.user.id);
-      console.log('user:', user.username);
-      console.log('learning_languages:', user.learning_languages);
-      filter.status = 'submitted';
+      // console.log('user:', user.username);
+      // console.log('learning_languages:', user.learning_languages);
+
+      filter.status = { $in: ['submitted', 'corrected'] };
       filter['author._id'] = { $ne: new mongoose.Types.ObjectId(req.user.id) };
-      filter.language = { $in: user.learning_languages.map((l) => l.language) };
-      console.log('filter:', JSON.stringify(filter));
+      filter.language = user.native_language;
     }
 
     const total = await postModel.countDocuments(filter);
@@ -233,22 +233,36 @@ export const updatePost = async (req, res) => {
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }
-    if (post.author._id.toString() !== req.user.id) {
+
+    if (post.author._id.toString() !== req.user._id.toString()) {
       return res.status(403).json({ message: 'Not authorized' });
     }
 
     const { language, fluency_level, content, status } = req.body;
+    // console.log('body:', req.body);
+    // console.log('incoming status:', req.body.status);
+    // console.log('user id:', req.user.id);
 
     if (language) post.language = language;
     if (fluency_level) post.fluency_level = fluency_level;
+
     if (content) {
       post.content = content;
-      const words = content.trim().split(/\s+/);
+
+      const words = content.trim().split(/\s+/).filter(Boolean);
       post.word_count = words.length;
       post.reading_time = Math.max(1, Math.ceil(words.length / 200));
     }
-    if (status) post.status = status;
 
+    if (status !== undefined) {
+      const allowedStatuses = ['draft', 'submitted'];
+
+      if (!allowedStatuses.includes(status)) {
+        return res.status(400).json({ message: 'Invalid status' });
+      }
+
+      post.status = status;
+    }
     await post.save();
 
     res.status(200).json({

@@ -578,19 +578,27 @@ Notes:
 
 ---
 
-### 🔍 CORRECTIONS QUEUE
+### CORRECTIONS QUEUE
 
 #### `GET /api/v1/posts?status=submitted&correctable=true`
 
 Returns posts that the current user is allowed to correct.
+
+When **correctable=true**, the API will:
+
+Include posts with status:
+
+- submitted
+- corrected (posts can receive multiple corrections)
+
+Exclude posts created by the current user
+Only include posts in the user’s native language
 
 No request body.
 
 **Query params:** `?status=submitted&correctable=true&page=1&limit=10`
 
 **Response:**
-
-json
 
 ```json
 {
@@ -628,10 +636,14 @@ json
 
 Notes:
 
-- This should exclude the current user's own posts.
-- This should only include posts in languages the user can correct.
-- Exclude posts already corrected by the current user (nice to have)
-- Full content is not returned here. Use `GET /api/v1/posts/:id`.
+Excludes the current user's own posts
+Only includes posts in the user’s native language
+Includes both:
+
+- posts with no corrections (submitted)
+- posts with existing corrections (corrected)
+
+Full content is not returned in this list view. Use `GET /api/v1/posts/:id` for full content.
 
 ---
 
@@ -683,12 +695,20 @@ Deletes a post.
 
 # Prompts
 
-Fetches seeded prompts
+Returns a curated set of prompts
+
+For MVP, prompts will be seeded in the database.
 
 `GET /api/v1/prompts/today`
 
-- For MVP, prompts will be seeded in the database.
-- `GET /prompts/today` can return a small rotating set.
+Prompts are grouped for easier frontend rendering
+
+- Learning prompts
+  Match both:
+  language
+  fluency_level (based on user level)
+- Native prompts
+  Match native_language
 
 No request body.
 
@@ -696,37 +716,43 @@ No request body.
 
 ```json
 {
-  "data": [
-    {
-      "id": "69f21218774bb51a678b979e",
-      "title": "My Morning Routine",
-      "description": "Describe what you do every morning.",
-      "language": "eng",
-      "fluency_level": "Beginner"
-    },
-    {
-      "id": "69f21218774bb51a678b979f",
-      "title": "A Favorite Memory",
-      "description": "Write about a memory that makes you happy.",
-      "language": "eng",
-      "fluency_level": "Intermediate"
-    },
-    {
-      "id": "69f21218774bb51a678b9800",
-      "title": "My Weekend Plans",
-      "description": "Describe what you plan to do this weekend.",
-      "language": "eng",
-      "fluency_level": "Beginner"
-    }
-  ]
+  "data": {
+    "learning": [
+      {
+        "id": "69f83bd9cc6cd123446c358b",
+        "title": "Mi comida favorita",
+        "description": "Describe tu comida favorita y por qué te gusta.",
+        "language": "spa",
+        "fluency_level": "Beginner",
+        "type": "learning"
+      },
+      {
+        "id": "69f83bd9cc6cd123446c3591",
+        "title": "Une personne que j’admire",
+        "description": "Parle de quelqu’un que tu admires.",
+        "language": "fra",
+        "fluency_level": "Intermediate",
+        "type": "learning"
+      }
+    ],
+    "native": [
+      {
+        "id": "69f83bd9cc6cd123446c3586",
+        "title": "My Favorite Food",
+        "description": "Describe your favorite food and why you like it.",
+        "language": "eng",
+        "fluency_level": "Beginner",
+        "type": "native"
+      }
+    ]
+  }
 }
 ```
 
 - For MVP, prompts are seeded in the database.
-- This endpoint can return a small rotating set.
-- Frontend should store the selected prompt object in state.
-- When creating a post, send the selected prompt’s `id` as `prompt_id`.
-- `prompt_id` is required for `POST /api/v1/posts`.
+  -Endpoint may return a small rotating set (implementation flexible)
+  -Order is not guaranteed — frontend should control display
+  -Learning prompts should be prioritized in UI
 
 ---
 
