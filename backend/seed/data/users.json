@@ -1,0 +1,32 @@
+[
+  {
+    "username": "maria_es",
+    "email": "maria@example.com",
+    "native_language": "spa",
+    "learning_languages": [{ "language": "eng", "level": "Intermediate" }],
+    "credits": 0,
+    "photo_url": ""
+  },
+  {
+    "username": "john_en",
+    "email": "john@example.com",
+    "native_language": "eng",
+    "learning_languages": [
+      { "language": "spa", "level": "Beginner" },
+      { "language": "fra", "level": "Intermediate" }
+    ],
+    "credits": 0,
+    "photo_url": ""
+  },
+  {
+    "username": "luc_fr",
+    "email": "luc@example.com",
+    "native_language": "fra",
+    "learning_languages": [
+      { "language": "eng", "level": "Advanced" },
+      { "language": "spa", "level": "Intermediate" }
+    ],
+    "credits": 0,
+    "photo_url": ""
+  }
+]

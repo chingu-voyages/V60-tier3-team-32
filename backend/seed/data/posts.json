@@ -1,0 +1,184 @@
+[
+  {
+    "username": "john_en",
+    "language": "spa",
+    "fluency_level": "Beginner",
+    "content": "Hola, yo gusto aprender español porque es muy interesante y divertido. Yo practico todos los dias pero es dificil para mi hablar rapido y entender cuando las personas habla mucho.",
+    "corrections": [
+      {
+        "corrector_username": "maria_es",
+        "corrected_text": "Hola, me gusta aprender español porque es muy interesante y divertido. Yo practico todos los días, pero es difícil para mí hablar rápido y entender cuando las personas hablan mucho.",
+        "notes": "Use 'me gusta' instead of 'yo gusto'. Also add accents and use 'hablan' for plural subject."
+      }
+    ]
+  },
+  {
+    "username": "john_en",
+    "language": "spa",
+    "fluency_level": "Beginner",
+    "content": "Ayer yo voy a la tienda y compro comida para mi familia. Yo no recuerdo todas las palabras en español pero intento usar frases simples para comunicar.",
+    "corrections": [
+      {
+        "corrector_username": "maria_es",
+        "corrected_text": "Ayer fui a la tienda y compré comida para mi familia. No recuerdo todas las palabras en español, pero intento usar frases simples para comunicarme.",
+        "notes": "Use past tense for yesterday: 'fui' and 'compré'. Also use 'comunicarme' instead of 'comunicar'."
+      }
+    ]
+  },
+  {
+    "username": "john_en",
+    "language": "spa",
+    "fluency_level": "Beginner",
+    "content": "Mi rutina diaria es muy simple. Yo despierto a las ocho y yo comer desayuno antes de ir a trabajo. Despues yo estudiar español por una hora en mi casa.",
+    "corrections": []
+  },
+  {
+    "username": "maria_es",
+    "language": "eng",
+    "fluency_level": "Intermediate",
+    "content": "I have been learning English for a while and I can understand most of conversations, but sometimes I still struggle to express my ideas clearly. I try to practice every day by reading and speaking with other people online.",
+    "corrections": [
+      {
+        "corrector_username": "john_en",
+        "corrected_text": "I have been learning English for a while, and I can understand most conversations, but sometimes I still struggle to express my ideas clearly. I try to practice every day by reading and speaking with other people online.",
+        "notes": "Use 'most conversations' instead of 'most of conversations'."
+      },
+      {
+        "corrector_username": "luc_fr",
+        "corrected_text": "I have been learning English for a while, and I can understand most conversations, but sometimes I still struggle to express my ideas clearly. I practice every day by reading and speaking with others online.",
+        "notes": "This version sounds a little more natural and concise."
+      }
+    ]
+  },
+  {
+    "username": "maria_es",
+    "language": "eng",
+    "fluency_level": "Intermediate",
+    "content": "Last weekend I went to a restaurant with my friends and we ordered a lot of food. Everything was very delicious and we had a good time, but I forget to bring my wallet so my friend paid for me.",
+    "corrections": [
+      {
+        "corrector_username": "john_en",
+        "corrected_text": "Last weekend, I went to a restaurant with my friends, and we ordered a lot of food. Everything was delicious, and we had a good time, but I forgot to bring my wallet, so my friend paid for me.",
+        "notes": "Use past tense: 'forgot' instead of 'forget'. Also, 'delicious' already means very tasty, so 'very delicious' is usually unnecessary."
+      }
+    ]
+  },
+  {
+    "username": "maria_es",
+    "language": "eng",
+    "fluency_level": "Intermediate",
+    "content": "Every day I try to spend at least thirty minutes studying English. I usually read articles or listen to podcasts, and sometimes I practice speaking by recording myself and listening to my pronunciation.",
+    "corrections": []
+  },
+  {
+    "username": "maria_es",
+    "language": "eng",
+    "fluency_level": "Intermediate",
+    "content": "Every day I try to spend at least thirty minutes studying English. I usually read articles or listen to podcasts, and sometimes I practice speaking by recording myself and listening to my pronunciation.",
+    "corrections": []
+  },
+  {
+    "username": "maria_es",
+    "language": "eng",
+    "fluency_level": "Intermediate",
+    "content": "Learning English has opened many doors for me professionally and personally. I work in international trade, so being able to communicate clearly with partners from different countries is absolutely essential. Every week, I dedicate time to improving specific skills rather than studying English generally. For example, Monday is for reading business articles, Wednesday is for writing practice, and Thursday is reserved for speaking with my conversation tutor online. I have noticed that my listening comprehension has improved significantly since I started watching English-language documentaries without subtitles. At first, it was frustrating because I missed so many details, but gradually my brain began to adapt. Grammar is still my weakest area, particularly the correct use of articles and prepositions, which do not exist in my native Arabic in the same way. I use grammar workbooks and online exercises to target these specific weaknesses systematically. I also try to think in English whenever possible, even during mundane activities like cooking or commuting, because I believe mental immersion accelerates fluency more than any textbook alone ever could.",
+    "corrections": [
+      {
+        "corrector_username": "luc_fr",
+        "corrected_text": "Learning English has opened many doors for me professionally and personally. I work in international trade, so being able to communicate clearly with partners from different countries is absolutely essential. Every week, I dedicate time to improving specific skills rather than studying English in general. For example, Monday is for reading business articles, Wednesday is for writing practice, and Thursday is reserved for speaking with my conversation tutor online. I have noticed that my listening comprehension has improved significantly since I started watching English-language documentaries without subtitles. At first, it was frustrating because I missed so many details, but gradually my brain began to adapt. Grammar is still my weakest area, particularly the correct use of articles and prepositions, which do not exist in the same way in my native Arabic. I use grammar workbooks and online exercises to target these specific weaknesses systematically. I also try to think in English whenever possible, even during mundane activities like cooking or commuting, because I believe mental immersion accelerates fluency more than any textbook alone ever could.",
+        "notes": "Strong writing overall. 'Studying English in general' sounds more natural than 'studying English generally'. The phrase about Arabic also flows better when reordered."
+      }
+    ]
+  },
+  {
+    "username": "maria_es",
+    "language": "eng",
+    "fluency_level": "Intermediate",
+    "content": "Having studied English formally for over twelve years and lived in London for three, I consider myself a proficient user of the language, though I still encounter moments that remind me there is always more to learn. Recently, I have been focusing on refining my academic writing skills, particularly the art of constructing arguments that are both logically coherent and stylistically compelling. I read extensively across genres, from literary fiction to scientific journals, because I believe that exposure to diverse writing styles enriches one's own expression. I also participate in a weekly debate club where members discuss complex geopolitical and ethical topics, which pushes me to think critically and articulate nuanced positions under pressure. One area I continue to work on is idiomatic fluency. Native speakers often use expressions and cultural references that require not just linguistic knowledge but deep cultural familiarity. I keep a running document of idioms I encounter in films, books, and conversations, reviewing them regularly and trying to use them naturally in context. My long-term ambition is to publish academic papers in English and perhaps one day teach rhetoric at a university level.",
+    "corrections": [
+      {
+        "corrector_username": "luc_fr",
+        "corrected_text": "Having studied English formally for over twelve years and lived in London for three, I consider myself a proficient user of the language, though I still encounter moments that remind me there is always more to learn. Recently, I have been focusing on refining my academic writing skills, particularly the art of constructing arguments that are both logically coherent and stylistically compelling. I read extensively across genres, from literary fiction to scientific journals, because I believe exposure to diverse writing styles enriches one's own expression. I also participate in a weekly debate club where members discuss complex geopolitical and ethical topics, which pushes me to think critically and articulate nuanced positions under pressure. One area I continue to work on is idiomatic fluency. Native speakers often use expressions and cultural references that require not just linguistic knowledge but also deep cultural familiarity. I keep a running document of idioms I encounter in films, books, and conversations, reviewing them regularly and trying to use them naturally in context. My long-term ambition is to publish academic papers in English and perhaps one day teach rhetoric at a university level.",
+        "notes": "Excellent advanced writing. Small style edits: 'I believe exposure...' is smoother, and 'not just... but also...' makes the comparison clearer."
+      }
+    ]
+  },
+  {
+    "username": "luc_fr",
+    "language": "eng",
+    "fluency_level": "Advanced",
+    "content": "Baking has always been my most meditative escape from the noise of daily life. There is something profoundly satisfying about measuring flour with precision, watching butter and sugar transform into a pale, fluffy cream, and pulling a golden loaf from the oven at exactly the right moment. I grew up watching my grandmother bake sourdough every Sunday morning in our small kitchen in Lyon, and that ritual shaped the way I understand patience and craftsmanship. When I moved to Paris for university, I brought her handwritten recipe notebook with me, and it became my most treasured possession. Over the years, I have experimented far beyond her recipes — croissants laminated over three days, choux pastry piped into delicate éclairs, tarts with paper-thin almond cream. Each failure taught me something a recipe never could. I recently started a small weekend baking journal where I document my experiments with notes on humidity, oven temperature variations, and ingredient substitutions. Baking, I have come to believe, is less about following instructions and more about developing an intuition for the dough beneath your hands.",
+    "corrections": [
+      {
+        "corrector_username": "john_en",
+        "corrected_text": "No corrections needed. This entry is grammatically accurate and stylistically strong.",
+        "notes": "Excellent use of complex sentence structures and varied vocabulary. The em dash usage is confident and correct. A great piece of writing overall — keep it up!"
+      }
+    ]
+  },
+  {
+    "username": "luc_fr",
+    "language": "eng",
+    "fluency_level": "Advanced",
+    "content": "My morning routine is something I have carefully constructed over several years, adjusting and refining it the way one might edit a piece of writing — removing what is unnecessary, keeping what genuinely serves the whole. I wake before sunrise, not out of discipline alone, but because I have grown to love the particular quality of silence that exists in those early hours. The city has not yet gathered its noise, and my thoughts feel cleaner, less cluttered. I make coffee slowly and deliberately, using a pour-over method that require my full attention for about four minutes. Those four minutes has become a kind of daily meditation. Afterward, I sit at my desk by the window and write in a journal — not a diary exactly, but a space where I work through ideas, record observations, and occasionally sketch out plans. I rarely look at my phone before nine in the morning, a boundary that have transformed my mental clarity considerably. Lunch is almost always something simple I prepare myself: a salad with roasted vegetables, a tartine with good cheese, or leftover soup from the evening before. I try to eat without screens. These small, intentional choices — the slow coffee, the quiet mornings, the phone-free meals — have collectively made my daily life feel more grounded and more genuinely mine than any grand resolution ever has.",
+    "corrections": [
+      {
+        "corrector_username": "john_en",
+        "corrected_text": "...using a pour-over method that requires my full attention for about four minutes. Those four minutes have become a kind of daily meditation... a boundary that has transformed my mental clarity considerably.",
+        "notes": "Three subject-verb agreement errors: (1) 'that require' → 'that requires' — the subject is 'method' (singular). (2) 'Those four minutes has' → 'Those four minutes have' — 'minutes' is plural. (3) 'that have transformed' → 'that has transformed' — the subject is 'boundary' (singular). This is a very common challenge for French speakers since French agreement rules differ slightly. Overall the writing is articulate and reflective — great vocabulary choices throughout!"
+      }
+    ]
+  },
+  {
+    "username": "luc_fr",
+    "language": "eng",
+    "fluency_level": "Advanced",
+    "content": "French fashion, at its finest, is not about trend-chasing but about cultivating a personal aesthetic that ages gracefully alongside you. I learned this early from watching the womens in my family dress — never flashy, always considered. A well-cut blazer, quality leather shoes, a silk scarf knotted at the collar. The emphasis was always on fit, fabric, and longevity rather than novelty. As I developed my own wardrobe over the years, I adopted those same principles while weaving in my own sensibility. I gravitate toward neutral palettes punctuated by one deliberate color — a rust-colored bag, a deep green coat — that anchors the entire look. I rarely buy anything impulsively now. Before purchasing a new piece, I ask myself whether it works with at least five things I already own and whether I can imagine to wear it three years from now. This approach have made my wardrobe smaller but infinitely more functional and satisfying.",
+    "corrections": [
+      {
+        "corrector_username": "john_en",
+        "corrected_text": "...from watching the women in my family dress... whether I can imagine wearing it three years from now. This approach has made my wardrobe smaller...",
+        "notes": "Three errors to note: (1) 'womens' → 'women' — 'women' is already the plural form of 'woman'; adding an 's' is incorrect. (2) 'imagine to wear' → 'imagine wearing' — in English, 'imagine' must be followed by a gerund (-ing form), not an infinitive. Compare: 'I enjoy cooking' not 'I enjoy to cook.' (3) 'This approach have made' → 'This approach has made' — 'approach' is singular. Your fashion analysis is insightful and your sentence variety is impressive!"
+      }
+    ]
+  },
+  {
+    "username": "luc_fr",
+    "language": "eng",
+    "fluency_level": "Advanced",
+    "content": "There is a particular kind of joy that comes from baking something for another person — a joy quite different from baking purely for oneself. When I make a cake for a friend's birthday or bring homemade financiers to a dinner gathering, I am participating in a long tradition of expressing care through food. Last autumn, I spent an entire Saturday preparing a layered hazelnut and dark chocolate entremet for my colleague Sophie's farewell party. The process took the better part of two days — the mousse had to set overnight, the mirror glaze required precise temperature control — but when I saw her face light up at the table, every hour felt worthwhile. I have noticed that baking for others also makes me more ambitious in the kitchen. When cooking only for myself, I tend toward simplicity and comfort. But the prospect of presenting something to guests push me to research new techniques, invest in better ingredients, and pay attention to aesthetics as much as flavor. Presentation matters in baking the way typography matters in writing — it signals care before a single word or bite is consumed. I have recently been studying the work of several contemporary pastry chefs whose approach to plating treats the dessert plate as a canvas, and I am slowly incorporating those visual principles into my own baking, even in casual home settings.",
+    "corrections": [
+      {
+        "corrector_username": "john_en",
+        "corrected_text": "...But the prospect of presenting something to guests pushes me to research new techniques...",
+        "notes": "One error: 'guests push me' → 'guests pushes me' — the subject here is 'prospect' (singular), not 'guests,' so the verb must agree with it. This is a tricky case where the noun closest to the verb ('guests') can mislead the writer. The rest of this entry is beautifully written — the detail about the mirror glaze and the comparison between plating and typography shows excellent command of English expression."
+      }
+    ]
+  },
+  {
+    "username": "luc_fr",
+    "language": "eng",
+    "fluency_level": "Advanced",
+    "content": "The relationship between fashion and identity is one I think about more than most peoples probably expect. Getting dressed each morning is, for me, a genuinely expressive act — a quiet declaration about how I intend to move through the world that day. On days when I have important meetings or creative presentations, I tend to reach for structured pieces: a tailored trouser, a crisp button-down, a blazer with strong shoulders. The clothes feel like armor in the best sense — they organize my posture and, somehow, my thinking too. On quieter days, I drift toward softer textures: linen, cashmere, loose knits. I have always been drawn to the intersection of comfort and elegance, that narrow zone where a garment feels effortless but still considered. Over the past year, I have been consciously moving away from fast fashion and investing instead in pieces from smaller European designers whose production methods are transparent and whose fabrics are genuinely built to last. It requires more patience — sometimes I wait months before finding the right piece at the right price — but the satisfaction of owning things that feel intentional rather than disposable have fundamentally changed my relationship with my wardrobe. Fashion, practiced this way, becomes less about consumption and more about curation.",
+    "corrections": [
+      {
+        "corrector_username": "john_en",
+        "corrected_text": "...more than most people probably expect... the satisfaction of owning things that feel intentional rather than disposable has fundamentally changed my relationship with my wardrobe.",
+        "notes": "Two errors: (1) 'peoples' → 'people' — 'people' is already plural and does not take an 's' in standard usage. 'Peoples' exists but refers specifically to distinct ethnic or cultural groups (e.g., 'the peoples of Europe'), which is not the intended meaning here. (2) 'disposable have changed' → 'disposable has changed' — the subject is 'satisfaction' (singular). Your reflections on fashion as identity are genuinely compelling and show sophisticated analytical thinking in English!"
+      }
+    ]
+  },
+  {
+    "username": "luc_fr",
+    "language": "eng",
+    "fluency_level": "Advanced",
+    "content": "Weekends in my apartment follow a rhythm I have come to treasure deeply. Saturday mornings almost always begins with a trip to the local market, where I buy vegetables, fresh herbs, and whatever seasonal fruit looks most promising. There is a vendor who sells unpasteurized butter and aged comté that I have been visiting for three years now, and our brief exchanges have grown into something I look forward to genuinely. I carry a canvas tote, take my time, and allow the market to shape my menu rather than arriving with a rigid plan. By midmorning I am back home, coffee in hand, sorting through the week's thoughts with no particular agenda. Saturday afternoons are often given to reading or baking — sometimes both, with a novel propped open on the counter while something rises in the oven. Sunday is calmer still: a longer sleep, a slow breakfast, perhaps a walk along the canal if the weather is kind. I have come to believe that the quality of one's leisure is just as important than the quality of one's work, and these weekend rituals are the architecture of my personal restoration.",
+    "corrections": [
+      {
+        "corrector_username": "john_en",
+        "corrected_text": "Saturday mornings almost always begin with a trip to the local market... the quality of one's leisure is just as important as the quality of one's work.",
+        "notes": "Two errors: (1) 'mornings almost always begins' → 'mornings almost always begin' — the subject 'mornings' is plural, so the verb should be 'begin' without the 's'. (2) 'just as important than' → 'just as important as' — the correct comparative structure in English is 'as... as', not 'as... than'. This is a very common interference error from French ('aussi important que'). The overall tone of this entry is warm and vivid — the detail about the comté vendor is a lovely touch!"
+      }
+    ]
+  }
+]
