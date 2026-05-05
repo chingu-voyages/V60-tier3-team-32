@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import hero from '@/assets/hero.png';
+import { Button } from '@/components/ui/button';
 
 export function Hero() {
   return (
@@ -12,18 +14,20 @@ export function Hero() {
           Immerse yourself in the art of expression with an editorial approach
           to language learning.
         </p>
-        <Link
-          to='/login'
-          className='rounded-full bg-[#5D45FD] px-8 py-4 text-sm font-bold text-white shadow-lg hover:bg-[#4a36e0] transition-all active:scale-95'
-        >
-          Get Started
-        </Link>
+        <Button>
+          <Link
+            to='/login'
+            className='rounded-full bg-[#5D45FD] px-8 py-4 text-sm font-bold text-white shadow-lg hover:bg-[#4a36e0] transition-all active:scale-95'
+          >
+            Get Started
+          </Link>
+        </Button>
       </div>
       <div className='flex-1'>
         <img
-          src='/hero-image.jpg'
-          alt='Desk with coffee and notebook'
-          className='rounded-[2.5rem] shadow-2xl w-full object-cover aspect-[4/3]'
+          src={hero}
+          alt='illustration people learning'
+          className='rounded-[2.5rem]  w-full object-cover'
         />
       </div>
     </section>
