@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { diffWords } from 'diff';
 
 import { fetchSubmissionById } from '../submissionActions';
 import { clearSelectedSubmission } from '../submissionSlice';
@@ -130,6 +131,11 @@ export default function SubmissionDetail() {
                 {corrections.map((correction, index) => {
                   const isOpen = activeOpenCorrectionIndexes.includes(index);
 
+                  // jsDiff
+                  const differences = diffWords(
+                    submission.content || '',
+                    correction.corrected_text || '',
+                  );
                   return (
                     <div
                       key={correction.id || index}
@@ -196,9 +202,37 @@ export default function SubmissionDetail() {
                               Corrected Version
                             </h4>
 
-                            <p className='text-sm text-gray-700 leading-relaxed bg-blue-50 p-4 rounded-lg'>
-                              {correction.corrected_text}
-                            </p>
+                            <div className='text-sm leading-relaxed bg-blue-50 p-4 rounded-lg whitespace-pre-wrap'>
+                              {differences.map((part, idx) => {
+                                if (part.added) {
+                                  return (
+                                    <span
+                                      key={idx}
+                                      className='bg-emerald-100 text-emerald-800 rounded font-medium'
+                                    >
+                                      {part.value}
+                                    </span>
+                                  );
+                                }
+
+                                if (part.removed) {
+                                  return (
+                                    <span
+                                      key={idx}
+                                      className='bg-red-100 text-red-500 line-through rounded'
+                                    >
+                                      {part.value}
+                                    </span>
+                                  );
+                                }
+
+                                return (
+                                  <span key={idx} className='text-gray-700'>
+                                    {part.value}
+                                  </span>
+                                );
+                              })}
+                            </div>
                           </div>
 
                           <div className='space-y-3'>
