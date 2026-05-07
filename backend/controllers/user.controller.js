@@ -86,17 +86,21 @@ export const updateProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-    if (learning_languages) {
-      const nativeLang = native_language || user.native_language;
-      const conflict = learning_languages.some(
-        (l) => l.language === nativeLang,
-      );
-      if (conflict) {
-        return res
-          .status(400)
-          .json({ message: 'Native language cannot be in learning languages' });
-      }
+
+    const finalNativeLanguage = native_language ?? user.native_language;
+    const finalLearningLanguages =
+      learning_languages ?? user.learning_languages;
+
+    const conflict = finalLearningLanguages.some(
+      (l) => l.language === finalNativeLanguage,
+    );
+
+    if (conflict) {
+      return res.status(400).json({
+        message: 'A language cannot be both native and learning',
+      });
     }
+
     if (bio) user.bio = bio;
     if (photo_url) user.photo_url = photo_url;
     if (native_language) user.native_language = native_language;
