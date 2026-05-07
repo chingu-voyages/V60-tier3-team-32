@@ -1,12 +1,13 @@
+import philosophy from '@/assets/philosophy.png';
 export function Philosophy() {
   return (
     <section className='container mx-auto px-6 py-20'>
       <div className='flex flex-col md:flex-row items-center gap-16'>
         <div className='flex-1 w-full'>
           <img
-            src='/community.jpg'
+            src={philosophy}
             alt='Team holding hands'
-            className='rounded-[3rem] w-full object-cover shadow-xl aspect-square md:aspect-auto'
+            className='rounded-[3rem] w-full object-cover aspect-square md:aspect-auto'
           />
         </div>
         <div className='flex-1 space-y-12'>
