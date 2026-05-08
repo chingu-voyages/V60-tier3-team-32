@@ -17,8 +17,8 @@ import Write from './features/write/pages/Write';
 import CorrectionQueue from './features/correct/pages/CorrectionQueue';
 import Correct from './features/correct/pages/Correct';
 import CorrectionReviewPage from './features/correct/pages/CorrectionReviewPage';
-import SubmissionDetail from './features/dashboard/pages/SubmissionDetail';
-import Submissions from './features/dashboard/pages/Submissions';
+import SubmissionDetail from './features/submissions/pages/SubmissionDetail';
+import Submissions from './features/submissions/pages/Submissions';
 import Profile from './features/profile/pages/Profile';
 
 function App() {

@@ -42,7 +42,6 @@ export default function RecentSubmissionsCard({ submissions = [] }) {
               className='block'
             >
               <div
-                key={item.id}
                 className='
                 group relative bg-white border border-gray-100 
                 hover:border-indigo-100 hover:shadow-md transition-all duration-300 cursor-pointer
