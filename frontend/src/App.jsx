@@ -18,12 +18,10 @@ import Write from './features/write/pages/Write';
 import CorrectionQueue from './features/correct/pages/CorrectionQueue';
 import Correct from './features/correct/pages/Correct';
 import CorrectionReviewPage from './features/correct/pages/CorrectionReviewPage';
-import SubmissionDetail from './features/submissions/pages/SubmissionDetail';
-import Submissions from './features/submissions/pages/Submissions';
+import SubmissionDetail from './features/dashboard/pages/SubmissionDetail';
+import Submissions from './features/dashboard/pages/Submissions';
 import Profile from './features/profile/pages/Profile';
-
-// IMPORT your Settings Modal here
- import SettingsModal from './components/modals/settings/AccountSettingsModal'; 
+import EditLanguages from './features/profile/components/EditLanguages';
 
 function App() {
   // 1. State to track if the settings modal is open
