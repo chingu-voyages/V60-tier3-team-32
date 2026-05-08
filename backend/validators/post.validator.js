@@ -6,6 +6,7 @@ export const createPostSchema = z.object({
     .min(3)
     .max(3)
     .transform((val) => val.toLowerCase()),
+  fluency_level: z.enum(['Beginner', 'Intermediate', 'Advanced']),
   content: z
     .string()
     .min(1)
@@ -17,4 +18,5 @@ export const createPostSchema = z.object({
 export const updatePostSchema = z.object({
   language: z.string().min(3).max(3).optional(),
   content: z.string().min(1).optional(),
+  status: z.enum(['draft', 'submitted']).optional(),
 });

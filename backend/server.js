@@ -7,6 +7,9 @@ import { errorHandler } from './middleware/errorMiddleware.js';
 import testRoutes from './routes/testRoutes.js';
 import authRoutes from './routes/auth.routes.js';
 import postRoutes from './routes/post.routes.js';
+import promptRoutes from './routes/prompt.routes.js';
+
+import userRoutes from './routes/user.routes.js';
 // Load environment variables
 dotenv.config();
 
@@ -33,6 +36,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/test', testRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/posts', postRoutes);
+app.use('/api/v1/prompts', promptRoutes);
+app.use('/api/v1/users', userRoutes);
+
 // Server Health Test
 app.get('/', (req, res) => {
   res.send('LinguaLoop API is running...');

@@ -14,7 +14,11 @@ const postModel = mongoose.Schema(
     },
 
     prompt: {
-      _id: { type: mongoose.Schema.Types.ObjectId, ref: 'Prompt' },
+      _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Prompt',
+        required: true,
+      },
       title: { type: String, required: true },
       description: { type: String },
       language: { type: String, required: true },
@@ -32,7 +36,7 @@ const postModel = mongoose.Schema(
     content: {
       type: String,
       required: true,
-      maxLength: 2000,
+      maxlength: 2000,
     },
 
     word_count: { type: Number, default: 0 },

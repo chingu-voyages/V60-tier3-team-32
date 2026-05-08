@@ -17,7 +17,7 @@ import {
   FieldLegend,
 } from '@/components/ui/field';
 
-import logo from '@/assets/Logo.png';
+import logo from '@/assets/Logo-Mobile.svg';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -121,9 +121,9 @@ export default function LoginForm() {
                       className='absolute right-4 top-1/2 -translate-y-1/2 text-gray-300'
                     >
                       {showPassword ? (
-                        <VisibilityOutlinedIcon />
-                      ) : (
                         <VisibilityOffOutlinedIcon />
+                      ) : (
+                        <VisibilityOutlinedIcon />
                       )}
                     </button>
                   </div>
