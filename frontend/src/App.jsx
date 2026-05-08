@@ -1,3 +1,4 @@
+import { useState } from 'react'; // Added useState
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
@@ -21,7 +22,13 @@ import SubmissionDetail from './features/submissions/pages/SubmissionDetail';
 import Submissions from './features/submissions/pages/Submissions';
 import Profile from './features/profile/pages/Profile';
 
+// IMPORT your Settings Modal here
+ import SettingsModal from './components/modals/settings/AccountSettingsModal'; 
+
 function App() {
+  // 1. State to track if the settings modal is open
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
   return (
     <Provider store={store}>
       <Router>

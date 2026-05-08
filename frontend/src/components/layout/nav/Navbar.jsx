@@ -19,10 +19,10 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import MobileProfileOverlay from './MobileProfileOverlay';
-import logo from '@/assets/Logo-Desktop.svg';
+import logo from '@/assets/Logo-Desktop.svg'; // KEEP: Newest branding path
 import { useAuth } from '@/features/auth/hooks/useAuth';
 
-export default function Navbar() {
+export default function Navbar({ onOpenSettings }) { // ADDED: Your prop
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -68,7 +68,7 @@ export default function Navbar() {
             <img src={logo} alt='LinguaLoop' className={logoClasses} />
           </Link>
 
-          {/* CENTER: Nav Items (NOW ALWAYS RENDERS) */}
+          {/* CENTER: Nav Items */}
           <div className='hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center gap-1 lg:gap-2'>
             {navItems.map((item) => (
               <Link
@@ -91,7 +91,8 @@ export default function Navbar() {
               <div className='ml-2'>
                 {/* Desktop Dropdown */}
                 <div className='hidden md:block'>
-                  <DropdownMenu>
+                  {/* Note: modal={false} from your stash is helpful here */}
+                  <DropdownMenu modal={false}>
                     <DropdownMenuTrigger className='focus:outline-none'>
                       <Avatar className='h-10 w-10 cursor-pointer hover:ring-2 hover:ring-indigo-100 transition-all'>
                         <AvatarImage src={user?.profile_image} />
@@ -103,9 +104,9 @@ export default function Navbar() {
 
                     <DropdownMenuContent align='end' className='w-56'>
                       <DropdownMenuLabel className='text-sm font-semibold flex items-center gap-2'>
-                        <Avatar className='h-7 w-7 cursor-pointer hover:ring-2 hover:ring-indigo-100 transition-all'>
+                        <Avatar className='h-7 w-7'>
                           <AvatarImage src={user?.profile_image} />
-                          <AvatarFallback className='bg-[#E8EDFF] text-[#5D45FD] font-bold text-xl'>
+                          <AvatarFallback className='bg-[#E8EDFF] text-[#5D45FD] font-bold text-xs'>
                             {user?.username?.[0]?.toUpperCase() ?? 'U'}
                           </AvatarFallback>
                         </Avatar>
@@ -115,15 +116,19 @@ export default function Navbar() {
                       <DropdownMenuSeparator />
 
                       <DropdownMenuItem asChild>
-                        <Link
-                          to='/profile'
-                          className='cursor-pointer flex items-center'
-                        >
+                        <Link to='/profile' className='cursor-pointer flex items-center'>
                           <User size={16} className='mr-2' /> Profile
                         </Link>
                       </DropdownMenuItem>
 
-                      <DropdownMenuItem className='cursor-pointer'>
+                      {/* INTEGRATED: Your Settings trigger */}
+                      <DropdownMenuItem 
+                        className='cursor-pointer'
+                        onSelect={(e) => {
+                          e.preventDefault();
+                          onOpenSettings?.();
+                        }}
+                      >
                         <Settings size={16} className='mr-2' /> Settings
                       </DropdownMenuItem>
 
@@ -131,7 +136,7 @@ export default function Navbar() {
 
                       <DropdownMenuItem
                         className='cursor-pointer text-red-600'
-                        onClick={handleLogout}
+                        onSelect={handleLogout}
                       >
                         <LogOut size={16} className='mr-2' /> Sign Out
                       </DropdownMenuItem>
@@ -144,7 +149,7 @@ export default function Navbar() {
                   onClick={() => setIsProfileOpen(true)}
                   className='md:hidden active:scale-95 transition-transform'
                 >
-                  <Avatar className='h-10 w-10 cursor-pointer hover:ring-2 hover:ring-indigo-100 transition-all'>
+                  <Avatar className='h-10 w-10 cursor-pointer'>
                     <AvatarImage src={user?.profile_image} />
                     <AvatarFallback className='bg-[#E8EDFF] text-[#5D45FD] font-bold text-xl'>
                       {user?.username?.[0]?.toUpperCase() ?? 'U'}
@@ -153,24 +158,23 @@ export default function Navbar() {
                 </button>
               </div>
             ) : (
-              <div className='hidden md:flex items-center gap-2'>
-                <Link
-                  to='/login'
-                  className='px-4 py-2 rounded-full bg-[#5D45FD] text-white text-sm font-semibold hover:opacity-90'
-                >
-                  Login
-                </Link>
-              </div>
+              <Link
+                to='/login'
+                className='rounded-full bg-[#5D45FD] px-5 py-2 text-sm font-bold text-white transition-all hover:opacity-90 active:scale-95'
+              >
+                Get Started
+              </Link>
             )}
           </div>
         </div>
       </nav>
 
-      {/* MOBILE PROFILE OVERLAY */}
+      {/* MOBILE OVERLAYS */}
       <MobileProfileOverlay
         isOpen={isProfileOpen}
         onClose={() => setIsProfileOpen(false)}
         onLogout={handleLogout}
+        onOpenSettings={onOpenSettings}
         logo={logo}
         logoClasses={logoClasses}
       />
@@ -181,29 +185,16 @@ export default function Navbar() {
           {privateNavItems.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.path);
-
             return (
               <Link
                 key={item.label}
                 to={item.path}
                 className='flex flex-col items-center justify-center w-full h-full gap-1'
               >
-                <div
-                  className={`p-1 px-4 rounded-xl transition-colors ${
-                    active ? 'bg-[#E8EDFF]' : ''
-                  }`}
-                >
-                  <Icon
-                    size={20}
-                    className={active ? 'text-[#5D45FD]' : 'text-gray-400'}
-                  />
+                <div className={`p-1 px-4 rounded-xl transition-colors ${active ? 'bg-[#E8EDFF]' : ''}`}>
+                  <Icon size={20} className={active ? 'text-[#5D45FD]' : 'text-gray-400'} />
                 </div>
-
-                <span
-                  className={`text-[9px] font-bold tracking-tighter ${
-                    active ? 'text-[#5D45FD]' : 'text-gray-400'
-                  }`}
-                >
+                <span className={`text-[9px] font-bold tracking-tighter ${active ? 'text-[#5D45FD]' : 'text-gray-400'}`}>
                   {item.label}
                 </span>
               </Link>
