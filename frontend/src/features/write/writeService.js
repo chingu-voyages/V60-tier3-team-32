@@ -10,7 +10,7 @@ export const createPostAPI = async (postData) => {
   return res.data;
 };
 
-export const updatePostAPI = async (postData) => {
-  const res = await api.post('/posts/${postId}', postData);
+export const updatePostAPI = async ({ postId, postData }) => {
+  const res = await api.patch(`/posts/${postId}`, postData);
   return res.data;
 };
