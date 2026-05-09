@@ -188,3 +188,36 @@ Request body (all fields optional):
   ]
 }
 ```
+
+#### Get My Corrections
+
+Returns all corrections made by the currently authenticated user.
+
+**GET** `/api/v1/corrections/me`
+
+No request body
+
+Response
+
+```json
+{
+  "data": [
+    {
+      "id": "665f7f5d4b1a7c0012a12345",
+      "post": {
+        "id": "665f7e4f4b1a7c0012a67890",
+        "language": "spa",
+        "prompt": {
+          "title": "Mi comida favorita"
+        },
+        "author": {
+          "username": "jazz"
+        },
+        "preview": "Me gusta mucho la pizza porque..."
+      },
+      "corrected_preview": "Me gusta mucho la pizza porque es...",
+      "created_at": "2026-05-09T12:00:00.000Z"
+    }
+  ]
+}
+```
