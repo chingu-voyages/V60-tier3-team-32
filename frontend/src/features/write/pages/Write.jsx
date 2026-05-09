@@ -1,70 +1,70 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import PromptDetails from '../components/PromptDetails.jsx';
 import WritingEditor from '../components/WritingEditor.jsx';
 import { fetchTodayPrompts } from '../writeActions';
-import { nextPrompt, setActivePromptType } from '../writeSlice';
+import { nextPrompt } from '../writeSlice';
 import { LANGUAGES } from '@/lib/constants/languages';
 
 export default function Write() {
   const dispatch = useDispatch();
-  const { postId } = useParams();
+  const [preferredLanguage, setPreferredLanguage] = useState('');
 
-  const { prompts, currentPromptIndex, activePromptType, loading, error } =
-    useSelector((state) => state.write);
-
-  const filteredPrompts = prompts.filter(
-    (prompt) => prompt.type === activePromptType,
+  const { prompts, currentPromptIndex, loading, error } = useSelector(
+    (state) => state.write,
   );
-
-  const currentPrompt = filteredPrompts[currentPromptIndex];
 
   useEffect(() => {
     dispatch(fetchTodayPrompts());
   }, [dispatch]);
 
-  const learningPrompt = prompts.find((p) => p.type === 'learning');
-  const nativePrompt = prompts.find((p) => p.type === 'native');
+  const learningPrompts = useMemo(() => {
+    return prompts.filter((prompt) => prompt.type === 'learning');
+  }, [prompts]);
 
-  const learningLanguage =
-    LANGUAGES.find((l) => l.code === learningPrompt?.language)?.label ||
-    'Learning';
+  const learningLanguages = useMemo(() => {
+    return [...new Set(learningPrompts.map((prompt) => prompt.language))];
+  }, [learningPrompts]);
 
-  const nativeLanguage =
-    LANGUAGES.find((l) => l.code === nativePrompt?.language)?.label || 'Native';
+  const selectedLanguage = learningLanguages.includes(preferredLanguage)
+    ? preferredLanguage
+    : (learningLanguages[0] ?? '');
+
+  const filteredPrompts = useMemo(() => {
+    return learningPrompts.filter(
+      (prompt) => prompt.language === selectedLanguage,
+    );
+  }, [learningPrompts, selectedLanguage]);
+
+  const currentPrompt = filteredPrompts[currentPromptIndex];
+
+  const getLanguageLabel = (code) => {
+    return LANGUAGES.find((language) => language.code === code)?.label || code;
+  };
 
   return (
     <div className='min-h-screen bg-[#F8FAFF] px-4 py-6 md:p-8 pb-24 md:pb-8'>
       <div className='container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8'>
-        {/* LEFT COLUMN: 5 Columns */}
         <aside className='lg:col-span-5 space-y-6'>
-          <div className='flex gap-2 bg-white p-1 rounded-full border border-indigo-100'>
-            <button
-              type='button'
-              onClick={() => dispatch(setActivePromptType('learning'))}
-              className={`flex-1 py-2 rounded-full text-xs font-bold transition ${
-                activePromptType === 'learning'
-                  ? 'bg-[#5D45FD] text-white'
-                  : 'text-gray-500 hover:bg-gray-50'
-              }`}
-            >
-              {learningLanguage}
-            </button>
-
-            <button
-              type='button'
-              onClick={() => dispatch(setActivePromptType('native'))}
-              className={`flex-1 py-2 rounded-full text-xs font-bold transition ${
-                activePromptType === 'native'
-                  ? 'bg-[#5D45FD] text-white'
-                  : 'text-gray-500 hover:bg-gray-50'
-              }`}
-            >
-              {nativeLanguage}
-            </button>
-          </div>
+          {learningLanguages.length > 1 && (
+            <div className='flex gap-2 bg-white p-1 rounded-full border border-indigo-100'>
+              {learningLanguages.map((language) => (
+                <button
+                  key={language}
+                  type='button'
+                  onClick={() => setPreferredLanguage(language)}
+                  className={`flex-1 py-2 rounded-full text-xs font-bold transition ${
+                    selectedLanguage === language
+                      ? 'bg-[#5D45FD] text-white'
+                      : 'text-gray-500 hover:bg-gray-50'
+                  }`}
+                >
+                  {getLanguageLabel(language)}
+                </button>
+              ))}
+            </div>
+          )}
 
           <PromptDetails
             prompt={currentPrompt}
@@ -74,9 +74,8 @@ export default function Write() {
           />
         </aside>
 
-        {/* RIGHT COLUMN: 7 Columns */}
         <main className='lg:col-span-7'>
-          <WritingEditor prompt={currentPrompt} postId={postId} />
+          <WritingEditor prompt={currentPrompt} />
         </main>
       </div>
     </div>

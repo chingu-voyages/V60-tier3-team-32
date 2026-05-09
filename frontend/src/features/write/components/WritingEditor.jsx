@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SendHorizonal } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { createPost } from '../writeActions';
 
@@ -21,6 +22,13 @@ export default function WritingEditor({ prompt }) {
 
   const wordsRemaining = MAX_WORDS - wordCount;
   const isOverLimit = wordsRemaining < 0;
+
+  useEffect(() => {
+    if (submitSuccess) {
+      toast.success('Reflection submitted successfully!');
+      setContent('');
+    }
+  }, [submitSuccess]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,12 +56,6 @@ export default function WritingEditor({ prompt }) {
       />
 
       <div className='mt-4 flex items-center'>
-        {submitSuccess && (
-          <span className='text-xs font-semibold text-green-500'>
-            Submitted successfully
-          </span>
-        )}
-
         <div className='ml-auto flex items-center gap-2'>
           <span
             className={`text-xs font-semibold ${
@@ -99,7 +101,7 @@ export default function WritingEditor({ prompt }) {
         </button>
         <button
           type='button'
-          onClick={console.log('drafts')}
+          onClick={() => toast.info('Drafts coming soon..')}
           disabled={submitting || isOverLimit || !content.trim()}
           className='flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-gray-100 hover:bg-gray-200 border border-stone-200 text-gray-700 font-bold text-sm transition disabled:opacity-50 disabled:cursor-not-allowed'
         >
