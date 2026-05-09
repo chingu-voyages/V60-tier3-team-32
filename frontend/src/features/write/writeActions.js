@@ -10,7 +10,7 @@ export const fetchTodayPrompts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await fetchTodayPromptsAPI();
-      console.log('prompts data', data);
+      // console.log('prompts data', data);
 
       return data;
     } catch (error) {
@@ -27,7 +27,7 @@ export const createPost = createAsyncThunk(
     try {
       const data = await createPostAPI(postData);
 
-      console.log('postData:', data);
+      // console.log('postData:', data);
       return data;
     } catch (error) {
       return rejectWithValue(

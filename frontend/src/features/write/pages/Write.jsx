@@ -1,19 +1,23 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import PromptDetails from '../components/PromptDetails.jsx';
 import WritingEditor from '../components/WritingEditor.jsx';
 import { fetchTodayPrompts } from '../writeActions';
-import { nextPrompt } from '../writeSlice';
+import { clearCurrentDraft, nextPrompt, setCurrentDraft } from '../writeSlice';
 import { LANGUAGES } from '@/lib/constants/languages';
+import { getSubmissionById } from '@/features/submissions/submissionService.js';
 
 export default function Write() {
+  const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [preferredLanguage, setPreferredLanguage] = useState('');
 
-  const { prompts, currentPromptIndex, loading, error } = useSelector(
-    (state) => state.write,
-  );
+  const { prompts, currentPromptIndex, currentDraft, loading, error } =
+    useSelector((state) => state.write);
 
   useEffect(() => {
     dispatch(fetchTodayPrompts());
@@ -37,17 +41,37 @@ export default function Write() {
     );
   }, [learningPrompts, selectedLanguage]);
 
-  const currentPrompt = filteredPrompts[currentPromptIndex];
+  const currentPrompt = filteredPrompts[currentPromptIndex] ?? null;
+
+  const activePrompt = currentDraft?.prompt ?? currentPrompt;
 
   const getLanguageLabel = (code) => {
     return LANGUAGES.find((language) => language.code === code)?.label || code;
   };
 
+  useEffect(() => {
+    if (!id) return;
+
+    getSubmissionById(id)
+      .then((fullDraft) => {
+        dispatch(setCurrentDraft(fullDraft));
+      })
+      .catch(() => {
+        navigate('/submissions', { replace: true });
+      });
+  }, [id, dispatch, navigate]);
+
+  useEffect(() => {
+    if (!id) {
+      dispatch(clearCurrentDraft());
+    }
+  }, [id, dispatch]);
+
   return (
     <div className='min-h-screen bg-[#F8FAFF] px-4 py-6 md:p-8 pb-24 md:pb-8'>
       <div className='container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8'>
         <aside className='lg:col-span-5 space-y-6'>
-          {learningLanguages.length > 1 && (
+          {!id && learningLanguages.length > 1 && (
             <div className='flex gap-2 bg-white p-1 rounded-full border border-indigo-100'>
               {learningLanguages.map((language) => (
                 <button
@@ -67,7 +91,7 @@ export default function Write() {
           )}
 
           <PromptDetails
-            prompt={currentPrompt}
+            prompt={activePrompt}
             loading={loading}
             error={error}
             onNewPrompt={() => dispatch(nextPrompt(filteredPrompts.length))}
@@ -75,7 +99,7 @@ export default function Write() {
         </aside>
 
         <main className='lg:col-span-7'>
-          <WritingEditor prompt={currentPrompt} />
+          <WritingEditor prompt={activePrompt} draft={currentDraft} />
         </main>
       </div>
     </div>
