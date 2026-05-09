@@ -7,6 +7,11 @@ export const getSubmissions = async () => {
 
 export const getSubmissionById = async (id) => {
   const res = await api.get(`/posts/${id}`);
-  console.log('single post response:', res.data);
+  return res.data;
+};
+
+export const deletePost = async (id) => {
+  const res = await api.delete(`/posts/${id}`);
+  console.log('delete post', res.data);
   return res.data;
 };

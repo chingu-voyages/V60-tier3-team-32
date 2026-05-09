@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getSubmissions, getSubmissionById } from './submissionService';
+import {
+  getSubmissions,
+  getSubmissionById,
+  deletePost,
+} from './submissionService';
 
 export const fetchSubmissions = createAsyncThunk(
   'submissions/fetchSubmissions',
@@ -22,6 +26,21 @@ export const fetchSubmissionById = createAsyncThunk(
     } catch (err) {
       return rejectWithValue(
         err.response?.data?.message || 'Submission not found.',
+      );
+    }
+  },
+);
+
+export const deletePostById = createAsyncThunk(
+  'submissions/deletePostById',
+  async (postId, { rejectWithValue }) => {
+    try {
+      await deletePost(postId);
+
+      return postId;
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || 'Failed to delete post',
       );
     }
   },
