@@ -40,6 +40,7 @@ function App() {
                 <Route element={<ProtectedRoute />}>
                   <Route path='/dashboard' element={<Dashboard />} />
                   <Route path='/write' element={<Write />} />
+                  <Route path='/write/:id' element={<Write />} />
 
                   <Route path='/correct' element={<CorrectionQueue />} />
                   <Route path='/correct/:id' element={<Correct />} />
