@@ -1,4 +1,4 @@
-import api from '@/lib/api';
+import api from '@/api/axios';
 
 export const fetchTodayPromptsAPI = async () => {
   const res = await api.get('/prompts/today');
@@ -7,5 +7,10 @@ export const fetchTodayPromptsAPI = async () => {
 
 export const createPostAPI = async (postData) => {
   const res = await api.post('/posts', postData);
+  return res.data;
+};
+
+export const updatePostAPI = async (postData) => {
+  const res = await api.post('/posts/${postId}', postData);
   return res.data;
 };

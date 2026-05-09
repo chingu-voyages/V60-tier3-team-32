@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { createPostAPI, fetchTodayPromptsAPI } from './writeService';
+import {
+  createPostAPI,
+  updatePostAPI,
+  fetchTodayPromptsAPI,
+} from './writeService';
 
 export const fetchTodayPrompts = createAsyncThunk(
   'write/fetchTodayPrompts',
@@ -21,10 +25,26 @@ export const createPost = createAsyncThunk(
   'write/createPost',
   async (postData, { rejectWithValue }) => {
     try {
-      return await createPostAPI(postData);
+      const data = await createPostAPI(postData);
+
+      console.log('postData:', data);
+      return data;
     } catch (error) {
       return rejectWithValue(
         error.response?.data?.message || 'Failed to create post',
+      );
+    }
+  },
+);
+
+export const updatePost = createAsyncThunk(
+  'write/updatePost',
+  async ({ postId, postData }, { rejectWithValue }) => {
+    try {
+      return await updatePostAPI({ postId, postData });
+    } catch (error) {
+      return rejectWithValue(
+        error.response?.data?.message || 'Failed to update post',
       );
     }
   },
