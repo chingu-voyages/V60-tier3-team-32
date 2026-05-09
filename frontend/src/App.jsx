@@ -21,6 +21,8 @@ import SubmissionDetail from './features/submissions/pages/SubmissionDetail';
 import Submissions from './features/submissions/pages/Submissions';
 import Profile from './features/profile/pages/Profile';
 
+import { Toaster } from 'sonner';
+
 function App() {
   return (
     <Provider store={store}>
@@ -28,7 +30,7 @@ function App() {
         <div className='min-h-screen bg-gray-50 text-slate-900'>
           <AuthProvider>
             <Navbar />
-
+            <Toaster richColors position='top-right' />
             <main className='container mx-auto px-4 py-6 pb-10 md:pb-0'>
               <Routes>
                 {/* Public routes */}
