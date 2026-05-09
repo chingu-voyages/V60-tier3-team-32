@@ -3,1330 +3,1540 @@
     "title": "My Favorite Food",
     "description": "Think about a dish you truly love. Describe how it looks, smells, and tastes, and explain when you usually eat it and why it is special to you.",
     "language": "eng",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "A Person I Admire",
     "description": "Think of someone who inspires you. Describe who they are, what they do, and the qualities that make you admire them.",
     "language": "eng",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "My Daily Routine",
     "description": "Walk through a typical day in your life from morning to night. Describe your main activities, habits, and how you feel throughout the day.",
     "language": "eng",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "A Memorable Trip",
     "description": "Recall a trip that left a strong impression on you. Describe where you went, what you experienced, and why it was unforgettable.",
     "language": "eng",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "The Impact of Technology",
     "description": "Consider how technology shapes daily life. Discuss both the positive and negative effects, using specific examples from your own experience or society.",
     "language": "eng",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "My Hometown",
     "description": "Picture the place where you grew up. Describe the environment, the people, and what makes it unique or meaningful to you.",
     "language": "eng",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "My Favorite Season",
     "description": "Think about the season you enjoy the most. Describe the weather, activities, and feelings that make this time of year special to you.",
     "language": "eng",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "A Pet I Have or Want",
     "description": "Describe a pet you have or would love to have. Talk about its appearance, personality, and how it would fit into your life.",
     "language": "eng",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "My Favorite Hobby",
     "description": "Think about an activity you enjoy in your free time. Describe what it is, how you started, and why it matters to you.",
     "language": "eng",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "A Famous Person",
     "description": "Choose a well-known person you find interesting. Describe who they are, what they are known for, and why they stand out to you.",
     "language": "eng",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "A Challenge I Overcame",
     "description": "Think about a difficult situation you faced. Describe what happened, how you handled it, and what you learned from the experience.",
     "language": "eng",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "My Dream Job",
     "description": "Imagine your ideal career. Describe what the job involves, why it appeals to you, and what steps you would take to achieve it.",
     "language": "eng",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "A Book or Movie I Love",
     "description": "Think of a story that had a strong impact on you. Describe the plot, characters, and why it stayed with you.",
     "language": "eng",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "Cultural Traditions",
     "description": "Reflect on a tradition from your culture. Describe what it involves, when it happens, and why it is important to you or your community.",
     "language": "eng",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "Living in a City vs. the Countryside",
     "description": "Compare life in a busy city and a quiet rural area. Describe the advantages and disadvantages of each and explain your personal preference.",
     "language": "eng",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "The Future of Artificial Intelligence",
     "description": "Consider how artificial intelligence might shape the future. Discuss potential benefits, risks, and how it could impact different areas of life.",
     "language": "eng",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "Climate Change and Personal Responsibility",
     "description": "Reflect on climate change and individual action. Discuss how much responsibility individuals have and what actions people can realistically take.",
     "language": "eng",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "Social Media and Mental Health",
     "description": "Analyze how social media influences mental well-being. Discuss both positive and negative effects, using examples or observations.",
     "language": "eng",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "The Value of Learning a Second Language",
     "description": "Consider the importance of learning another language. Discuss its benefits, challenges, and whether it is essential in today’s world.",
     "language": "eng",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "Globalization and Cultural Identity",
     "description": "Think about how globalization connects the world. Discuss how it affects local cultures and personal identity, with examples.",
     "language": "eng",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "Mi comida favorita",
     "description": " Piensa en un plato que realmente te encanta. Describe cómo se ve, huele y sabe, y explica cuándo lo comes normalmente y por qué es especial para ti.",
     "language": "spa",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "Una persona que admiro",
     "description": "Piensa en alguien que te inspira. Describe quién es, qué hace y las cualidades que hacen que lo admires.",
     "language": "spa",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "Mi rutina diaria",
     "description": "Describe un día típico en tu vida, desde la mañana hasta la noche. Habla de tus actividades principales, tus hábitos y cómo te sientes durante el día",
     "language": "spa",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "Un viaje inolvidable",
     "description": "Recuerda un viaje que nunca olvidarás. Describe a dónde fuiste, qué experimentaste y cómo te sentiste durante ese tiempo. Explica por qué ese viaje fue tan significativo para ti",
     "language": "spa",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "La tecnología en la vida moderna",
     "description": "Considera cómo la tecnología ha cambiado la vida diaria. Analiza sus beneficios y sus riesgos, y explica cómo ha influido en diferentes aspectos de la sociedad, como la comunicación, el trabajo y la educación.",
     "language": "spa",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "Mi ciudad natal",
     "description": "Piensa en el lugar donde creciste. Describe cómo es, qué tipo de ambiente tiene y las personas que viven allí. Explica qué lo hace especial o importante para ti.",
     "language": "spa",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "Mi estación favorita",
     "description": "Piensa en la estación del año que más te gusta. Describe el clima, las actividades que haces y cómo te hace sentir. Explica por qué es tu favorita.",
     "language": "spa",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "Una mascota",
     "description": "Describe una mascota que tienes o que te gustaría tener. Habla de su apariencia, su personalidad y cómo sería convivir con ella en tu vida diaria.",
     "language": "spa",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "Mi pasatiempo favorito",
     "description": "Piensa en una actividad que disfrutas en tu tiempo libre. Describe qué haces, cómo empezaste y por qué te gusta. Explica cómo te hace sentir.",
     "language": "spa",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "Una persona famosa",
     "description": "Elige una persona famosa que te parezca interesante. Describe quién es, por qué es conocida y qué es lo que más te llama la atención de ella.",
     "language": "spa",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "Un desafío que superé",
     "description": "Piensa en una situación difícil que enfrentaste. Describe qué ocurrió, cómo te sentiste y qué hiciste para superarla. Explica qué aprendiste de esa experiencia.",
     "language": "spa",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "Mi trabajo ideal",
     "description": "Imagina tu trabajo ideal. Describe en qué consiste, qué actividades realizarías y por qué te atrae. Explica qué necesitas hacer para lograrlo.",
     "language": "spa",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "Un libro o película que me encanta",
     "description": "Piensa en un libro o película que te haya impactado. Describe la historia, los personajes y por qué fue importante para ti.",
     "language": "spa",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "Tradiciones culturales",
     "description": "Reflexiona sobre una tradición importante en tu cultura. Describe en qué consiste, cuándo se celebra y por qué es significativa para tu comunidad.",
     "language": "spa",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "Vivir en la ciudad o en el campo",
     "description": "Compara la vida en la ciudad y en el campo. Describe las ventajas y desventajas de cada una y explica cuál prefieres y por qué.",
     "language": "spa",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "El futuro de la inteligencia artificial",
     "description": "Analiza los beneficios y riesgos de la IA en la sociedad.",
     "language": "spa",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "El cambio climático y la responsabilidad individual",
     "description": "¿En qué medida son los individuos responsables del cambio climático?",
     "language": "spa",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "Las redes sociales y la salud mental",
     "description": "Analiza la relación entre el uso de redes sociales y el bienestar mental.",
     "language": "spa",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "El valor de aprender un segundo idioma",
     "description": "Argumenta a favor o en contra del bilingüismo en el mundo actual.",
     "language": "spa",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "La globalización y la identidad cultural",
     "description": "¿Cómo afecta la globalización a las culturas locales y a la identidad?",
     "language": "spa",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "Mon plat préféré",
     "description": "Pense à un plat que tu aimes vraiment. Décris son apparence, son odeur et son goût, puis explique quand tu le manges et pourquoi il est spécial pour toi.",
     "language": "fra",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "Une personne que j'admire",
     "description": "Pense à quelqu’un qui t’inspire. Décris qui est cette personne, ce qu’elle fait et les qualités qui font que tu l’admires.",
     "language": "fra",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "Ma routine quotidienne",
     "description": "Décris une journée typique dans ta vie, du matin jusqu’au soir. Parle de tes activités principales, de tes habitudes et de ce que tu ressens pendant la journée.",
     "language": "fra",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "Un voyage mémorable",
     "description": "Pense à un voyage qui t’a marqué. Décris le lieu, les expériences que tu as vécues et explique pourquoi ce voyage est resté important pour toi.",
     "language": "fra",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "Le rôle de la technologie",
     "description": "Réfléchis à la façon dont la technologie influence la vie quotidienne. Analyse ses avantages et ses inconvénients, et explique comment elle a changé la manière de vivre, de travailler ou de communiquer.",
     "language": "fra",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "Ma ville natale",
     "description": "Pense à l’endroit où tu as grandi. Décris l’environnement, les personnes et ce qui rend ce lieu unique ou important pour toi.",
     "language": "fra",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "Ma saison préférée",
     "description": "Pense à la saison que tu préfères. Décris le climat, les activités que tu fais et les émotions que cette période de l’année te procure.",
     "language": "fra",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "Un animal de compagnie",
     "description": "Décris un animal de compagnie que tu as ou que tu aimerais avoir. Parle de son apparence, de son caractère et de la place qu’il aurait dans ta vie.",
     "language": "fra",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "Mon passe-temps favori",
     "description": "Pense à une activité que tu aimes faire pendant ton temps libre. Décris ce que tu fais, comment tu as commencé et pourquoi cela te plaît.",
     "language": "fra",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "Une personne célèbre",
     "description": "Choisis une personne célèbre qui t’intéresse. Décris qui elle est, pourquoi elle est connue et ce que tu trouves le plus intéressant chez elle.",
     "language": "fra",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "Un défi que j'ai surmonté",
     "description": "Pense à une situation difficile que tu as vécue. Décris ce qui s’est passé, comment tu t’es senti et ce que tu as fait pour la surmonter.",
     "language": "fra",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "Mon métier idéal",
     "description": "Imagine ton métier idéal. Décris en quoi il consiste, pourquoi il t’attire et quelles étapes tu devrais suivre pour y parvenir.",
     "language": "fra",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "Un livre ou film que j'adore",
     "description": "Pense à un livre ou un film qui t’a marqué. Décris l’histoire, les personnages et explique pourquoi il a eu un impact sur toi.",
     "language": "fra",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "Traditions culturelles",
     "description": "Réfléchis à une tradition importante dans ta culture. Décris en quoi elle consiste, quand elle a lieu et pourquoi elle est significative.",
     "language": "fra",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "Vivre en ville ou à la campagne",
     "description": "Compare la vie en ville et à la campagne. Décris les avantages et les inconvénients de chacune et explique laquelle tu préfères et pourquoi.",
     "language": "fra",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "L'avenir de l'intelligence artificielle",
     "description": "Réfléchis à l’avenir de l’intelligence artificielle. Analyse ses avantages, ses risques et son impact possible sur différents aspects de la société.",
     "language": "fra",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "Le changement climatique et la responsabilité individuelle",
     "description": "Réfléchis au changement climatique et au rôle des individus. Discute dans quelle mesure les personnes sont responsables et quelles actions elles peuvent entreprendre.",
     "language": "fra",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "Les réseaux sociaux et la santé mentale",
     "description": "Analyse l’influence des réseaux sociaux sur le bien-être mental. Décris les effets positifs et négatifs avec des exemples.",
     "language": "fra",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "L'importance d'apprendre une seconde langue",
     "description": "Réfléchis à l’importance d’apprendre une deuxième langue. Discute de ses avantages, de ses défis et de son utilité dans le monde actuel.",
     "language": "fra",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "La mondialisation et l'identité culturelle",
     "description": "Pense à la mondialisation et à ses effets. Analyse comment elle influence les cultures locales et l’identité individuelle.",
     "language": "fra",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "好きな食べ物",
     "description": "好きな食べ物について説明してください。",
     "language": "jpn",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "尊敬する人",
     "description": "尊敬している人について書いてください。",
     "language": "jpn",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "毎日の生活",
     "description": "あなたの一日について説明してください。",
     "language": "jpn",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "思い出の旅行",
     "description": "印象に残っている旅行について話してください。",
     "language": "jpn",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "テクノロジーの影響",
     "description": "現代社会におけるテクノロジーの影響について説明してください。",
     "language": "jpn",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "私の故郷",
     "description": "育った場所について説明してください。",
     "language": "jpn",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "好きな季節",
     "description": "一番好きな季節はどれですか？その理由は？",
     "language": "jpn",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "ペットについて",
     "description": "飼っているペット、または飼いたいペットについて書いてください。",
     "language": "jpn",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "好きな趣味",
     "description": "楽しんでいる趣味について説明してください。",
     "language": "jpn",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "有名な人物",
     "description": "興味深いと思う有名人について書いてください。",
     "language": "jpn",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "乗り越えた困難",
     "description": "直面した困難な状況とその乗り越え方について説明してください。",
     "language": "jpn",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "理想の仕事",
     "description": "理想のキャリアとその理由について書いてください。",
     "language": "jpn",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "好きな本や映画",
     "description": "大きな影響を与えた本や映画について説明してください。",
     "language": "jpn",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "文化的な伝統",
     "description": "あなたの文化の重要な伝統について書いてください。",
     "language": "jpn",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "都市と田舎の生活",
     "description": "都市と農村の生活を比較し、どちらが好きか述べてください。",
     "language": "jpn",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "人工知能の未来",
     "description": "社会におけるAIの利点とリスクについて分析してください。",
     "language": "jpn",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "気候変動と個人の責任",
     "description": "気候変動に対して個人はどの程度責任があるか論じてください。",
     "language": "jpn",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "SNSとメンタルヘルス",
     "description": "SNSの使用と精神的健康の関係を分析してください。",
     "language": "jpn",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "第二言語を学ぶ価値",
     "description": "現代社会におけるバイリンガリズムの重要性について論じてください。",
     "language": "jpn",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "グローバル化と文化的アイデンティティ",
     "description": "グローバル化は地域文化と個人のアイデンティティにどう影響するか。",
     "language": "jpn",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "Mein Lieblingsessen",
     "description": "Beschreibe dein Lieblingsessen.",
     "language": "deu",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "Eine bewunderte Person",
     "description": "Schreibe über eine Person, die du bewunderst.",
     "language": "deu",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "Mein Alltag",
     "description": "Beschreibe deinen Alltag.",
     "language": "deu",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "Eine besondere Reise",
     "description": "Erzähle von einer Reise.",
     "language": "deu",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "Technologie und Gesellschaft",
     "description": "Diskutiere den Einfluss der Technologie.",
     "language": "deu",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "Meine Heimatstadt",
     "description": "Beschreibe den Ort, an dem du aufgewachsen bist.",
     "language": "deu",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "Meine Lieblingsjahreszeit",
     "description": "Welche Jahreszeit magst du am liebsten und warum?",
     "language": "deu",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "Ein Haustier",
     "description": "Schreibe über ein Haustier, das du hast oder haben möchtest.",
     "language": "deu",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "Mein Lieblingshobby",
     "description": "Beschreibe ein Hobby, das du gerne machst.",
     "language": "deu",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "Eine berühmte Person",
     "description": "Schreibe über eine berühmte Person, die dich interessiert.",
     "language": "deu",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "Eine Herausforderung, die ich gemeistert habe",
     "description": "Beschreibe eine schwierige Situation und wie du damit umgegangen bist.",
     "language": "deu",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "Mein Traumjob",
     "description": "Was ist dein idealer Beruf und warum reizt er dich?",
     "language": "deu",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "Ein Buch oder Film, den ich liebe",
     "description": "Beschreibe ein Buch oder einen Film, der dich beeindruckt hat.",
     "language": "deu",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "Kulturelle Traditionen",
     "description": "Schreibe über eine wichtige Tradition in deiner Kultur.",
     "language": "deu",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "Leben in der Stadt oder auf dem Land",
     "description": "Vergleiche das städtische und ländliche Leben und erkläre deine Präferenz.",
     "language": "deu",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "Die Zukunft der künstlichen Intelligenz",
     "description": "Analysiere die Chancen und Risiken von KI in der Gesellschaft.",
     "language": "deu",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "Klimawandel und persönliche Verantwortung",
     "description": "Inwieweit sind Einzelpersonen für den Klimawandel verantwortlich?",
     "language": "deu",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "Soziale Medien und psychische Gesundheit",
     "description": "Analysiere den Zusammenhang zwischen Social-Media-Nutzung und mentalem Wohlbefinden.",
     "language": "deu",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "Der Wert des Erlernens einer Fremdsprache",
     "description": "Argumentiere für oder gegen die Bedeutung von Zweisprachigkeit.",
     "language": "deu",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "Globalisierung und kulturelle Identität",
     "description": "Wie beeinflusst die Globalisierung lokale Kulturen und die individuelle Identität?",
     "language": "deu",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "좋아하는 음식",
     "description": "좋아하는 음식에 대해 설명하세요.",
     "language": "kor",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "존경하는 사람",
     "description": "존경하는 사람에 대해 써보세요.",
     "language": "kor",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "나의 하루",
     "description": "하루 일과를 설명하세요.",
     "language": "kor",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "기억에 남는 여행",
     "description": "기억에 남는 여행을 이야기하세요.",
     "language": "kor",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "기술의 영향",
     "description": "기술이 사회에 미치는 영향을 설명하세요.",
     "language": "kor",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "나의 고향",
     "description": "자란 곳에 대해 설명하세요.",
     "language": "kor",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "좋아하는 계절",
     "description": "가장 좋아하는 계절은 무엇이고 그 이유는 무엇인가요?",
     "language": "kor",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "반려동물",
     "description": "키우는 반려동물이나 키우고 싶은 동물에 대해 써보세요.",
     "language": "kor",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "좋아하는 취미",
     "description": "즐기는 취미에 대해 설명하세요.",
     "language": "kor",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "유명한 사람",
     "description": "흥미롭다고 생각하는 유명인에 대해 써보세요.",
     "language": "kor",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "극복한 어려움",
     "description": "어려운 상황을 어떻게 극복했는지 설명하세요.",
     "language": "kor",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "이상적인 직업",
     "description": "이상적인 직업은 무엇이고 왜 끌리나요?",
     "language": "kor",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "좋아하는 책이나 영화",
     "description": "큰 영향을 준 책이나 영화에 대해 설명하세요.",
     "language": "kor",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "문화적 전통",
     "description": "자신의 문화에서 중요한 전통에 대해 써보세요.",
     "language": "kor",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "도시와 시골 생활",
     "description": "도시와 농촌 생활을 비교하고 선호도를 말해보세요.",
     "language": "kor",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "인공지능의 미래",
     "description": "사회에서 AI의 장점과 위험성을 분석하세요.",
     "language": "kor",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "기후 변화와 개인의 책임",
     "description": "기후 변화에 대해 개인이 얼마나 책임이 있는지 논하세요.",
     "language": "kor",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "소셜 미디어와 정신 건강",
     "description": "소셜 미디어 사용과 정신적 웰빙의 관계를 분석하세요.",
     "language": "kor",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "제2언어 학습의 가치",
     "description": "오늘날 세계에서 이중 언어 사용의 중요성에 대해 논하세요.",
     "language": "kor",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "세계화와 문화적 정체성",
     "description": "세계화가 지역 문화와 개인 정체성에 어떤 영향을 미치는지 논하세요.",
     "language": "kor",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "Il mio cibo preferito",
     "description": "Descrivi il tuo cibo preferito.",
     "language": "ita",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "Una persona che ammiro",
     "description": "Parla di qualcuno che ammiri.",
     "language": "ita",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "La mia giornata",
     "description": "Descrivi la tua giornata.",
     "language": "ita",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "Un viaggio speciale",
     "description": "Racconta un viaggio importante.",
     "language": "ita",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "Tecnologia e società",
     "description": "Spiega l'impatto della tecnologia.",
     "language": "ita",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "La mia città natale",
     "description": "Descrivi il luogo in cui sei cresciuto.",
     "language": "ita",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "La mia stagione preferita",
     "description": "Qual è la tua stagione preferita e perché?",
     "language": "ita",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "Un animale domestico",
     "description": "Scrivi di un animale domestico che hai o vorresti avere.",
     "language": "ita",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "Il mio hobby preferito",
     "description": "Descrivi un hobby che ti piace.",
     "language": "ita",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "Una persona famosa",
     "description": "Scrivi di una persona famosa che trovi interessante.",
     "language": "ita",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "Una sfida che ho superato",
     "description": "Descrivi una situazione difficile e come l'hai affrontata.",
     "language": "ita",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "Il mio lavoro ideale",
     "description": "Qual è la tua carriera ideale e perché ti attrae?",
     "language": "ita",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "Un libro o film che amo",
     "description": "Descrivi un libro o film che ti ha colpito.",
     "language": "ita",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "Tradizioni culturali",
     "description": "Scrivi di una tradizione importante della tua cultura.",
     "language": "ita",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "Vivere in città o in campagna",
     "description": "Confronta la vita urbana e rurale ed esprimi la tua preferenza.",
     "language": "ita",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "Il futuro dell'intelligenza artificiale",
     "description": "Analizza i vantaggi e i rischi dell'IA nella società.",
     "language": "ita",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "Il cambiamento climatico e la responsabilità individuale",
     "description": "In che misura gli individui sono responsabili del cambiamento climatico?",
     "language": "ita",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "Social media e salute mentale",
     "description": "Analizza la relazione tra l'uso dei social media e il benessere mentale.",
     "language": "ita",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "Il valore dell'apprendimento di una seconda lingua",
     "description": "Argomenta a favore o contro il bilinguismo nel mondo attuale.",
     "language": "ita",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "Globalizzazione e identità culturale",
     "description": "Come influisce la globalizzazione sulle culture locali e sull'identità?",
     "language": "ita",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "我最喜欢的食物",
     "description": "描述你最喜欢的食物。",
     "language": "zho",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "我敬佩的人",
     "description": "写一个你敬佩的人。",
     "language": "zho",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "我的一天",
     "description": "描述你的一天。",
     "language": "zho",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "难忘的旅行",
     "description": "讲述一次难忘的旅行。",
     "language": "zho",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "科技的影响",
     "description": "讨论科技对社会的影响。",
     "language": "zho",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "我的家乡",
     "description": "描述你成长的地方。",
     "language": "zho",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "我最喜欢的季节",
     "description": "你最喜欢哪个季节？为什么？",
     "language": "zho",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "宠物",
     "description": "写一写你有的或想要的宠物。",
     "language": "zho",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "我的爱好",
     "description": "描述你喜欢的一项爱好。",
     "language": "zho",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "一位名人",
     "description": "写一位你觉得有趣的名人。",
     "language": "zho",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "我克服的一个困难",
     "description": "描述你面对的困难以及如何克服它。",
     "language": "zho",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "我的理想工作",
     "description": "你理想的职业是什么？为什么吸引你？",
     "language": "zho",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "我喜欢的一本书或电影",
     "description": "描述一本对你影响深远的书或电影。",
     "language": "zho",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "文化传统",
     "description": "写一写你文化中的一个重要传统。",
     "language": "zho",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "城市与农村生活",
     "description": "比较城市和农村生活，表达你的偏好。",
     "language": "zho",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "人工智能的未来",
     "description": "分析人工智能在社会中的优势与风险。",
     "language": "zho",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "气候变化与个人责任",
     "description": "个人在多大程度上对气候变化负有责任？",
     "language": "zho",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "社交媒体与心理健康",
     "description": "分析社交媒体使用与心理健康之间的关系。",
     "language": "zho",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "学习第二语言的价值",
     "description": "论述当今世界双语能力的重要性。",
     "language": "zho",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "全球化与文化认同",
     "description": "全球化如何影响地方文化和个人认同？",
     "language": "zho",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "मेरा पसंदीदा खाना",
     "description": "अपने पसंदीदा खाने के बारे में लिखें।",
     "language": "hin",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "एक व्यक्ति जिसे मैं मानता हूँ",
     "description": "किसी ऐसे व्यक्ति के बारे में लिखें जिसे आप मानते हैं।",
     "language": "hin",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "मेरा दिन",
     "description": "अपने दिन का वर्णन करें।",
     "language": "hin",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "एक यादगार यात्रा",
     "description": "एक यात्रा के बारे में लिखें।",
     "language": "hin",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "तकनीक का प्रभाव",
     "description": "समाज पर तकनीक के प्रभाव पर चर्चा करें।",
     "language": "hin",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "मेरा गृहनगर",
     "description": "उस जगह का वर्णन करें जहाँ आप पले-बढ़े।",
     "language": "hin",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "मेरा पसंदीदा मौसम",
     "description": "आपका पसंदीदा मौसम कौन सा है और क्यों?",
     "language": "hin",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "एक पालतू जानवर",
     "description": "किसी पालतू जानवर के बारे में लिखें जो आपके पास है या आप चाहते हैं।",
     "language": "hin",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "मेरा पसंदीदा शौक",
     "description": "एक ऐसे शौक का वर्णन करें जो आपको पसंद है।",
     "language": "hin",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "एक प्रसिद्ध व्यक्ति",
     "description": "किसी ऐसे प्रसिद्ध व्यक्ति के बारे में लिखें जो आपको दिलचस्प लगता है।",
     "language": "hin",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "एक चुनौती जो मैंने पार की",
     "description": "किसी कठिन परिस्थिति और उससे उबरने के तरीके का वर्णन करें।",
     "language": "hin",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "मेरा सपनों का काम",
     "description": "आपका आदर्श करियर क्या है और वह आपको क्यों आकर्षित करता है?",
     "language": "hin",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "एक किताब या फिल्म जो मुझे पसंद है",
     "description": "किसी ऐसी किताब या फिल्म का वर्णन करें जिसने आप पर गहरा असर डाला।",
     "language": "hin",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "सांस्कृतिक परंपराएँ",
     "description": "अपनी संस्कृति की एक महत्वपूर्ण परंपरा के बारे में लिखें।",
     "language": "hin",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "शहर या गाँव में जीवन",
     "description": "शहरी और ग्रामीण जीवन की तुलना करें और अपनी पसंद बताएं।",
     "language": "hin",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "कृत्रिम बुद्धिमत्ता का भविष्य",
     "description": "समाज में AI के फायदे और जोखिमों का विश्लेषण करें।",
     "language": "hin",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "जलवायु परिवर्तन और व्यक्तिगत जिम्मेदारी",
     "description": "जलवायु परिवर्तन के लिए व्यक्ति कितना जिम्मेदार है?",
     "language": "hin",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "सोशल मीडिया और मानसिक स्वास्थ्य",
     "description": "सोशल मीडिया के उपयोग और मानसिक स्वास्थ्य के बीच संबंध का विश्लेषण करें।",
     "language": "hin",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "दूसरी भाषा सीखने का महत्व",
     "description": "आज की दुनिया में द्विभाषावाद के महत्व पर तर्क दें।",
     "language": "hin",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "वैश्वीकरण और सांस्कृतिक पहचान",
     "description": "वैश्वीकरण स्थानीय संस्कृतियों और व्यक्तिगत पहचान को कैसे प्रभावित करता है?",
     "language": "hin",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "Minha comida favorita",
     "description": "Descreva sua comida favorita.",
     "language": "por",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "Uma pessoa que admiro",
     "description": "Fale sobre alguém que você admira.",
     "language": "por",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "Meu dia",
     "description": "Descreva seu dia.",
     "language": "por",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "Uma viagem inesquecível",
     "description": "Conte sobre uma viagem especial.",
     "language": "por",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "Impacto da tecnologia",
     "description": "Explique o impacto da tecnologia.",
     "language": "por",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "Minha cidade natal",
     "description": "Descreva o lugar onde você cresceu.",
     "language": "por",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "Minha estação favorita",
     "description": "Qual é a sua estação favorita e por quê?",
     "language": "por",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "Um animal de estimação",
     "description": "Escreva sobre um animal de estimação que você tem ou gostaria de ter.",
     "language": "por",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "Meu hobby favorito",
     "description": "Descreva um hobby que você gosta.",
     "language": "por",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "Uma pessoa famosa",
     "description": "Escreva sobre uma pessoa famosa que você acha interessante.",
     "language": "por",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "Um desafio que superei",
     "description": "Descreva uma situação difícil e como você a superou.",
     "language": "por",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "Meu emprego ideal",
     "description": "Qual é a sua carreira ideal e por que ela te atrai?",
     "language": "por",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "Um livro ou filme que amo",
     "description": "Descreva um livro ou filme que teve grande impacto em você.",
     "language": "por",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "Tradições culturais",
     "description": "Escreva sobre uma tradição importante da sua cultura.",
     "language": "por",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "Viver na cidade ou no campo",
     "description": "Compare a vida urbana e rural e expresse sua preferência.",
     "language": "por",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "O futuro da inteligência artificial",
     "description": "Analise os benefícios e riscos da IA na sociedade.",
     "language": "por",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "Mudanças climáticas e responsabilidade individual",
     "description": "Em que medida os indivíduos são responsáveis pelas mudanças climáticas?",
     "language": "por",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "Redes sociais e saúde mental",
     "description": "Analise a relação entre o uso das redes sociais e o bem-estar mental.",
     "language": "por",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "O valor de aprender uma segunda língua",
     "description": "Argumente a favor ou contra o bilinguismo no mundo atual.",
     "language": "por",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "Globalização e identidade cultural",
     "description": "Como a globalização afeta as culturas locais e a identidade individual?",
     "language": "por",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   },
-
   {
     "title": "Моя любимая еда",
     "description": "Опишите вашу любимую еду.",
     "language": "rus",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-food"
   },
   {
     "title": "Человек, которым я восхищаюсь",
     "description": "Напишите о человеке, которым вы восхищаетесь.",
     "language": "rus",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "person-i-admire"
   },
   {
     "title": "Мой день",
     "description": "Опишите свой день.",
     "language": "rus",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "daily-routine"
   },
   {
     "title": "Незабываемое путешествие",
     "description": "Расскажите о путешествии.",
     "language": "rus",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "memorable-trip"
   },
   {
     "title": "Влияние технологий",
     "description": "Обсудите влияние технологий.",
     "language": "rus",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "technology-impact"
   },
   {
     "title": "Мой родной город",
     "description": "Опишите место, где вы выросли.",
     "language": "rus",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "hometown"
   },
   {
     "title": "Моё любимое время года",
     "description": "Какое время года вам нравится больше всего и почему?",
     "language": "rus",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-season"
   },
   {
     "title": "Домашнее животное",
     "description": "Напишите о домашнем животном, которое у вас есть или которое вы хотели бы завести.",
     "language": "rus",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "pet"
   },
   {
     "title": "Моё любимое хобби",
     "description": "Опишите хобби, которым вы увлекаетесь.",
     "language": "rus",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "favorite-hobby"
   },
   {
     "title": "Известный человек",
     "description": "Напишите об известном человеке, который вам интересен.",
     "language": "rus",
-    "fluency_level": "Beginner"
+    "fluency_level": "Beginner",
+    "prompt_key": "famous-person"
   },
   {
     "title": "Трудность, которую я преодолел",
     "description": "Опишите сложную ситуацию и то, как вы с ней справились.",
     "language": "rus",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "challenge-overcame"
   },
   {
     "title": "Работа мечты",
     "description": "Какая карьера является для вас идеальной и почему?",
     "language": "rus",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "dream-job"
   },
   {
     "title": "Любимая книга или фильм",
     "description": "Опишите книгу или фильм, которые произвели на вас большое впечатление.",
     "language": "rus",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "book-or-movie"
   },
   {
     "title": "Культурные традиции",
     "description": "Напишите о важной традиции вашей культуры.",
     "language": "rus",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "cultural-traditions"
   },
   {
     "title": "Жизнь в городе или в деревне",
     "description": "Сравните городскую и сельскую жизнь и выразите своё предпочтение.",
     "language": "rus",
-    "fluency_level": "Intermediate"
+    "fluency_level": "Intermediate",
+    "prompt_key": "city-vs-countryside"
   },
   {
     "title": "Будущее искусственного интеллекта",
     "description": "Проанализируйте преимущества и риски ИИ в обществе.",
     "language": "rus",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "future-of-ai"
   },
   {
     "title": "Изменение климата и личная ответственность",
     "description": "В какой мере люди несут ответственность за изменение климата?",
     "language": "rus",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "climate-change"
   },
   {
     "title": "Социальные сети и психическое здоровье",
     "description": "Проанализируйте связь между использованием социальных сетей и психическим благополучием.",
     "language": "rus",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "social-media-mental-health"
   },
   {
     "title": "Ценность изучения второго языка",
     "description": "Приведите аргументы за или против двуязычия в современном мире.",
     "language": "rus",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "second-language-value"
   },
   {
     "title": "Глобализация и культурная идентичность",
     "description": "Как глобализация влияет на местные культуры и личную идентичность?",
     "language": "rus",
-    "fluency_level": "Advanced"
+    "fluency_level": "Advanced",
+    "prompt_key": "globalization-cultural-identity"
   }
 ]

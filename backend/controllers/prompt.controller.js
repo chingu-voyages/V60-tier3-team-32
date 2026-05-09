@@ -30,6 +30,7 @@ export const getPrompts = async (req, res) => {
           description: p.description,
           language: p.language,
           fluency_level: p.fluency_level,
+          prompt_key: p.prompt_key,
           type: 'learning',
         })),
         native: nativePrompts.map((p) => ({
@@ -38,6 +39,7 @@ export const getPrompts = async (req, res) => {
           description: p.description,
           language: p.language,
           fluency_level: p.fluency_level,
+          prompt_key: p.prompt_key,
           type: 'native',
         })),
       },
