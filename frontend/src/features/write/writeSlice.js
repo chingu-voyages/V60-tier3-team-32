@@ -2,7 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createPost, fetchTodayPrompts, updatePost } from './writeActions';
 
 const initialState = {
-  prompts: [],
+  prompts: {
+    native: [],
+    learning: [],
+  },
   currentPromptIndex: 0,
   activePromptType: 'learning',
 
@@ -60,10 +63,10 @@ const writeSlice = createSlice({
       .addCase(fetchTodayPrompts.fulfilled, (state, action) => {
         state.loading = false;
 
-        state.prompts = [
-          ...(action.payload.data?.native || []),
-          ...(action.payload.data?.learning || []),
-        ];
+        state.prompts = {
+          native: action.payload.data?.native || [],
+          learning: action.payload.data?.learning || [],
+        };
       })
       .addCase(fetchTodayPrompts.rejected, (state, action) => {
         state.loading = false;
