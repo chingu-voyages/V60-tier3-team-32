@@ -52,6 +52,12 @@ const writeSlice = createSlice({
       state.updateSuccess = false;
       state.error = null;
     },
+    resetSubmitSuccess: (state) => {
+      state.submitSuccess = false;
+    },
+    resetUpdateSuccess: (state) => {
+      state.updateSuccess = false;
+    },
   },
 
   extraReducers: (builder) => {
@@ -78,9 +84,8 @@ const writeSlice = createSlice({
         state.error = null;
         state.submitSuccess = false;
       })
-      .addCase(createPost.fulfilled, (state, action) => {
+      .addCase(createPost.fulfilled, (state) => {
         state.submitting = false;
-        state.currentDraft = action.payload;
         state.submitSuccess = true;
       })
       .addCase(createPost.rejected, (state, action) => {
@@ -111,6 +116,8 @@ export const {
   setCurrentDraft,
   clearCurrentDraft,
   resetWriteStatus,
+  resetSubmitSuccess,
+  resetUpdateSuccess,
 } = writeSlice.actions;
 
 export default writeSlice.reducer;
