@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const promptSchema = mongoose.Schema(
   {
+    prompt_key: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String },
     language: { type: String, required: true },

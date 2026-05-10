@@ -19,13 +19,12 @@ export default function Write() {
   const { prompts, currentPromptIndex, currentDraft, loading, error } =
     useSelector((state) => state.write);
 
+  const learningPrompts = prompts.learning || [];
+  const nativePrompts = prompts.native || [];
+
   useEffect(() => {
     dispatch(fetchTodayPrompts());
   }, [dispatch]);
-
-  const learningPrompts = useMemo(() => {
-    return prompts.filter((prompt) => prompt.type === 'learning');
-  }, [prompts]);
 
   const learningLanguages = useMemo(() => {
     return [...new Set(learningPrompts.map((prompt) => prompt.language))];
@@ -44,6 +43,16 @@ export default function Write() {
   const currentPrompt = filteredPrompts[currentPromptIndex] ?? null;
 
   const activePrompt = currentDraft?.prompt ?? currentPrompt;
+
+  const nativePrompt = useMemo(() => {
+    if (!activePrompt?.prompt_key) return null;
+
+    return (
+      nativePrompts.find(
+        (prompt) => prompt.prompt_key === activePrompt.prompt_key,
+      ) ?? null
+    );
+  }, [activePrompt, nativePrompts]);
 
   const getLanguageLabel = (code) => {
     return LANGUAGES.find((language) => language.code === code)?.label || code;
@@ -92,6 +101,7 @@ export default function Write() {
 
           <PromptDetails
             prompt={activePrompt}
+            nativePrompt={nativePrompt}
             loading={loading}
             error={error}
             onNewPrompt={() => dispatch(nextPrompt(filteredPrompts.length))}
