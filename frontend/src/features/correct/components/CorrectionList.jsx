@@ -4,7 +4,7 @@ import { fetchCorrectionQueue } from '../correctionActions';
 import CorrectionCard from './CorrectionCard';
 import { Loader2 } from 'lucide-react';
 
-export default function CorrectionList({ activeFilters }) {
+export default function CorrectionList() {
   const dispatch = useDispatch();
   const { queue, loading, error } = useSelector((state) => state.corrections);
 
@@ -12,19 +12,8 @@ export default function CorrectionList({ activeFilters }) {
     dispatch(fetchCorrectionQueue());
   }, [dispatch]);
 
-  // Filtering the queue based on UI filters
-  const filtered = queue.filter((item) => {
-    const langMatch =
-      activeFilters.language === 'All' ||
-      item.language === activeFilters.language;
-    const levelMatch =
-      activeFilters.level === 'All' ||
-      item.fluency_level === activeFilters.level;
-    return langMatch && levelMatch;
-  });
-
-  console.log('Queue from Redux:', queue);
-  console.log('Current Filters:', activeFilters);
+  // Debugging the raw data from Redux
+  console.log('Redux Queue State:', queue);
 
   if (loading) {
     return (
@@ -43,13 +32,15 @@ export default function CorrectionList({ activeFilters }) {
   }
 
   return (
-    // Fixed the "bg-[#F8FAFF]flex" typo here
     <div className='flex flex-col gap-4 md:gap-6 px-2 md:px-0'>
-      {filtered.length > 0 ? (
-        filtered.map((item) => <CorrectionCard key={item.id} item={item} />)
+      {queue && queue.length > 0 ? (
+        queue.map((item) => (
+          <CorrectionCard key={item._id || item.id} item={item} />
+        ))
       ) : (
         <div className='bg-white rounded-[32px] p-12 text-center border border-dashed border-gray-200 text-gray-400'>
-          No submissions found for these filters.
+          <p className="text-lg font-medium text-gray-600 mb-2">The queue is empty.</p>
+          <p className="text-sm">The backend returned 0 results for "correctable=true".</p>
         </div>
       )}
     </div>
