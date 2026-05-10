@@ -5,6 +5,7 @@ import profileReducer from '../features/profile/profileSlice';
 import dashboardReducer from '../features/dashboard/dashboardSlice';
 import submissionsReducer from '@/features/submissions/submissionSlice';
 import correctionsReducer from '@/features/correct/correctionSlice';
+import writeReducer from '@/features/write/writeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     dashboard: dashboardReducer,
     submissions: submissionsReducer,
     corrections: correctionsReducer,
+    write: writeReducer,
   },
 });
