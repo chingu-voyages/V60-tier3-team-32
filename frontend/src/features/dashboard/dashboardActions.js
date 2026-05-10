@@ -7,7 +7,7 @@ export const fetchDashboardData = createAsyncThunk(
     try {
       const data = await getDashboardData();
 
-      console.log('dashboard data:', data);
+      // console.log('dashboard data:', data);
 
       return data;
     } catch (error) {

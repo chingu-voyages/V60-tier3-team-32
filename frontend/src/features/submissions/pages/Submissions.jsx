@@ -55,6 +55,11 @@ export default function Submissions() {
     return <p className='p-8 text-red-500'>{error}</p>;
   }
 
+  // console.log(
+  //   'formattedSubmissions order:',
+  //   formattedSubmissions.map((s) => s.createdAt),
+  // );
+
   return (
     <div className='min-h-screen bg-[#F8FAFF] px-4 py-6 md:px-12 md:py-8 font-sans'>
       <div className='container mx-auto mb-8'>

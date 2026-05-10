@@ -21,9 +21,12 @@ const dashboardSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDashboardData.fulfilled, (state, action) => {
+        // console.log(action.payload.recentPosts[0]);
         state.loading = false;
         state.user = action.payload.user;
-        state.recentPosts = action.payload.recentPosts;
+        state.recentPosts = [...action.payload.recentPosts].sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at),
+        );
         state.submittedPosts = action.payload.submittedPosts;
         state.correctedPosts = action.payload.correctedPosts;
         state.prompts = action.payload.prompts;

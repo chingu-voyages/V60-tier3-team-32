@@ -32,7 +32,9 @@ const submissionSlice = createSlice({
       })
       .addCase(fetchSubmissions.fulfilled, (state, action) => {
         state.loading = false;
-        state.submissions = action.payload;
+        state.submissions = [...action.payload].sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at),
+        );
       })
       .addCase(fetchSubmissions.rejected, (state, action) => {
         state.loading = false;

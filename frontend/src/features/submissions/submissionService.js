@@ -12,6 +12,5 @@ export const getSubmissionById = async (id) => {
 
 export const deletePost = async (id) => {
   const res = await api.delete(`/posts/${id}`);
-  console.log('delete post', res.data);
   return res.data;
 };

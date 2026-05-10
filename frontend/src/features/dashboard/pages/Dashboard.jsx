@@ -54,6 +54,7 @@ export default function Dashboard() {
         title: post.prompt?.title || 'Untitled',
         preview: post.preview,
         comments: post.corrections_count || 0,
+        createdAt: post.created_at,
       };
     }) || [];
 
