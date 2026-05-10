@@ -5,11 +5,13 @@ import { toast } from 'sonner';
 
 import { createPost, updatePost } from '../writeActions';
 import { clearCurrentDraft } from '../writeSlice';
+import { useNavigate } from 'react-router-dom';
 
 const MAX_WORDS = 300;
 
 export default function WritingEditor({ prompt }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     submitting,
@@ -28,6 +30,15 @@ export default function WritingEditor({ prompt }) {
 
   const isBusy = submitting || updating;
 
+  // cmd/ ctrl + enter to submit
+  const handleKeyDown = (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      e.preventDefault();
+
+      handleSubmit();
+    }
+  };
+
   useEffect(() => {
     if (currentDraft?.content !== undefined) {
       setContent(currentDraft.content);
@@ -45,9 +56,15 @@ export default function WritingEditor({ prompt }) {
   // Handle submit success
   useEffect(() => {
     if (submitSuccess) {
+      const isDraft = pendingStatus === 'draft';
+
       toast.success(
         pendingStatus === 'draft' ? 'Draft saved!' : 'Reflection submitted!',
       );
+      if (!isDraft) {
+        navigate('/submissions');
+      }
+
       setContent('');
       setPendingStatus(null);
       dispatch(clearCurrentDraft());
@@ -75,12 +92,18 @@ export default function WritingEditor({ prompt }) {
   });
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e?.preventDefault?.();
+
     if (!prompt || !content.trim() || isOverLimit) return;
+
     setPendingStatus('submitted');
+
     if (isEditingDraft) {
       dispatch(
-        updatePost({ postId: draftId, postData: buildPostData('submitted') }),
+        updatePost({
+          postId: draftId,
+          postData: buildPostData('submitted'),
+        }),
       );
     } else {
       dispatch(createPost(buildPostData('submitted')));
@@ -99,11 +122,6 @@ export default function WritingEditor({ prompt }) {
     }
   };
 
-  const handleDiscardDraft = () => {
-    setContent('');
-    dispatch(clearCurrentDraft());
-  };
-
   return (
     <form onSubmit={handleSubmit}>
       {/* Draft Banner */}
@@ -111,15 +129,7 @@ export default function WritingEditor({ prompt }) {
         <div className='mb-4 flex items-center gap-2 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-700'>
           <FileText size={14} className='shrink-0' />
 
-          <span>Editing draft. Submit when ready or save your changes.</span>
-
-          <button
-            type='button'
-            onClick={handleDiscardDraft}
-            className='ml-auto whitespace-nowrap text-xs underline hover:text-amber-900'
-          >
-            Discard
-          </button>
+          <span>You're editing a saved draft.</span>
         </div>
       )}
 
@@ -128,6 +138,7 @@ export default function WritingEditor({ prompt }) {
         onChange={(e) => setContent(e.target.value)}
         placeholder='Write your first sentence here...'
         className='w-full min-h-[420px] resize-none rounded-[32px] border border-gray-100 bg-stone-50 p-6 text-[15px] leading-relaxed text-gray-700 shadow-sm outline-none placeholder:text-[#79716B] md:p-8'
+        onKeyDown={handleKeyDown}
       />
 
       {/* Word Counter */}

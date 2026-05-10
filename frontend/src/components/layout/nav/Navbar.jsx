@@ -38,10 +38,7 @@ export default function Navbar() {
   ];
 
   // Public (logged-out) nav
-  const publicNavItems = [
-    { label: 'HOME', path: '/' },
-    { label: 'ABOUT', path: '/about' },
-  ];
+  const publicNavItems = [{ label: 'HOME', path: '/' }];
 
   const navItems = isAuthenticated ? privateNavItems : publicNavItems;
 

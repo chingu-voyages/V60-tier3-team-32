@@ -20,6 +20,7 @@ import CorrectionReviewPage from './features/correct/pages/CorrectionReviewPage'
 import SubmissionDetail from './features/submissions/pages/SubmissionDetail';
 import Submissions from './features/submissions/pages/Submissions';
 import Profile from './features/profile/pages/Profile';
+import NotFound from '@/components/layout/NotFound';
 
 import { Toaster } from 'sonner';
 
@@ -57,6 +58,7 @@ function App() {
                     element={<SubmissionDetail />}
                   />
                   <Route path='/profile' element={<Profile />} />
+                  <Route path='*' element={<NotFound />} />
                 </Route>
               </Routes>
             </main>

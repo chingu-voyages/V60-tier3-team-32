@@ -8,6 +8,20 @@ import { fetchTodayPrompts } from '../writeActions';
 import { clearCurrentDraft, nextPrompt, setCurrentDraft } from '../writeSlice';
 import { LANGUAGES } from '@/lib/constants/languages';
 import { getSubmissionById } from '@/features/submissions/submissionService.js';
+import { deletePostById } from '@/features/submissions/submissionActions.js';
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Trash2 } from 'lucide-react';
 
 export default function Write() {
   const { id } = useParams();
@@ -58,6 +72,18 @@ export default function Write() {
     return LANGUAGES.find((language) => language.code === code)?.label || code;
   };
 
+  const handleDeleteDraft = async () => {
+    if (!currentDraft?._id) return;
+
+    try {
+      await dispatch(deletePostById(currentDraft._id)).unwrap();
+      dispatch(clearCurrentDraft());
+      navigate('/submissions');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (!id) return;
 
@@ -80,6 +106,43 @@ export default function Write() {
     <div className='min-h-screen bg-[#F8FAFF] px-4 py-6 md:p-8 pb-24 md:pb-8'>
       <div className='container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8'>
         <aside className='lg:col-span-5 space-y-6'>
+          {id && currentDraft?.status === 'draft' && (
+            <div className='flex justify-start'>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <button
+                    type='button'
+                    className='flex items-center gap-2 text-sm font-semibold text-red-500 hover:text-red-600 transition'
+                  >
+                    <Trash2 size={16} />
+                    Delete Draft
+                  </button>
+                </AlertDialogTrigger>
+
+                <AlertDialogContent className='w-[90%] max-w-md rounded-2xl p-5 sm:p-6'>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Delete this draft?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your draft.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+
+                  <AlertDialogFooter className='flex-col sm:flex-row gap-2'>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+
+                    <AlertDialogAction
+                      onClick={handleDeleteDraft}
+                      className='bg-red-500 text-white hover:bg-red-600'
+                    >
+                      Delete Draft
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+          )}
+
           {!id && learningLanguages.length > 1 && (
             <div className='flex gap-2 bg-white p-1 rounded-full border border-indigo-100'>
               {learningLanguages.map((language) => (

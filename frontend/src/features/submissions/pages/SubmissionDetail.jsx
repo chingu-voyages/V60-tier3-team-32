@@ -4,10 +4,23 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { diffWords } from 'diff';
 
-import { fetchSubmissionById } from '../submissionActions';
+import { fetchSubmissionById, deletePostById } from '../submissionActions';
 import { clearSelectedSubmission } from '../submissionSlice';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Trash2 } from 'lucide-react';
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 export default function SubmissionDetail() {
   const navigate = useNavigate();
@@ -47,6 +60,15 @@ export default function SubmissionDetail() {
     });
   };
 
+  const handleDelete = async () => {
+    try {
+      await dispatch(deletePostById(submission._id)).unwrap();
+      navigate('/submissions');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (detailLoading) {
     return <p className='p-8'>Loading submission...</p>;
   }
@@ -80,6 +102,35 @@ export default function SubmissionDetail() {
           <ArrowLeft size={18} />
           Back to Submissions
         </button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <button className='flex items-center gap-2 text-sm font-semibold text-red-500 hover:text-red-600 transition'>
+              <Trash2 size={16} />
+              Delete Post
+            </button>
+          </AlertDialogTrigger>
+
+          <AlertDialogContent className='w-[90%] max-w-md rounded-2xl p-5 sm:p-6'>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete this submission?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your
+                submission.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+
+            <AlertDialogFooter className='flex-col sm:flex-row gap-2'>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+
+              <AlertDialogAction
+                onClick={handleDelete}
+                className='bg-red-500 text-white hover:bg-red-600'
+              >
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
 
       <div className='container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8'>

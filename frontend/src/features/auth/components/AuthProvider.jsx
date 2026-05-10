@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setAccessToken, setUser } from '@/features/auth/authSlice';
 import { fetchMe } from '@/features/profile';
+import PageLoader from '@/components/layout/PageLoader';
 
 export default function AuthProvider({ children }) {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     const initAuth = async () => {
       try {
+        // await new Promise((resolve) => setTimeout(resolve, 2000));
         const { data } = await axios.post(
           `${import.meta.env.VITE_API_URL}/auth/refresh`,
           {},
@@ -31,7 +33,7 @@ export default function AuthProvider({ children }) {
     initAuth();
   }, [dispatch]);
 
-  if (loading) return null; // or spinner
+  if (loading) return <PageLoader />;
 
   return children;
 }
