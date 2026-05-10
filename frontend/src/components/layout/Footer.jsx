@@ -28,7 +28,7 @@ export default function Footer() {
     {
       role: 'WEB DEVELOPER',
       name: 'Rasitraka',
-      github: 'https://github.com/rasitraka0)',
+      github: 'https://github.com/rasitraka0',
       linkedin:
         'https://www.linkedin.com/in/sitraka-heritina-andriambarijao-209597238',
     },

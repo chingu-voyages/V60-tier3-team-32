@@ -1,25 +1,46 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCorrectionQueue } from '../correctionActions';
 import CorrectionCard from './CorrectionCard';
-import { useSubmissionStore } from '../../../app/hooks/useSubmissionStore';
+import { Loader2 } from 'lucide-react';
 
-export default function CorrectionList({ activeFilters }) {
-  const { submissions } = useSubmissionStore();
+export default function CorrectionList() {
+  const dispatch = useDispatch();
+  const { queue, loading, error } = useSelector((state) => state.corrections);
 
-  const filtered = submissions.filter((item) => {
-    const langMatch =
-      activeFilters.language === 'All' ||
-      item.language === activeFilters.language;
-    const levelMatch =
-      activeFilters.level === 'All' || item.level === activeFilters.level;
-    return langMatch && levelMatch;
-  });
+  useEffect(() => {
+    dispatch(fetchCorrectionQueue());
+  }, [dispatch]);
+
+  // Debugging the raw data from Redux
+  console.log('Redux Queue State:', queue);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="animate-spin text-[#5D45FD]" size={40} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-50 text-red-500 p-8 rounded-[32px] text-center border border-red-100">
+        {error}
+      </div>
+    );
+  }
 
   return (
-    <div className='bg-[#F8FAFF]flex flex-col gap-4 md:gap-6 px-2 md:px-0'>
-      {filtered.length > 0 ? (
-        filtered.map((item) => <CorrectionCard key={item.id} item={item} />)
+    <div className='flex flex-col gap-4 md:gap-6 px-2 md:px-0'>
+      {queue && queue.length > 0 ? (
+        queue.map((item) => (
+          <CorrectionCard key={item._id || item.id} item={item} />
+        ))
       ) : (
         <div className='bg-white rounded-[32px] p-12 text-center border border-dashed border-gray-200 text-gray-400'>
-          No submissions found for these filters.
+          <p className="text-lg font-medium text-gray-600 mb-2">The queue is empty.</p>
+          <p className="text-sm">The backend returned 0 results for "correctable=true".</p>
         </div>
       )}
     </div>
