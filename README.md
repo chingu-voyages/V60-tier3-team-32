@@ -4,7 +4,7 @@ A collaborative language learning web app where learners improve their writing t
 
 # Live Demo
 
-{TODO}
+https://chingulingualoop.netlify.app/
 
 ## Table of Contents
 
@@ -25,7 +25,7 @@ LinguaLoop connects language learners with native and advanced speakers. Users w
 **Post in your target language** — submit writing for community review
 **Community corrections** — native/advanced speakers annotate and correct text
 **Skill-level tagging** — posts and users are tagged by proficiency level (Beginner, Intermediate, Advance, Native)
-**Language based system** — content is organized by language pairs (e.g., EN → ES, JP → EN) for more relevant corrections.
+**Language based system** — content is organized by language pairs (e.g., ENG →SPA, JAP → ENG) for more relevant corrections.
 **Prompts and Guidance** - daily or suggested prompts to help users start writing
 **User profiles** — track languages spoken, corrections given, and posts made
 
@@ -45,7 +45,7 @@ LinguaLoop connects language learners with native and advanced speakers. Users w
 | **Backend**  | Node.js + Express                    |
 | **Database** | MongoDB                              |
 | **Auth**     | JWT                                  |
-| **Hosting**  | Vercel (frontend) + Render (backend) |
+| **Hosting**  | Netlify (frontend) + Render (backend) |
 
 ## Getting Started
 
