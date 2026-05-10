@@ -43,11 +43,11 @@ export const getMyPosts = async (req, res) => {
     if (status) {
       query.status = status;
     }
-    console.log('query:', query);
+    // console.log('query:', query);
 
     const posts = await postModel
       .find(query)
-      .sort({ createdAt: -1 })
+      .sort({ created_at: -1 })
       .limit(Number(limit))
       .skip((page - 1) * limit);
 
