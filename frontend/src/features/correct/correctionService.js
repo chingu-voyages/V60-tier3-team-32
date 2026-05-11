@@ -11,3 +11,21 @@ export const getCorrectionQueue = async () => {
   console.log('single post response:', res.data);
   return res.data.data;
 };
+
+
+// export const getMyCorrections = async () => {
+//   const res = await api.get('/corrections/me');
+//   return res.data.data;
+// };
+
+
+
+/**
+ * Fetches user activity history.
+ * @param {string} type - 'made', 'received', or 'all'
+ */
+export const getMyCorrections = async (type = 'made') => {
+  // The URL stays /me, we just append the query param
+  const res = await api.get(`/corrections/me?type=${type}`);
+  return res.data.data;
+};

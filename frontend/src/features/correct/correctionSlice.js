@@ -1,11 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createCorrection, fetchCorrectionQueue } from './correctionActions';
+import { 
+  createCorrection, 
+  fetchCorrectionQueue, 
+  fetchMyCorrections 
+} from './correctionActions';
 
 const initialState = {
-  queue: [], // Posts waiting for correction
+  queue: [],           // Posts waiting for correction
+  myCorrections: [],   // User's personal correction history (both made & received)
+  activeTab: 'made',   // Tracks the current view: 'made' or 'received'
   loading: false,
   error: null,
-  // Using the submission pattern for specific action tracking
+  
+  // Submission tracking
   submitting: false,
   submitError: null,
   submitSuccess: false,
@@ -15,15 +22,25 @@ const correctionSlice = createSlice({
   name: 'corrections',
   initialState,
   reducers: {
+    // Call this when switching tabs in the UI before fetching
+    setActiveTab: (state, action) => {
+      state.activeTab = action.payload;
+      // Optional: Clear current list so user doesn't see old data while loading new tab
+      state.myCorrections = []; 
+    },
     resetCorrectionStatus: (state) => {
       state.submitting = false;
       state.submitError = null;
       state.submitSuccess = false;
     },
+    clearCorrectionHistory: (state) => {
+      state.myCorrections = [];
+      state.activeTab = 'made';
+    }
   },
   extraReducers: (builder) => {
     builder
-      // Fetching the Queue
+      // --- Fetching the Correction Queue ---
       .addCase(fetchCorrectionQueue.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -37,7 +54,21 @@ const correctionSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Creating a Correction
+      // --- Fetching Personal Corrections (Made OR Received) ---
+      .addCase(fetchMyCorrections.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchMyCorrections.fulfilled, (state, action) => {
+        state.loading = false;
+        state.myCorrections = action.payload;
+      })
+      .addCase(fetchMyCorrections.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // --- Creating a Correction ---
       .addCase(createCorrection.pending, (state) => {
         state.submitting = true;
         state.submitError = null;
@@ -54,5 +85,10 @@ const correctionSlice = createSlice({
   },
 });
 
-export const { resetCorrectionStatus } = correctionSlice.actions;
+export const { 
+  resetCorrectionStatus, 
+  clearCorrectionHistory, 
+  setActiveTab 
+} = correctionSlice.actions;
+
 export default correctionSlice.reducer;
