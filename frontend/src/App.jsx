@@ -21,6 +21,7 @@ import SubmissionDetail from './features/submissions/pages/SubmissionDetail';
 import Submissions from './features/submissions/pages/Submissions';
 import Profile from './features/profile/pages/Profile';
 import NotFound from '@/components/layout/NotFound';
+import MyCorrections from './features/correct/components/MyCorrections';
 
 import { Toaster } from 'sonner';
 
@@ -53,6 +54,7 @@ function App() {
                   />
 
                   <Route path='/submissions' element={<Submissions />} />
+                  <Route path='/my-corrections' element={<MyCorrections />} />
                   <Route
                     path='/submissions/:id'
                     element={<SubmissionDetail />}
