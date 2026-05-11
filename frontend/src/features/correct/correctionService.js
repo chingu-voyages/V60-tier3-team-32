@@ -7,18 +7,15 @@ export const submitCorrection = async (id, correctionData) => {
 
 export const getCorrectionQueue = async () => {
   // Direct hit to the resource root
-  const res = await api.get('posts?correctable=true'); 
+  const res = await api.get('/posts?correctable=true');
   console.log('single post response:', res.data);
   return res.data.data;
 };
-
 
 // export const getMyCorrections = async () => {
 //   const res = await api.get('/corrections/me');
 //   return res.data.data;
 // };
-
-
 
 /**
  * Fetches user activity history.

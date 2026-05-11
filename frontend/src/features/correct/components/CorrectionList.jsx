@@ -13,19 +13,19 @@ export default function CorrectionList() {
   }, [dispatch]);
 
   // Debugging the raw data from Redux
-  console.log('Redux Queue State:', queue);
+  // console.log('Redux Queue State:', queue);
 
   if (loading) {
     return (
-      <div className="flex justify-center py-20">
-        <Loader2 className="animate-spin text-[#5D45FD]" size={40} />
+      <div className='flex justify-center py-20'>
+        <Loader2 className='animate-spin text-[#5D45FD]' size={40} />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 text-red-500 p-8 rounded-[32px] text-center border border-red-100">
+      <div className='bg-red-50 text-red-500 p-8 rounded-[32px] text-center border border-red-100'>
         {error}
       </div>
     );
@@ -39,8 +39,12 @@ export default function CorrectionList() {
         ))
       ) : (
         <div className='bg-white rounded-[32px] p-12 text-center border border-dashed border-gray-200 text-gray-400'>
-          <p className="text-lg font-medium text-gray-600 mb-2">The queue is empty.</p>
-          <p className="text-sm">The backend returned 0 results for "correctable=true".</p>
+          <p className='text-lg font-medium text-gray-600 mb-2'>
+            The queue is empty.
+          </p>
+          <p className='text-sm'>
+            The backend returned 0 results for "correctable=true".
+          </p>
         </div>
       )}
     </div>

@@ -5,25 +5,26 @@ import { toast } from 'sonner';
 
 export default function CorrectionCard({ item }) {
   const navigate = useNavigate();
-  
+
   // 1. Ensure Redux data is grabbed correctly
   // Use currentUser?.id or currentUser?._id based on your auth state structure
   const { user: currentUser } = useSelector((state) => state.auth);
   const currentUserId = currentUser?._id || currentUser?.id;
 
   // --- DEBUG LOGS (Keep these until you confirm the fix) ---
-  console.group(`Card Debug: ${item.prompt?.title || 'Entry'}`);
-  console.log("Current User ID:", currentUserId);
-  console.log("Item Correctors Array:", item.correctors);
+  // console.group(`Card Debug: ${item.prompt?.title || 'Entry'}`);
+  // console.log("Current User ID:", currentUserId);
+  // console.log("Item Correctors Array:", item.correctors);
   console.groupEnd();
 
   // 2. Logic Checks
-  const isAuthor = String(item.author?.id || item.author?._id) === String(currentUserId);
-  
+  const isAuthor =
+    String(item.author?.id || item.author?._id) === String(currentUserId);
+
   // Since backend now sends 'correctors' as an array of strings, we use .includes()
   const alreadyCorrectedByMe = item.correctors?.includes(String(currentUserId));
 
-  // The button is disabled if: 
+  // The button is disabled if:
   // - Current user is author
   // - Current user already corrected it
   // - Status is explicitly closed
@@ -32,12 +33,12 @@ export default function CorrectionCard({ item }) {
 
   const handleCorrectClick = () => {
     if (isDisabled) {
-      const message = isAuthor 
-        ? 'You cannot correct your own post.' 
-        : alreadyCorrectedByMe 
-        ? 'You have already corrected this submission.' 
-        : 'This submission is closed.';
-      
+      const message = isAuthor
+        ? 'You cannot correct your own post.'
+        : alreadyCorrectedByMe
+          ? 'You have already corrected this submission.'
+          : 'This submission is closed.';
+
       toast.error(message);
       return;
     }
@@ -53,7 +54,6 @@ export default function CorrectionCard({ item }) {
 
   return (
     <div className='bg-white rounded-[24px] md:rounded-[32px] p-4 md:p-8 border border-gray-100 shadow-sm hover:shadow-md transition-all'>
-      
       {/* Top Header Row */}
       <div className='flex justify-between items-center mb-3 md:mb-4'>
         <div className='flex gap-2 items-center flex-wrap'>
@@ -68,7 +68,8 @@ export default function CorrectionCard({ item }) {
           {item.corrections_count > 0 && (
             <span className='flex items-center gap-1 bg-[#E8FFF3] text-[#10B981] px-2 py-1 rounded-md text-[9px] md:text-[10px] font-bold uppercase border border-[#D1FAE5]'>
               <CheckCircle size={10} />
-              {item.corrections_count} {item.corrections_count === 1 ? 'Correction' : 'Corrections'}
+              {item.corrections_count}{' '}
+              {item.corrections_count === 1 ? 'Correction' : 'Corrections'}
             </span>
           )}
         </div>
@@ -135,7 +136,11 @@ export default function CorrectionCard({ item }) {
           }
         `}
       >
-        {isAuthor ? 'Your Post' : alreadyCorrectedByMe ? 'Already Corrected' : 'Correct Now'}
+        {isAuthor
+          ? 'Your Post'
+          : alreadyCorrectedByMe
+            ? 'Already Corrected'
+            : 'Correct Now'}
       </button>
     </div>
   );
