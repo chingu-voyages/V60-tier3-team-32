@@ -40,10 +40,8 @@ export default function WritingEditor({ prompt }) {
   };
 
   useEffect(() => {
-    if (currentDraft?.content !== undefined) {
-      setContent(currentDraft.content);
-    }
-  }, [currentDraft?.id, currentDraft?.content]);
+    setContent(currentDraft?.content || '');
+  }, [currentDraft]);
 
   const wordCount = useMemo(() => {
     if (!content.trim()) return 0;
@@ -129,8 +127,8 @@ export default function WritingEditor({ prompt }) {
     }
   };
 
-  console.log('isEditingDraft:', isEditingDraft);
-  console.log('draftId:', draftId);
+  // console.log('isEditingDraft:', isEditingDraft);
+  // console.log('draftId:', draftId);
 
   return (
     <form onSubmit={handleSubmit}>
