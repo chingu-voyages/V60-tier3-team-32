@@ -16,22 +16,31 @@ export default function Dashboard() {
   const dispatch = useDispatch();
 
   // Get general dashboard data
-  const { user, prompts, recentPosts, loading: dashLoading, error } =
-    useSelector((state) => state.dashboard);
+  const {
+    user,
+    prompts,
+    recentPosts,
+    loading: dashLoading,
+    error,
+  } = useSelector((state) => state.dashboard);
 
   // Get your personal correction history from the new slice
-  const { myCorrections, loading: corrLoading } = useSelector((state) => state.corrections);
+  const { myCorrections, loading: corrLoading } = useSelector(
+    (state) => state.corrections,
+  );
 
   useEffect(() => {
     dispatch(fetchDashboardData());
     // UPDATE: Fetch 'all' to show a mix of contributions and feedback on the dashboard
-    dispatch(fetchMyCorrections('all')); 
+    dispatch(fetchMyCorrections('all'));
   }, [dispatch]);
 
   const isLoading = dashLoading || corrLoading;
 
   if (isLoading && !user) {
-    return <p className='p-8 text-gray-500 font-medium'>Loading your workspace...</p>;
+    return (
+      <p className='p-8 text-gray-500 font-medium'>Loading your workspace...</p>
+    );
   }
 
   if (error) {
@@ -64,13 +73,15 @@ export default function Dashboard() {
         preview: post.preview,
         comments: post.corrections_count || 0,
         createdAt: post.created_at,
+        status: post.status,
       };
     }) || [];
+
+  // console.log(formattedSubmissions);
 
   return (
     <div className='min-h-screen bg-[#F8FAFF] px-1 py-4 md:p-8 pb-5 md:pb-8'>
       <div className='container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8'>
-        
         {/* Sidebar */}
         <aside className='lg:col-span-4 order-1'>
           <JourneyCard languages={learningLanguages} />
@@ -81,9 +92,9 @@ export default function Dashboard() {
           <PromptCard prompt={firstPrompt} />
 
           {/* RecentActivityCard now receives the 'all' mixed feed */}
-          <RecentActivityCard 
-            activities={myCorrections} 
-            isLoading={corrLoading} 
+          <RecentActivityCard
+            activities={myCorrections}
+            isLoading={corrLoading}
           />
 
           <RecentSubmissionsCard submissions={formattedSubmissions} />

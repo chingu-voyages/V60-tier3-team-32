@@ -87,13 +87,15 @@ export default function Write() {
   useEffect(() => {
     if (!id) return;
 
-    getSubmissionById(id)
-      .then((fullDraft) => {
+    const fetchDraft = async () => {
+      try {
+        const fullDraft = await getSubmissionById(id);
         dispatch(setCurrentDraft(fullDraft));
-      })
-      .catch(() => {
+      } catch {
         navigate('/submissions', { replace: true });
-      });
+      }
+    };
+    fetchDraft();
   }, [id, dispatch, navigate]);
 
   useEffect(() => {
