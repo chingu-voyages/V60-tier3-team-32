@@ -69,19 +69,23 @@ export default function WritingEditor({ prompt }) {
       setPendingStatus(null);
       dispatch(clearCurrentDraft());
     }
-  }, [submitSuccess, dispatch, pendingStatus]);
+  }, [submitSuccess, dispatch, pendingStatus, navigate]);
 
   // Handle update success
   useEffect(() => {
     if (updateSuccess) {
-      toast.success(
-        pendingStatus === 'draft' ? 'Draft saved!' : 'Reflection published!',
-      );
+      const isDraft = pendingStatus === 'draft';
+      toast.success(isDraft ? 'Draft saved!' : 'Reflection published!');
+
+      if (!isDraft) {
+        navigate('/submissions');
+      }
+
       setContent('');
       setPendingStatus(null);
       dispatch(clearCurrentDraft());
     }
-  }, [updateSuccess, dispatch, pendingStatus]);
+  }, [updateSuccess, dispatch, pendingStatus, navigate]);
 
   const buildPostData = (status) => ({
     prompt_id: prompt?.id,
@@ -112,15 +116,21 @@ export default function WritingEditor({ prompt }) {
 
   const handleSaveDraft = () => {
     if (!prompt || !content.trim() || isOverLimit) return;
+
+    const postData = buildPostData('draft');
+    const existingDraftId = draftId;
+
     setPendingStatus('draft');
-    if (isEditingDraft) {
-      dispatch(
-        updatePost({ postId: draftId, postData: buildPostData('draft') }),
-      );
+
+    if (existingDraftId) {
+      dispatch(updatePost({ postId: draftId, postData }));
     } else {
       dispatch(createPost(buildPostData('draft')));
     }
   };
+
+  console.log('isEditingDraft:', isEditingDraft);
+  console.log('draftId:', draftId);
 
   return (
     <form onSubmit={handleSubmit}>
