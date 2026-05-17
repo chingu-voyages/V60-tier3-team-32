@@ -1,6 +1,12 @@
 import { MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const statusBgColor = {
+  draft: 'bg-yellow-100',
+  submitted: 'bg-blue-100',
+  corrected: 'bg-green-100',
+};
+
 export default function RecentSubmissionsCard({ submissions = [] }) {
   return (
     <div
@@ -55,6 +61,12 @@ export default function RecentSubmissionsCard({ submissions = [] }) {
                   <div className='flex items-start justify-between mb-3'>
                     <span className='text-[10px] lg:text-[11px] font-bold text-[#5D45FD] bg-[#E8EDFF] px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0'>
                       {item.language}
+                    </span>
+
+                    <span
+                      className={`text-[10px] lg:text-[11px] font-bold text-[#5D45FD] ${statusBgColor[item.status]}  px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0`}
+                    >
+                      {item.status}
                     </span>
 
                     {item.comments > 0 && (
