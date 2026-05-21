@@ -14,10 +14,14 @@ export default function WritingEditor({ prompt }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // pending status tracks if user is saving a draft or submitting
+  const [pendingStatus, setPendingStatus] = useState(null);
+
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { isSubmitting, isSubmitted, errors },
   } = useForm({
     defaultValues: {
@@ -35,20 +39,19 @@ export default function WritingEditor({ prompt }) {
 
   console.log(content);
 
-  // const {
-  //   submitting,
-  //   updating,
-  //   error,
-  //   submitSuccess,
-  //   updateSuccess,
-  //   currentDraft,
-  // } = useSelector((state) => state.write);
+  const {
+    submitting,
+    updating,
+    error,
+    submitSuccess,
+    updateSuccess,
+    currentDraft,
+  } = useSelector((state) => state.write);
 
   // const [content, setContent] = useState('');
-  // const [pendingStatus, setPendingStatus] = useState(null);
 
-  // const isEditingDraft = currentDraft?.status === 'draft';
-  // const draftId = currentDraft?.id || currentDraft?._id;
+  const isEditingDraft = currentDraft?.status === 'draft';
+  const draftId = currentDraft?.id || currentDraft?._id;
 
   // const isBusy = submitting || updating;
 
@@ -61,23 +64,49 @@ export default function WritingEditor({ prompt }) {
   //   }
   // };
 
+  // POST reflection
+  const buildPostData = (data, status) => ({
+    prompt_id: prompt?.id,
+    language: prompt?.language,
+    fluency_level: prompt?.fluency_level,
+    content: data.content,
+    status,
+  });
+
+  const onSubmit = (data) => {
+    if (!prompt || !data.content.trim() || isOverLimit) return;
+
+    setPendingStatus('submitted');
+
+    if (isEditingDraft) {
+      dispatch(
+        updatePost({
+          postId: draftId,
+          postData: buildPostData(data, 'submitted'),
+        }),
+      );
+    } else {
+      dispatch(createPost(buildPostData(data, 'submitted')));
+    }
+  };
+
   // Handle submit success
-  // useEffect(() => {
-  //   if (submitSuccess) {
-  //     const isDraft = pendingStatus === 'draft';
+  useEffect(() => {
+    if (submitSuccess) {
+      const isDraft = pendingStatus === 'draft';
 
-  //     toast.success(
-  //       pendingStatus === 'draft' ? 'Draft saved!' : 'Reflection submitted!',
-  //     );
-  //     if (!isDraft) {
-  //       navigate('/submissions');
-  //     }
+      toast.success(
+        pendingStatus === 'draft' ? 'Draft saved!' : 'Reflection submitted!',
+      );
+      if (!isDraft) {
+        navigate('/submissions');
+      }
 
-  //     setContent('');
-  //     setPendingStatus(null);
-  //     dispatch(clearCurrentDraft());
-  //   }
-  // }, [submitSuccess, dispatch, pendingStatus, navigate]);
+      reset({ content: '' });
+      setPendingStatus(null);
+      dispatch(clearCurrentDraft());
+    }
+  }, [submitSuccess, reset, dispatch, pendingStatus, navigate]);
 
   // Handle update success
   // useEffect(() => {
@@ -94,33 +123,6 @@ export default function WritingEditor({ prompt }) {
   //     dispatch(clearCurrentDraft());
   //   }
   // }, [updateSuccess, dispatch, pendingStatus, navigate]);
-
-  // const buildPostData = (status) => ({
-  //   prompt_id: prompt?.id,
-  //   language: prompt?.language,
-  //   fluency_level: prompt?.fluency_level,
-  //   content,
-  //   status,
-  // });
-
-  // const handleSubmit = (e) => {
-  //   e?.preventDefault?.();
-
-  //   if (!prompt || !content.trim() || isOverLimit) return;
-
-  //   setPendingStatus('submitted');
-
-  //   if (isEditingDraft) {
-  //     dispatch(
-  //       updatePost({
-  //         postId: draftId,
-  //         postData: buildPostData('submitted'),
-  //       }),
-  //     );
-  //   } else {
-  //     dispatch(createPost(buildPostData('submitted')));
-  //   }
-  // };
 
   // const handleSaveDraft = () => {
   //   if (!prompt || !content.trim() || isOverLimit) return;
@@ -140,9 +142,6 @@ export default function WritingEditor({ prompt }) {
   // console.log('isEditingDraft:', isEditingDraft);
   // console.log('draftId:', draftId);
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* Draft Banner */}
