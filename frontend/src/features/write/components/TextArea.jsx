@@ -2,10 +2,10 @@ import { useLanguageDetection } from '../hooks/useLanguageDetection';
 import { useWordCount } from '../hooks/useWordCount';
 
 export default function TextArea({
-  content,
-  onChange,
+  content = '',
   MAX_WORDS = 300,
   selectedLanguage,
+  ...fieldProps
 }) {
   const { wordCount, wordsRemaining, isOverLimit } = useWordCount(
     content,
@@ -20,10 +20,9 @@ export default function TextArea({
   return (
     <div>
       <textarea
-        className='w-full min-h-[500px] resize-none rounded-[32px] border border-gray-100 bg-stone-50 p-6 text-[15px] leading-relaxed text-gray-700 shadow-sm outline-none placeholder:text-[#79716B] md:p-8'
+        {...fieldProps}
         placeholder='Write your first sentence here...'
-        value={content}
-        onChange={onChange}
+        className='w-full min-h-[500px] resize-none rounded-[32px] border border-gray-100 bg-stone-50 p-6 text-[15px] leading-relaxed text-gray-700 shadow-sm outline-none placeholder:text-[#79716B] md:p-8'
       />
       <div className='flex justify-end items-center gap-2'>
         <span
