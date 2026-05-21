@@ -1,10 +1,21 @@
+import { useLanguageDetection } from '../hooks/useLanguageDetection';
 import { useWordCount } from '../hooks/useWordCount';
 
-export default function TextArea({ content, onChange, MAX_WORDS = 300 }) {
+export default function TextArea({
+  content,
+  onChange,
+  MAX_WORDS = 300,
+  selectedLanguage,
+}) {
   const { wordCount, wordsRemaining, isOverLimit } = useWordCount(
     content,
     MAX_WORDS,
   );
+  const { languageName, languageCode, isReliable } =
+    useLanguageDetection(content);
+
+  const hasLanguageMismatch =
+    isReliable && selectedLanguage && languageCode !== selectedLanguage;
 
   return (
     <div>
@@ -37,6 +48,13 @@ export default function TextArea({ content, onChange, MAX_WORDS = 300 }) {
           {isOverLimit ? 0 : wordCount}/{MAX_WORDS}
         </span>
       </div>
+
+      {hasLanguageMismatch && (
+        <p className='rounded-xl bg-yellow-50 px-4 py-3 text-sm text-yellow-700'>
+          This looks like {languageName}, but your selected language is
+          different.
+        </p>
+      )}
     </div>
   );
 }
