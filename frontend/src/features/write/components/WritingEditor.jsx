@@ -1,16 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm, useWatch, Controller } from 'react-hook-form';
 import { SendHorizonal, FileText } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { createPost, updatePost } from '../writeActions';
-import { clearCurrentDraft } from '../writeSlice';
+import { clearCurrentDraft, resetWriteStatus } from '../writeSlice';
 import { useNavigate } from 'react-router-dom';
 import TextArea from './TextArea';
 import { useWordCount } from '../hooks/useWordCount';
 
-export default function WritingEditor({ prompt }) {
+export default function WritingEditor({ prompt, draft, routeId }) {
+  console.log('draft in editor:', draft);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ export default function WritingEditor({ prompt }) {
     handleSubmit,
     control,
     reset,
-    formState: { isSubmitting, isSubmitted, errors },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       content: '',
@@ -48,21 +49,28 @@ export default function WritingEditor({ prompt }) {
     currentDraft,
   } = useSelector((state) => state.write);
 
-  // const [content, setContent] = useState('');
-
   const isEditingDraft = currentDraft?.status === 'draft';
-  const draftId = currentDraft?.id || currentDraft?._id;
+  const draftId = draft?.id || draft?._id;
 
-  // const isBusy = submitting || updating;
+  //populate text box if its a draft or has a route id else clear it
+  useEffect(() => {
+    if (routeId && draft?.content) {
+      reset({ content: draft.content });
+      return;
+    }
 
-  // // cmd/ ctrl + enter to submit
-  // const handleKeyDown = (e) => {
-  //   if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
-  //     e.preventDefault();
+    if (!routeId) {
+      reset({ content: '' });
+    }
+  }, [routeId, draft?.content, reset]);
 
-  //     handleSubmit();
-  //   }
-  // };
+  // cmd/ ctrl + enter to submit
+  const handleKeyDown = (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      e.preventDefault();
+      handleSubmit(onSubmit)();
+    }
+  };
 
   // POST reflection
   const buildPostData = (data, status) => ({
@@ -104,55 +112,75 @@ export default function WritingEditor({ prompt }) {
 
       reset({ content: '' });
       setPendingStatus(null);
-      dispatch(clearCurrentDraft());
+      dispatch(resetWriteStatus());
     }
   }, [submitSuccess, reset, dispatch, pendingStatus, navigate]);
 
   // Handle update success
-  // useEffect(() => {
-  //   if (updateSuccess) {
-  //     const isDraft = pendingStatus === 'draft';
-  //     toast.success(isDraft ? 'Draft saved!' : 'Reflection published!');
+  useEffect(() => {
+    if (updateSuccess) {
+      const isDraft = pendingStatus === 'draft';
+      toast.success(isDraft ? 'Draft saved!' : 'Reflection published!');
 
-  //     if (!isDraft) {
-  //       navigate('/submissions');
-  //     }
+      if (!isDraft) {
+        navigate('/submissions');
+      }
 
-  //     setContent('');
-  //     setPendingStatus(null);
-  //     dispatch(clearCurrentDraft());
-  //   }
-  // }, [updateSuccess, dispatch, pendingStatus, navigate]);
+      reset({ content: '' });
+      setPendingStatus(null);
 
-  // const handleSaveDraft = () => {
-  //   if (!prompt || !content.trim() || isOverLimit) return;
+      dispatch(resetWriteStatus());
+    }
+  }, [updateSuccess, reset, dispatch, pendingStatus, navigate]);
 
-  //   const postData = buildPostData('draft');
-  //   const existingDraftId = draftId;
+  const handleSaveDraft = () => {
+    if (!prompt || !content.trim() || isOverLimit) return;
 
-  //   setPendingStatus('draft');
+    const postData = buildPostData({ content }, 'draft');
+    const existingDraftId = draftId;
 
-  //   if (existingDraftId) {
-  //     dispatch(updatePost({ postId: draftId, postData }));
-  //   } else {
-  //     dispatch(createPost(buildPostData('draft')));
-  //   }
-  // };
+    setPendingStatus('draft');
+
+    if (existingDraftId) {
+      dispatch(updatePost({ postId: draftId, postData }));
+    } else {
+      dispatch(createPost(postData));
+    }
+  };
 
   // console.log('isEditingDraft:', isEditingDraft);
   // console.log('draftId:', draftId);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
       {/* Draft Banner */}
-      {/* {isEditingDraft && (
+      {isEditingDraft && (
         <div className='mb-4 flex items-center gap-2 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-700'>
           <FileText size={14} className='shrink-0' />
 
           <span>You're editing a saved draft.</span>
         </div>
-      )} */}
+      )}
 
+      <Controller
+        name='content'
+        control={control}
+        rules={{
+          required: 'Reflection is required',
+          minLength: {
+            value: 10,
+            message: 'Reflection must be at least 10 characters',
+          },
+        }}
+        render={({ field }) => (
+          <TextArea
+            {...field}
+            content={field.value}
+            selectedLanguage={prompt?.language}
+          />
+        )}
+      />
+      {/* 
       <TextArea
         {...register('content', {
           required: 'Reflection is required',
@@ -161,9 +189,10 @@ export default function WritingEditor({ prompt }) {
             message: 'Reflection must be at least 10 characters',
           },
         })}
+        {...register('content')}
         content={content}
         selectedLanguage={prompt?.language}
-      />
+      /> */}
 
       {/* Error */}
       {errors.content && (
@@ -180,26 +209,24 @@ export default function WritingEditor({ prompt }) {
           className='flex items-center justify-center gap-2 rounded-full bg-[#5D45FD] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#4B35E0] disabled:cursor-not-allowed disabled:opacity-50'
         >
           <SendHorizonal size={16} />
-          {/* {submitting
+          {submitting
             ? 'Submitting...'
             : isEditingDraft
               ? 'Publish Reflection'
-              : 'Submit Reflection'} */}
-          Submit
+              : 'Submit Reflection'}
         </button>
 
         <button
           type='button'
-          // onClick={handleSaveDraft}
+          onClick={handleSaveDraft}
           disabled={isOverLimit || !content.trim()}
           className='flex items-center justify-center gap-2 rounded-full border border-stone-200 bg-gray-100 px-5 py-3 text-sm font-bold text-gray-700 transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50'
         >
-          {/* {updating
+          {updating
             ? 'Saving...'
             : isEditingDraft
               ? 'Save Changes'
-              : 'Save Draft'} */}
-          Save Draft
+              : 'Save Draft'}
         </button>
       </div>
     </form>
