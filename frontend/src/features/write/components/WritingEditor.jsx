@@ -5,13 +5,13 @@ import { SendHorizonal, FileText } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { createPost, updatePost } from '../writeActions';
-import { clearCurrentDraft, resetWriteStatus } from '../writeSlice';
+import { resetWriteStatus } from '../writeSlice';
 import { useNavigate } from 'react-router-dom';
 import TextArea from './TextArea';
 import { useWordCount } from '../hooks/useWordCount';
 
 export default function WritingEditor({ prompt, draft, routeId }) {
-  console.log('draft in editor:', draft);
+  // console.log('draft in editor:', draft);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,7 +19,6 @@ export default function WritingEditor({ prompt, draft, routeId }) {
   const [pendingStatus, setPendingStatus] = useState(null);
 
   const {
-    register,
     handleSubmit,
     control,
     reset,
@@ -38,16 +37,10 @@ export default function WritingEditor({ prompt, draft, routeId }) {
 
   const { isOverLimit } = useWordCount(content, 300);
 
-  console.log(content);
+  // console.log(content);
 
-  const {
-    submitting,
-    updating,
-    error,
-    submitSuccess,
-    updateSuccess,
-    currentDraft,
-  } = useSelector((state) => state.write);
+  const { submitting, updating, submitSuccess, updateSuccess, currentDraft } =
+    useSelector((state) => state.write);
 
   const isEditingDraft = currentDraft?.status === 'draft';
   const draftId = draft?.id || draft?._id;
@@ -111,7 +104,7 @@ export default function WritingEditor({ prompt, draft, routeId }) {
       }
 
       reset({ content: '' });
-      setPendingStatus(null);
+
       dispatch(resetWriteStatus());
     }
   }, [submitSuccess, reset, dispatch, pendingStatus, navigate]);
@@ -127,7 +120,6 @@ export default function WritingEditor({ prompt, draft, routeId }) {
       }
 
       reset({ content: '' });
-      setPendingStatus(null);
 
       dispatch(resetWriteStatus());
     }
