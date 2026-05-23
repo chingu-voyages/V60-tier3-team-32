@@ -85,7 +85,10 @@ export default function Write() {
   };
 
   useEffect(() => {
-    if (!id) return;
+    if (!id) {
+      dispatch(clearCurrentDraft());
+      return;
+    }
 
     const fetchDraft = async () => {
       try {
@@ -95,14 +98,15 @@ export default function Write() {
         navigate('/submissions', { replace: true });
       }
     };
+
     fetchDraft();
   }, [id, dispatch, navigate]);
 
-  useEffect(() => {
-    if (!id) {
-      dispatch(clearCurrentDraft());
-    }
-  }, [id, dispatch]);
+  // useEffect(() => {
+  //   if (!id) {
+  //     dispatch(clearCurrentDraft());
+  //   }
+  // }, [id, dispatch]);
 
   return (
     <div className='min-h-screen bg-[#F8FAFF] px-4 py-6 md:p-8 pb-24 md:pb-8'>
@@ -174,7 +178,11 @@ export default function Write() {
         </aside>
 
         <main className='lg:col-span-7'>
-          <WritingEditor prompt={activePrompt} draft={currentDraft} />
+          <WritingEditor
+            prompt={activePrompt}
+            draft={currentDraft}
+            routeId={id}
+          />
         </main>
       </div>
     </div>
