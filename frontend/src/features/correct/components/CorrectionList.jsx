@@ -4,7 +4,7 @@ import { fetchCorrectionQueue } from '../correctionActions';
 import CorrectionCard from './CorrectionCard';
 import { Loader2 } from 'lucide-react';
 
-export default function CorrectionList() {
+export default function CorrectionList({ activeFilters }) {
   const dispatch = useDispatch();
   const { queue, loading, error } = useSelector((state) => state.corrections);
 
@@ -12,12 +12,20 @@ export default function CorrectionList() {
     dispatch(fetchCorrectionQueue());
   }, [dispatch]);
 
+  const filteredQueue = queue.filter((item) => {
+    const matchesLevel =
+      activeFilters.level === 'All' ||
+      item.fluency_level === activeFilters.level;
+
+    return matchesLevel;
+  });
+
   // Debugging the raw data from Redux
   // console.log('Redux Queue State:', queue);
 
   if (loading) {
     return (
-      <div className='flex justify-center py-20'>
+      <div className='flex py-20'>
         <Loader2 className='animate-spin text-[#5D45FD]' size={40} />
       </div>
     );
@@ -33,17 +41,17 @@ export default function CorrectionList() {
 
   return (
     <div className='flex flex-col gap-4 md:gap-6 px-2 md:px-0'>
-      {queue && queue.length > 0 ? (
-        queue.map((item) => (
+      {filteredQueue && filteredQueue.length > 0 ? (
+        filteredQueue.map((item) => (
           <CorrectionCard key={item._id || item.id} item={item} />
         ))
       ) : (
         <div className='bg-white rounded-[32px] p-12 text-center border border-dashed border-gray-200 text-gray-400'>
           <p className='text-lg font-medium text-gray-600 mb-2'>
-            The queue is empty.
+            No reflections need corrections right now.
           </p>
           <p className='text-sm'>
-            The backend returned 0 results for "correctable=true".
+            Check back later for new learner submissions.
           </p>
         </div>
       )}

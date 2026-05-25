@@ -8,7 +8,7 @@ export const submitCorrection = async (id, correctionData) => {
 export const getCorrectionQueue = async () => {
   // Direct hit to the resource root
   const res = await api.get('/posts?correctable=true');
-  console.log('single post response:', res.data);
+  // console.log('queue res:', res.data);
   return res.data.data;
 };
 

@@ -12,7 +12,7 @@ export default function CorrectionQueue() {
   });
 
   return (
-    <div className='min-h-screen flex flex-col justify-center  bg-[#F8FAFF] py-6 pb-24 md:px-28 md:py-8'>
+    <div className='min-h-screen flex flex-col  bg-[#F8FAFF] py-6 pb-24 md:px-28 md:py-8'>
       {/* <aside className='hidden lg:block lg:col-span-4'>
           <FluentLanguagesCard />
         </aside> */}
