@@ -1,5 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { submitCorrection, getCorrectionQueue, getMyCorrections } from './correctionService';
+import {
+  submitCorrection,
+  getCorrectionQueue,
+  getMyCorrections,
+} from './correctionService';
 
 export const createCorrection = createAsyncThunk(
   'corrections/createCorrection',
@@ -8,26 +12,24 @@ export const createCorrection = createAsyncThunk(
       return await submitCorrection(id, correctionData);
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.message || 'Failed to submit correction.'
+        err.response?.data?.message || 'Failed to submit correction.',
       );
     }
-  }
+  },
 );
 
 export const fetchCorrectionQueue = createAsyncThunk(
   'corrections/fetchCorrectionQueue',
-  async (_, { rejectWithValue }) => {
+  async ({ page = 1, limit = 10, filters = {} } = {}, { rejectWithValue }) => {
     try {
-      return await getCorrectionQueue();
+      return await getCorrectionQueue(page, limit, filters);
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.message || 'Failed to load correction queue.'
+        err.response?.data?.message || 'Failed to load correction queue.',
       );
     }
-  }
+  },
 );
-
-
 
 // export const fetchMyCorrections = createAsyncThunk(
 //   'corrections/fetchMyCorrections',
@@ -42,9 +44,6 @@ export const fetchCorrectionQueue = createAsyncThunk(
 //   }
 // );
 
-
-
-
 export const fetchMyCorrections = createAsyncThunk(
   'corrections/fetchMyCorrections',
   async (type, { rejectWithValue }) => {
@@ -53,8 +52,8 @@ export const fetchMyCorrections = createAsyncThunk(
       return await getMyCorrections(type);
     } catch (err) {
       return rejectWithValue(
-        err.response?.data?.message || 'Failed to load corrections.'
+        err.response?.data?.message || 'Failed to load corrections.',
       );
     }
-  }
+  },
 );

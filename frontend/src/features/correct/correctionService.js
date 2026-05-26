@@ -5,13 +5,16 @@ export const submitCorrection = async (id, correctionData) => {
   return res.data;
 };
 
-export const getCorrectionQueue = async () => {
-  // Direct hit to the resource root
-  const res = await api.get('/posts?correctable=true');
-  console.log('single post response:', res.data);
-  return res.data.data;
-};
+export const getCorrectionQueue = async (page, limit, filters = {}) => {
+  const params = new URLSearchParams({ page, limit, correctable: true });
 
+  if (filters.level && filters.level !== 'All') {
+    params.append('level', filters.level);
+  }
+
+  const res = await api.get(`/posts?${params}`);
+  return res.data;
+};
 // export const getMyCorrections = async () => {
 //   const res = await api.get('/corrections/me');
 //   return res.data.data;

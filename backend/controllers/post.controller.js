@@ -179,7 +179,6 @@ export const createPost = async (req, res) => {
 //   }
 // };
 
-
 export const getPosts = async (req, res) => {
   try {
     const page = Number(req.query.page) || 1;
@@ -193,25 +192,31 @@ export const getPosts = async (req, res) => {
     }
 
     if (req.query.correctable === 'true') {
+      if (!req.user) {
+        return res.status(401).json({ message: 'Authentication required' });
+      }
+
       const user = await userModel.findById(req.user.id);
-      
+
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(404).json({ message: 'User not found' });
       }
 
       filter.status = { $in: ['submitted', 'corrected'] };
-      
+
       // 1. Must NOT be the author
       filter['author._id'] = { $ne: new mongoose.Types.ObjectId(req.user.id) };
-      
+
       // 2. Must be in the user's native language
       filter.language = user.native_language;
 
       // 3. Must NOT have been already corrected by this user
       // This targets the 'corrector._id' inside your corrections array
-      filter['corrections.corrector._id'] = { 
-        $ne: new mongoose.Types.ObjectId(req.user.id) 
+      filter['corrections.corrector._id'] = {
+        $ne: new mongoose.Types.ObjectId(req.user.id),
       };
+
+      if (req.query.level) filter.fluency_level = req.query.level;
     }
 
     const total = await postModel.countDocuments(filter);
@@ -242,11 +247,11 @@ export const getPosts = async (req, res) => {
         word_count: post.word_count,
         reading_time: post.reading_time,
         corrections_count: post.corrections_count,
-        
+
         // --- NEW FIELD ---
         // Mapping the corrections array to a simple array of IDs for the frontend
-        correctors: post.corrections.map(c => c.corrector._id.toString()),
-        
+        correctors: post.corrections.map((c) => c.corrector._id.toString()),
+
         status: post.status,
         created_at: post.created_at,
       })),

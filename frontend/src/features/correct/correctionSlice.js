@@ -1,17 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { 
-  createCorrection, 
-  fetchCorrectionQueue, 
-  fetchMyCorrections 
+import {
+  createCorrection,
+  fetchCorrectionQueue,
+  fetchMyCorrections,
 } from './correctionActions';
 
 const initialState = {
-  queue: [],           // Posts waiting for correction
-  myCorrections: [],   // User's personal correction history (both made & received)
-  activeTab: 'made',   // Tracks the current view: 'made' or 'received'
+  queue: [], // Posts waiting for correction
+  pagination: {
+    page: 1,
+    limit: 10,
+    total: 0,
+    total_pages: 1,
+  },
+
+  myCorrections: [], // User's personal correction history (both made & received)
+  activeTab: 'made', // Tracks the current view: 'made' or 'received'
   loading: false,
   error: null,
-  
+
   // Submission tracking
   submitting: false,
   submitError: null,
@@ -26,7 +33,7 @@ const correctionSlice = createSlice({
     setActiveTab: (state, action) => {
       state.activeTab = action.payload;
       // Optional: Clear current list so user doesn't see old data while loading new tab
-      state.myCorrections = []; 
+      state.myCorrections = [];
     },
     resetCorrectionStatus: (state) => {
       state.submitting = false;
@@ -36,7 +43,7 @@ const correctionSlice = createSlice({
     clearCorrectionHistory: (state) => {
       state.myCorrections = [];
       state.activeTab = 'made';
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -47,7 +54,9 @@ const correctionSlice = createSlice({
       })
       .addCase(fetchCorrectionQueue.fulfilled, (state, action) => {
         state.loading = false;
-        state.queue = action.payload;
+        state.queue = action.payload.data;
+        state.pagination = action.payload.pagination;
+        console.log('fulfilled payload:', action.payload);
       })
       .addCase(fetchCorrectionQueue.rejected, (state, action) => {
         state.loading = false;
@@ -85,10 +94,7 @@ const correctionSlice = createSlice({
   },
 });
 
-export const { 
-  resetCorrectionStatus, 
-  clearCorrectionHistory, 
-  setActiveTab 
-} = correctionSlice.actions;
+export const { resetCorrectionStatus, clearCorrectionHistory, setActiveTab } =
+  correctionSlice.actions;
 
 export default correctionSlice.reducer;
