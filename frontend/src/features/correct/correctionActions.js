@@ -20,9 +20,9 @@ export const createCorrection = createAsyncThunk(
 
 export const fetchCorrectionQueue = createAsyncThunk(
   'corrections/fetchCorrectionQueue',
-  async ({ page = 1, limit = 10 } = {}, { rejectWithValue }) => {
+  async ({ page = 1, limit = 10, filters = {} } = {}, { rejectWithValue }) => {
     try {
-      return await getCorrectionQueue(page, limit);
+      return await getCorrectionQueue(page, limit, filters);
     } catch (err) {
       return rejectWithValue(
         err.response?.data?.message || 'Failed to load correction queue.',
