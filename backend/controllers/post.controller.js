@@ -215,6 +215,8 @@ export const getPosts = async (req, res) => {
       filter['corrections.corrector._id'] = {
         $ne: new mongoose.Types.ObjectId(req.user.id),
       };
+
+      if (req.query.level) filter.fluency_level = req.query.level;
     }
 
     const total = await postModel.countDocuments(filter);
