@@ -1,26 +1,7 @@
 import CorrectionCard from './CorrectionCard';
 import { Loader2 } from 'lucide-react';
 
-export default function CorrectionList({
-  queue = [],
-  loading,
-  error,
-  activeFilters,
-}) {
-  const filteredQueue = queue.filter((item) => {
-    const matchesLevel =
-      activeFilters.level === 'All' ||
-      item.fluency_level?.toLowerCase() === activeFilters.level.toLowerCase();
-
-    return matchesLevel;
-  });
-
-  console.log('queue:', queue);
-  console.log('activeFilters:', activeFilters);
-
-  // Debugging the raw data from Redux
-  // console.log('Redux Queue State:', queue);
-
+export default function CorrectionList({ queue = [], loading, error }) {
   if (loading) {
     return (
       <div className='flex py-20'>
@@ -39,8 +20,8 @@ export default function CorrectionList({
 
   return (
     <div className='flex flex-col gap-4 md:gap-6 px-2 md:px-0'>
-      {filteredQueue && filteredQueue.length > 0 ? (
-        filteredQueue.map((item) => (
+      {queue.length > 0 ? (
+        queue.map((item) => (
           <CorrectionCard key={item._id || item.id} item={item} />
         ))
       ) : (
