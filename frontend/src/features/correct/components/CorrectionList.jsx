@@ -1,24 +1,22 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCorrectionQueue } from '../correctionActions';
 import CorrectionCard from './CorrectionCard';
 import { Loader2 } from 'lucide-react';
 
-export default function CorrectionList({ activeFilters }) {
-  const dispatch = useDispatch();
-  const { queue, loading, error } = useSelector((state) => state.corrections);
-
-  useEffect(() => {
-    dispatch(fetchCorrectionQueue());
-  }, [dispatch]);
-
+export default function CorrectionList({
+  queue = [],
+  loading,
+  error,
+  activeFilters,
+}) {
   const filteredQueue = queue.filter((item) => {
     const matchesLevel =
       activeFilters.level === 'All' ||
-      item.fluency_level === activeFilters.level;
+      item.fluency_level?.toLowerCase() === activeFilters.level.toLowerCase();
 
     return matchesLevel;
   });
+
+  console.log('queue:', queue);
+  console.log('activeFilters:', activeFilters);
 
   // Debugging the raw data from Redux
   // console.log('Redux Queue State:', queue);

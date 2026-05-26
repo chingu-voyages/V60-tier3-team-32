@@ -5,11 +5,14 @@ export const submitCorrection = async (id, correctionData) => {
   return res.data;
 };
 
-export const getCorrectionQueue = async () => {
-  // Direct hit to the resource root
-  const res = await api.get('/posts?correctable=true');
-  // console.log('queue res:', res.data);
-  return res.data.data;
+export const getCorrectionQueue = async (page = 1, limit = 10) => {
+  const res = await api.get(
+    `/posts?correctable=true&page=${page}&limit=${limit}`,
+  );
+
+  console.log('queue res:', res.data);
+
+  return res.data;
 };
 
 // export const getMyCorrections = async () => {

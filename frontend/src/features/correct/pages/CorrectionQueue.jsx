@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCorrectionQueue } from '../correctionActions';
 
 import FilterHeader from '../components/FilterHeader';
 import FluentLanguagesCard from '@/features/correct/components/FluentLanguagesCard';
 import CorrectionList from '../components/CorrectionList';
+import Pagination from '../components/Pagination';
 
 export default function CorrectionQueue() {
   // 1. Initialize the filter state here
@@ -10,6 +13,18 @@ export default function CorrectionQueue() {
     language: 'All',
     level: 'All',
   });
+
+  const [page, setPage] = useState(1);
+
+  const dispatch = useDispatch();
+  const { queue, loading, error, pagination } = useSelector(
+    (state) => state.corrections,
+  );
+  const totalPages = pagination?.total_pages || 1;
+
+  useEffect(() => {
+    dispatch(fetchCorrectionQueue({ page }));
+  }, [dispatch, page]);
 
   return (
     <div className='min-h-screen flex flex-col  bg-[#F8FAFF] py-6 pb-24 md:px-28 md:py-8'>
@@ -22,7 +37,17 @@ export default function CorrectionQueue() {
 
       <div className='px-4 mt-4'>
         {/* 3. Pass the active filters to the feed so it can filter the cards */}
-        <CorrectionList activeFilters={filters} />
+        <CorrectionList
+          activeFilters={filters}
+          queue={queue}
+          loading={loading}
+          error={error}
+        />
+        <Pagination
+          pages={pagination?.page}
+          totalPages={totalPages}
+          setPage={setPage}
+        />
       </div>
     </div>
   );
