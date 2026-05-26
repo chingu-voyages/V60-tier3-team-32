@@ -43,11 +43,7 @@ export default function CorrectionQueue() {
           loading={loading}
           error={error}
         />
-        <Pagination
-          pages={pagination?.page}
-          totalPages={totalPages}
-          setPage={setPage}
-        />
+        <Pagination page={page} totalPages={totalPages} setPage={setPage} />
       </div>
     </div>
   );
