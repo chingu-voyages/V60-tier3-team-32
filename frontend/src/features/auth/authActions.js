@@ -1,11 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as authApi from './authService';
+import { setAccessToken } from '@/features/auth/authSlice';
+import { fetchMe } from '../profile';
 
 export const loginThunk = createAsyncThunk(
   'auth/login',
-  async (credentials, { rejectWithValue }) => {
+  async (credentials, { dispatch, rejectWithValue }) => {
     try {
       const res = await authApi.login(credentials);
+      dispatch(setAccessToken(res.data.access_token));
+      await dispatch(fetchMe());
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response.data.message);

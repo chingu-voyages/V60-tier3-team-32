@@ -18,9 +18,11 @@ export default function AuthProvider({ children }) {
           {},
           { withCredentials: true },
         );
-
+        // console.log('refresh access token:', data.access_token);
         dispatch(setAccessToken(data.access_token));
-        await dispatch(fetchMe());
+        const res = await dispatch(fetchMe());
+        // console.log(res);
+        return res.data;
       } catch {
         // not logged in, ignore
         dispatch(setAccessToken(null));
