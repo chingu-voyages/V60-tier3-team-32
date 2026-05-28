@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as authApi from './authService';
 import { setAccessToken } from '@/features/auth/authSlice';
 import { fetchMe } from '../profile';
+import { clearProfile } from '@/features/profile/profileSlice';
 
 export const loginThunk = createAsyncThunk(
   'auth/login',
@@ -17,9 +18,13 @@ export const loginThunk = createAsyncThunk(
   },
 );
 
-export const logoutThunk = createAsyncThunk('auth/logout', async () => {
-  await authApi.logout();
-});
+export const logoutThunk = createAsyncThunk(
+  'auth/logout',
+  async (_, { dispatch }) => {
+    await authApi.logout();
+    dispatch(clearProfile());
+  },
+);
 
 export const signUpThunk = createAsyncThunk(
   'auth/register',

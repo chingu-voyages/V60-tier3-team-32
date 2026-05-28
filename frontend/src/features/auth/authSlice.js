@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { loginThunk, logoutThunk, signUpThunk } from '@/features/auth';
+import { loginThunk, logoutThunk, signUpThunk } from './authActions';
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     accessToken: localStorage.getItem('accessToken') || null,
-    user: null,
     loading: false,
     error: null,
   },
@@ -18,10 +17,12 @@ const authSlice = createSlice({
     },
     setAccessToken: (state, action) => {
       state.accessToken = action.payload;
-      localStorage.setItem('accessToken', action.payload);
-    },
-    setUser: (state, action) => {
-      state.user = action.payload;
+
+      if (action.payload) {
+        localStorage.setItem('accessToken', action.payload);
+      } else {
+        localStorage.removeItem('accessToken');
+      }
     },
   },
   extraReducers: (builder) => {
@@ -54,6 +55,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(logoutThunk.fulfilled, (state) => {
+        // console.log('log-out:', JSON.parse(JSON.stringify(state.user)));
         state.accessToken = null;
         state.error = null;
         localStorage.removeItem('accessToken');
@@ -61,5 +63,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { clearAuth, setAccessToken, setUser, logout } = authSlice.actions;
+export const { clearAuth, setAccessToken } = authSlice.actions;
 export default authSlice.reducer;
