@@ -8,6 +8,11 @@ const profileSlice = createSlice({
     loading: false,
     error: null,
   },
+  reducers: {
+    clearProfile: (state) => {
+      state.user = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMe.pending, (state) => {
@@ -25,4 +30,5 @@ const profileSlice = createSlice({
   },
 });
 
+export const { clearProfile } = profileSlice.actions;
 export default profileSlice.reducer;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setAccessToken, setUser } from '@/features/auth/authSlice';
+import { setAccessToken } from '@/features/auth/authSlice';
 import { fetchMe } from '@/features/profile';
 import PageLoader from '@/components/layout/PageLoader';
 
@@ -18,13 +18,13 @@ export default function AuthProvider({ children }) {
           {},
           { withCredentials: true },
         );
-
+        // console.log('refresh access token:', data.access_token);
         dispatch(setAccessToken(data.access_token));
-        await dispatch(fetchMe());
+        const res = await dispatch(fetchMe());
+        return res.data;
       } catch {
         // not logged in, ignore
         dispatch(setAccessToken(null));
-        dispatch(setUser(null));
       } finally {
         setLoading(false);
       }
