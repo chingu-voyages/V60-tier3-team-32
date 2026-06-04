@@ -6,6 +6,8 @@ import { fetchSubmissionById } from '../../submissions/submissionActions';
 import { clearSelectedSubmission } from '../../submissions/submissionSlice';
 import { createCorrection } from '../correctionActions';
 import { resetCorrectionStatus } from '../correctionSlice';
+import { useForm, useWatch } from 'react-hook-form';
+import { useWordCount } from '@/features/write/hooks/useWordCount';
 
 export default function Correct() {
   const navigate = useNavigate();
@@ -26,8 +28,28 @@ export default function Correct() {
   const submissionData = selectedSubmission?.data || selectedSubmission;
   const displayData = submissionData || location.state?.submission;
 
-  const [correction, setCorrection] = useState('');
-  const [notes, setNotes] = useState('');
+  //RHF
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      content: '',
+      notes: '',
+    },
+  });
+
+  const content = useWatch({
+    control,
+    name: 'content',
+    defaultValue: '',
+  });
+
+  const { isOverLimit } = useWordCount(content, 300);
 
   // 3. Force fetch if we don't have the 'content' field (even if location state exists)
   useEffect(() => {
@@ -47,17 +69,21 @@ export default function Correct() {
     }
   }, [submitSuccess, navigate, dispatch]);
 
-  const handleSubmitCorrection = () => {
-    if (!id || !correction.trim()) return;
-    dispatch(
-      createCorrection({
-        id,
-        correctionData: {
-          corrected_text: correction.trim(),
-          notes: notes.trim(),
-        },
-      }),
-    );
+  // const handleSubmitCorrection = () => {
+  //   if (!id || !correction.trim()) return;
+  //   dispatch(
+  //     createCorrection({
+  //       id,
+  //       correctionData: {
+  //         corrected_text: correction.trim(),
+  //         notes: notes.trim(),
+  //       },
+  //     }),
+  //   );
+  // };
+
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
@@ -69,10 +95,10 @@ export default function Correct() {
         >
           <ArrowLeft size={18} /> Back to Queue
         </button>
-        <div className='flex gap-2 bg-[#E8FFF3] text-[#10B981] px-4 py-2 rounded-full border border-[#D1FAE5]'>
+        {/* <div className='flex gap-2 bg-[#E8FFF3] text-[#10B981] px-4 py-2 rounded-full border border-[#D1FAE5]'>
           <Sparkles size={16} fill='currentColor' />
           <span className='text-xs font-bold uppercase'>Reward: 1 credit</span>
-        </div>
+        </div> */}
       </div>
 
       <div className='container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start'>
@@ -134,45 +160,48 @@ export default function Correct() {
 
         {/* Right Form: Correction Input */}
         <div className='lg:col-span-8 space-y-6'>
-          <section className='space-y-3'>
-            <h2 className='text-lg font-bold text-[#1A1A1A] px-2'>
-              Your Correction
-            </h2>
-            <textarea
-              placeholder='Correct the grammar and flow...'
-              value={correction}
-              onChange={(e) => setCorrection(e.target.value)}
-              disabled={submitting}
-              className='w-full h-64 bg-white border border-gray-100 rounded-[32px] p-8 text-[15px] outline-none focus:ring-4 focus:ring-indigo-50 transition-all resize-none shadow-sm'
-            />
-          </section>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <section className='space-y-3'>
+              <h2 className='text-lg font-bold text-[#1A1A1A] px-2'>
+                Your Correction
+              </h2>
+              <textarea
+                placeholder='Correct the grammar and flow...'
+                disabled={submitting}
+                {...register('content', {
+                  required: 'Correction required',
+                })}
+                className='w-full h-64 bg-white border border-gray-100 rounded-[32px] p-8 text-[15px] outline-none focus:ring-4 focus:ring-indigo-50 transition-all resize-none shadow-sm'
+              />
+              {errors.content && <p>{errors.content.message}</p>}
+            </section>
 
-          <section className='space-y-3'>
-            <h2 className='text-lg font-bold text-[#1A1A1A] px-2 text-sm'>
-              Notes (optional)
-            </h2>
-            <textarea
-              placeholder='Explain your changes...'
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              disabled={submitting}
-              className='w-full h-32 bg-white border border-gray-100 rounded-[32px] p-8 text-[15px] outline-none focus:ring-4 focus:ring-indigo-50 transition-all resize-none shadow-sm'
-            />
-          </section>
+            <section className='space-y-3'>
+              <h2 className='md:text-lg font-bold text-[#1A1A1A] px-2 text-sm'>
+                Notes (optional)
+              </h2>
+              <textarea
+                placeholder='Explain your changes...'
+                disabled={submitting}
+                {...register('notes')}
+                className='w-full h-32 bg-white border border-gray-100 rounded-[32px] p-8 text-[15px] outline-none focus:ring-4 focus:ring-indigo-50 transition-all resize-none shadow-sm'
+              />
+            </section>
 
-          <button
-            onClick={handleSubmitCorrection}
-            disabled={submitting || !correction.trim()}
-            className='w-full py-4 bg-[#5D45FD] text-white font-bold rounded-full hover:bg-[#4a36cc] flex items-center justify-center gap-2 transition-all disabled:bg-gray-300'
-          >
-            {submitting ? (
-              <Loader2 className='animate-spin' size={18} />
-            ) : (
-              <>
-                Submit Correction <Send size={18} />
-              </>
-            )}
-          </button>
+            <button
+              // onClick={handleSubmitCorrection}
+              // disabled={submitting || !correction?.trim()}
+              className='w-full py-4 bg-[#5D45FD] text-white font-bold rounded-full hover:bg-[#4a36cc] flex items-center justify-center gap-2 transition-all disabled:bg-gray-300'
+            >
+              {submitting ? (
+                <Loader2 className='animate-spin' size={18} />
+              ) : (
+                <>
+                  Submit Correction <Send size={18} />
+                </>
+              )}
+            </button>
+          </form>
         </div>
       </div>
     </div>
