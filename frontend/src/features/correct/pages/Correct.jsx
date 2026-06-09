@@ -1,6 +1,6 @@
 import { ArrowLeft, Sparkles, Send, Loader2 } from 'lucide-react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSubmissionById } from '../../submissions/submissionActions';
 import { clearSelectedSubmission } from '../../submissions/submissionSlice';
@@ -8,6 +8,7 @@ import { createCorrection } from '../correctionActions';
 import { resetCorrectionStatus } from '../correctionSlice';
 import { useForm, useWatch } from 'react-hook-form';
 import { useWordCount } from '@/features/write/hooks/useWordCount';
+import { toast } from 'sonner';
 
 export default function Correct() {
   const navigate = useNavigate();
@@ -34,7 +35,6 @@ export default function Correct() {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -64,6 +64,7 @@ export default function Correct() {
 
   useEffect(() => {
     if (submitSuccess) {
+      toast.success('Correction submitted!');
       dispatch(resetCorrectionStatus());
       navigate('/dashboard');
     }
