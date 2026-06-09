@@ -69,21 +69,17 @@ export default function Correct() {
     }
   }, [submitSuccess, navigate, dispatch]);
 
-  // const handleSubmitCorrection = () => {
-  //   if (!id || !correction.trim()) return;
-  //   dispatch(
-  //     createCorrection({
-  //       id,
-  //       correctionData: {
-  //         corrected_text: correction.trim(),
-  //         notes: notes.trim(),
-  //       },
-  //     }),
-  //   );
-  // };
-
   const onSubmit = (data) => {
-    console.log(data);
+    if (!id || isOverLimit) return;
+    dispatch(
+      createCorrection({
+        id,
+        correctionData: {
+          corrected_text: data.content.trim(),
+          notes: data.notes.trim(),
+        },
+      }),
+    );
   };
 
   return (
@@ -173,7 +169,19 @@ export default function Correct() {
                 })}
                 className='w-full h-64 bg-white border border-gray-100 rounded-[32px] p-8 text-[15px] outline-none focus:ring-4 focus:ring-indigo-50 transition-all resize-none shadow-sm'
               />
-              {errors.content && <p>{errors.content.message}</p>}
+
+              {errors.content && (
+                <p className='text-red-500 text-xs px-2'>
+                  {errors.content.message}
+                </p>
+              )}
+
+              <p
+                className={`text-xs px-2 text-right ${isOverLimit ? 'text-red-500 font-semibold' : 'text-gray-400'}`}
+              >
+                {content.trim().split(/\s+/).filter(Boolean).length} / 300 words
+                {isOverLimit && ' — over limit'}
+              </p>
             </section>
 
             <section className='space-y-3'>
@@ -189,8 +197,8 @@ export default function Correct() {
             </section>
 
             <button
-              // onClick={handleSubmitCorrection}
-              // disabled={submitting || !correction?.trim()}
+              type='submit'
+              disabled={submitting || isOverLimit}
               className='w-full py-4 bg-[#5D45FD] text-white font-bold rounded-full hover:bg-[#4a36cc] flex items-center justify-center gap-2 transition-all disabled:bg-gray-300'
             >
               {submitting ? (
